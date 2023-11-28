@@ -1,3 +1,10 @@
-[gd_scene format=3 uid="uid://2qb30gsypqr5"]
+[gd_scene load_steps=2 format=3 uid="uid://2qb30gsypqr5"]
+
+[ext_resource type="Script" path="res://ModeGame/Scripts/Attack_Polygon.gd" id="1_wp8ox"]
 
 [node name="Slash" type="Node2D"]
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+scale = Vector2(1, 0.981481)
+polygon = PackedVector2Array(2, 5, 21, -1, 38, -21, 44, -40, 46, -19, 36, 0, 23, 9, 14, 14, -5, 14, -18, 1)
+script = ExtResource("1_wp8ox")
