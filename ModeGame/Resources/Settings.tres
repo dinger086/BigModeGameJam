@@ -1,0 +1,19 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://caj5vcfxlbjki"]
+
+[ext_resource type="Script" path="res://SampleProject/Scripts/CustomElements.gd" id="1_k6yro"]
+[ext_resource type="Script" path="res://addons/MetroidvaniaSystem/Scripts/Settings.gd" id="2_erau0"]
+[ext_resource type="Resource" uid="uid://bt6s3nd8xo6b" path="res://addons/MetroidvaniaSystem/Themes/Exquisite/Theme.tres" id="3_wx28m"]
+
+[resource]
+script = ExtResource("2_erau0")
+theme = ExtResource("3_wx28m")
+map_root_folder = "res://SampleProject/Maps/"
+in_game_cell_size = Vector2(864, 480)
+collectible_list = Array[Dictionary]([{
+"element": "Collectible",
+"icon": "res://SampleProject/Sprites/Collectible.png"
+}, {
+"element": "MapItem",
+"icon": "res://SampleProject/Sprites/MapItem.png"
+}])
+custom_element_script = ExtResource("1_k6yro")
