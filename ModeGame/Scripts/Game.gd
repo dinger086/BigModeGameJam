@@ -1,10 +1,8 @@
-# This is the main script of the game. It manages the current map and some other stuff.
 extends Node2D
 class_name Game
 
 # The game starts in this map. Note that it's scene name only, just like MetSys refers to rooms.
 @export var starting_map: String
-# Player node, bruh.
 @onready var player: CharacterBody2D = $Player
 
 # The current map scene instance.
