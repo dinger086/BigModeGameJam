@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bkfqwvk3t6yth"]
+
+[ext_resource type="Texture2D" uid="uid://by71gpgjj4j6" path="res://ModeGame/Sprites/Button.png" id="1_flf4l"]
+[ext_resource type="Script" path="res://ModeGame/Components/HitBoxComponent.gd" id="2_h1eah"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1g3v6"]
+size = Vector2(108, 77)
+
+[node name="Test" type="Node2D"]
+
+[node name="Button" type="Sprite2D" parent="."]
+position = Vector2(1, 1)
+texture = ExtResource("1_flf4l")
+
+[node name="HitBoxComponent" type="Area2D" parent="."]
+script = ExtResource("2_h1eah")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
+position = Vector2(-10, 7)
+shape = SubResource("RectangleShape2D_1g3v6")

@@ -1,84 +1,66 @@
-[gd_scene load_steps=11 format=3 uid="uid://bxqu5krtid2e4"]
+[gd_scene load_steps=7 format=3 uid="uid://bxqu5krtid2e4"]
 
 [ext_resource type="Texture2D" uid="uid://cdiehapxag7l5" path="res://ModeGame/Sprites/small_slash_1.png" id="1_568vf"]
+[ext_resource type="Script" path="res://ModeGame/Components/AttackComponent.gd" id="2_q8stg"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i1hui"]
-size = Vector2(19, 52.7358)
+[sub_resource type="Animation" id="Animation_tkb5x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_x24gt"]
-atlas = ExtResource("1_568vf")
-region = Rect2(0, 0, 37, 54)
+[sub_resource type="Animation" id="Animation_ifgws"]
+resource_name = "Slash"
+length = 0.200003
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.001, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5r7pw"]
-atlas = ExtResource("1_568vf")
-region = Rect2(37, 0, 37, 54)
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_psmgp"]
+_data = {
+"RESET": SubResource("Animation_tkb5x"),
+"Slash": SubResource("Animation_ifgws")
+}
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xgksl"]
-atlas = ExtResource("1_568vf")
-region = Rect2(74, 0, 37, 54)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2iae2"]
-atlas = ExtResource("1_568vf")
-region = Rect2(111, 0, 37, 54)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gdhyu"]
-atlas = ExtResource("1_568vf")
-region = Rect2(148, 0, 37, 54)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0h4ay"]
-atlas = ExtResource("1_568vf")
-region = Rect2(185, 0, 37, 54)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_nh436"]
-resource_name = "slash"
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_x24gt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5r7pw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xgksl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2iae2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gdhyu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0h4ay")
-}],
-"loop": true,
-"name": &"new_animation",
-"speed": 20.0
-}]
-
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_dydgk"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nugbd"]
+size = Vector2(19, 42)
 
 [node name="Slash" type="Node2D"]
 
-[node name="Polygon2D2" type="Polygon2D" parent="."]
-visible = false
-scale = Vector2(2, 2)
-offset = Vector2(8.325, -10.505)
-polygon = PackedVector2Array(-16, -15.283, -3, -10.1887, 4, 0, 4, 16.3019, -1, 27.5094, -11, 36.6793, -5, 24.4528, -2, 14.2642, -2, 1.01887, -7, -4.07547)
-
-[node name="Area2D" type="Area2D" parent="Polygon2D2"]
-position = Vector2(-4, -3.05661)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Polygon2D2/Area2D"]
-position = Vector2(7, 2.05661)
-shape = SubResource("RectangleShape2D_i1hui")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_nh436")
-animation = &"new_animation"
-frame = 2
+libraries = {
+"": SubResource("AnimationLibrary_psmgp")
+}
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("AnimatedTexture_dydgk")
+texture = ExtResource("1_568vf")
+hframes = 6
+frame = 5
+
+[node name="AttackComponent" type="Area2D" parent="."]
+position = Vector2(1, 0)
+script = ExtResource("2_q8stg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackComponent"]
+position = Vector2(12.5, -3)
+shape = SubResource("RectangleShape2D_nugbd")
+disabled = true

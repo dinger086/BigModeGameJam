@@ -201,6 +201,7 @@ script = ExtResource("3_lcxil")
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="Minimap" type="Panel" parent="UI"]
+visible = false
 clip_contents = true
 anchors_preset = 1
 anchor_left = 1.0
@@ -267,6 +268,7 @@ grow_vertical = 0
 text = "Press D to toggle delta vector"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI"]
+visible = false
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 48.0
