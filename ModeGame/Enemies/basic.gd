@@ -36,8 +36,9 @@ func _process(delta):
 	move_to(player.global_position)
 
 	var distance = global_position.distance_to(player.global_position)
+	
 	if distance < attack_range:
-		attack()
+		attack(player.global_position)
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -56,6 +57,15 @@ func move_to(target: Vector2):
 	velocity.x = direction.x * speed
 
 
-func attack():
+func attack(target: Vector2):
+	
+	var direction = target - global_position
+
+	direction = direction.normalized()
+	
+	slash_scene.position = direction * 64
+	var angle = direction.angle_to(Vector2.RIGHT) * 3 * 5
+	slash_scene.rotation = angle
+	
 	var attack_component = slash_scene.get_node("AttackComponent")
 	attack_component.attack()
