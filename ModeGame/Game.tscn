@@ -285,3 +285,11 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "0"
 vertical_alignment = 1
+
+[node name="HealthBar" type="ProgressBar" parent="UI"]
+offset_left = 26.0
+offset_top = 33.0
+offset_right = 263.0
+offset_bottom = 60.0
+rounded = true
+show_percentage = false

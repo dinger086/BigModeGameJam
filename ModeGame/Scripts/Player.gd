@@ -31,6 +31,13 @@ func _ready() -> void:
 	on_enter()
 	var attack_comp = slashScene.get_node("AttackComponent")
 	attack_comp.connect("attack_damaged", self_knockback)
+	$"../UI/HealthBar".max_value = $HealthComponent.max_health
+	$"../UI/HealthBar".value = $HealthComponent.max_health
+	var health = get_node("HealthComponent")
+	health.connect("health_changed", _on_health_changed)
+	
+func _on_health_changed(new_value):
+	$"../UI/HealthBar".value = new_value
 
 
 func _physics_process(delta: float) -> void:

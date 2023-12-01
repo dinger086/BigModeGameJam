@@ -9,6 +9,9 @@ var health: int
 
 func _ready():
 	health = max_health
+	
+func get_health():
+	return health
 
 func take_damage(damage):
 	health -= damage
