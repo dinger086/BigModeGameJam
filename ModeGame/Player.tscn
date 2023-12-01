@@ -1,7 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://bfpti047n82k7"]
+[gd_scene load_steps=14 format=3 uid="uid://bfpti047n82k7"]
 
 [ext_resource type="Texture2D" uid="uid://b0nu8ywhdcc5n" path="res://ModeGame/Sprites/MC.png" id="1_qiynj"]
-[ext_resource type="PackedScene" uid="uid://bxqu5krtid2e4" path="res://ModeGame/Attacks/Slash.tscn" id="2_gd3p6"]
+[ext_resource type="PackedScene" uid="uid://bxqu5krtid2e4" path="res://ModeGame/Attacks/PlayerSlash.tscn" id="2_gd3p6"]
+[ext_resource type="Script" path="res://ModeGame/Components/HealthComponent.gd" id="3_avxgd"]
+[ext_resource type="Script" path="res://ModeGame/Components/HitBoxComponent.gd" id="4_ug1ym"]
 
 [sub_resource type="GDScript" id="GDScript_weu6d"]
 script/source = "extends CharacterBody2D
@@ -151,7 +153,10 @@ _data = {
 "Run": SubResource("Animation_l0tvd")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e8vvw"]
+size = Vector2(22, 62)
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 1
 script = SubResource("GDScript_weu6d")
 metadata/player = true
@@ -172,4 +177,17 @@ libraries = {
 "": SubResource("AnimationLibrary_rqeoy")
 }
 
-[node name="Slash" parent="." instance=ExtResource("2_gd3p6")]
+[node name="HealthComponent" type="Node2D" parent="."]
+script = ExtResource("3_avxgd")
+max_health = 10
+
+[node name="HitBoxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+script = ExtResource("4_ug1ym")
+health = NodePath("../HealthComponent")
+hitbox_owner = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
+position = Vector2(2, 15)
+shape = SubResource("RectangleShape2D_e8vvw")
+
+[node name="PlayerSlash" parent="." instance=ExtResource("2_gd3p6")]

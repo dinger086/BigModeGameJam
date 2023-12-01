@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 # Slash scene
-@onready var slashScene = $Slash
+@onready var slashScene = $PlayerSlash
 
 const SPEED = 400.0
 const JUMP_VELOCITY = -750.0
@@ -99,12 +99,16 @@ func jump():
 			double_jump = false
 		velocity.y = JUMP_VELOCITY
 
+	if is_on_wall():
+		velocity.y = JUMP_VELOCITY
+		velocity.x = -JUMP_VELOCITY
+
 
 func move():
 	if Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right"):
 		var direction := Input.get_axis("move_left", "move_right")
 		if direction:
-			velocity.x = move_toward(velocity.x, direction * SPEED, SPEED*.5)
+			velocity.x = move_toward(velocity.x, direction * SPEED, SPEED*.2)
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED*.1)
 	else:
@@ -140,3 +144,9 @@ func dash():
 func self_knockback():
 	if !is_on_floor():
 		velocity = knockback_direction * SELF_KNOCKBACK_AMOUNT
+
+
+func ignore_input(time: float) -> void:
+	in_cutscene = true
+	await get_tree().create_timer(time).timeout
+	in_cutscene = false

@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=3 uid="uid://dxf1jvxpq207t"]
+
+[ext_resource type="Texture2D" uid="uid://cdiehapxag7l5" path="res://ModeGame/Sprites/small_slash_1.png" id="1_qxdwa"]
+[ext_resource type="Script" path="res://ModeGame/Components/HurtBoxComponent.gd" id="2_i2gll"]
+
+[sub_resource type="Animation" id="Animation_tkb5x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+
+[sub_resource type="Animation" id="Animation_ifgws"]
+resource_name = "Slash"
+length = 0.200003
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.001, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_psmgp"]
+_data = {
+"RESET": SubResource("Animation_tkb5x"),
+"Slash": SubResource("Animation_ifgws")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nugbd"]
+size = Vector2(19, 42)
+
+[node name="EnemySlash" type="Node2D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_psmgp")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_qxdwa")
+hframes = 6
+frame = 5
+
+[node name="AttackComponent" type="Area2D" parent="."]
+position = Vector2(1, 0)
+script = ExtResource("2_i2gll")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackComponent"]
+position = Vector2(12, -3)
+shape = SubResource("RectangleShape2D_nugbd")
+disabled = true

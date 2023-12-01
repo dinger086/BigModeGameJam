@@ -192,7 +192,7 @@ func update():
 script = ExtResource("1_na0b5")
 starting_map = "Playground.tscn"
 
-[node name="Player" parent="." groups=["player"] instance=ExtResource("2_u7rkp")]
+[node name="Player" parent="." instance=ExtResource("2_u7rkp")]
 position = Vector2(368, 248)
 script = ExtResource("3_lcxil")
 

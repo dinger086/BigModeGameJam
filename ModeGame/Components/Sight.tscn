@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://ct3c8xm7pctvm"]
+
+[ext_resource type="Script" path="res://ModeGame/Components/Sight.gd" id="1_25t0o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dpcai"]
+
+[node name="Sight" type="Area2D"]
+script = ExtResource("1_25t0o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(20, 20)
+shape = SubResource("CircleShape2D_dpcai")
+debug_color = Color(0.984314, 0, 0.329412, 0.419608)
