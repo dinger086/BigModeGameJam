@@ -34,3 +34,7 @@ health = NodePath("../healthComponent")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
 position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_07y3d")
+
+[node name="Timer" type="Timer" parent="HitBoxComponent"]
+
+[connection signal="timeout" from="HitBoxComponent/Timer" to="HitBoxComponent" method="_on_timer_timeout"]

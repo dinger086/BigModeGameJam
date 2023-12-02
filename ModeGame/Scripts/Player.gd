@@ -20,6 +20,14 @@ var prev_on_floor: bool
 var most_recent_direction: Vector2
 var knockback_direction: Vector2
 
+@onready var health = get_node("HealthComponent")
+
+@onready var blinkAnimationPlayer = $BlinkAnimationPlayer
+
+@onready var healthBar = $"../UI/HealthBar"
+
+@onready var attack_comp = slashScene.get_node("AttackComponent")
+
 enum Modes {
 	Life,
 	Death,
@@ -31,14 +39,15 @@ var mode: Modes = Modes.Life
 func _ready() -> void:
 	on_enter()
 	var attack_comp = slashScene.get_node("HurtBoxComponent")
+
 	attack_comp.connect("attack_damaged", self_knockback)
-	$"../UI/HealthBar".max_value = $HealthComponent.max_health
-	$"../UI/HealthBar".value = $HealthComponent.max_health
-	var health = get_node("HealthComponent")
+	healthBar.max_value = $HealthComponent.max_health
+	healthBar.value = $HealthComponent.max_health
 	health.connect("health_changed", _on_health_changed)
+	blinkAnimationPlayer.play("Stop")
 	
 func _on_health_changed(new_value):
-	$"../UI/HealthBar".value = new_value
+	healthBar.value = new_value
 
 
 func _physics_process(delta: float) -> void:
@@ -161,3 +170,4 @@ func ignore_input(time: float) -> void:
 	in_cutscene = true
 	await get_tree().create_timer(time).timeout
 	in_cutscene = false
+

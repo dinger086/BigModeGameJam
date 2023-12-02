@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bxqu5krtid2e4"]
+[gd_scene load_steps=7 format=3 uid="uid://1qtp6vbeknpe"]
 
 [ext_resource type="Texture2D" uid="uid://cdiehapxag7l5" path="res://ModeGame/Sprites/small_slash_1.png" id="1_bwkkm"]
 [ext_resource type="Script" path="res://ModeGame/Components/HurtBoxComponent.gd" id="2_4o2ir"]
