@@ -35,8 +35,11 @@ enum Modes {
 
 var mode: Modes = Modes.Life
 
+
 func _ready() -> void:
 	on_enter()
+	var attack_comp = slashScene.get_node("HurtBoxComponent")
+
 	attack_comp.connect("attack_damaged", self_knockback)
 	healthBar.max_value = $HealthComponent.max_health
 	healthBar.value = $HealthComponent.max_health
@@ -115,7 +118,10 @@ func jump():
 
 	if is_on_wall():
 		velocity.y = JUMP_VELOCITY
-		velocity.x = -JUMP_VELOCITY
+		if $Sprite2D.flip_h:
+			velocity.x = -JUMP_VELOCITY
+		else:
+			velocity.x = JUMP_VELOCITY
 
 
 func move():
@@ -141,7 +147,7 @@ func slash():
 	slashScene.position = most_recent_direction * 64
 	var angle = most_recent_direction.angle_to(Vector2.RIGHT) * 3 * 5
 	slashScene.rotation = angle
-	var attack = slashScene.get_node("AttackComponent")
+	var attack = slashScene.get_node("HurtBoxComponent")
 	attack.attack()
 
 

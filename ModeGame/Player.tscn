@@ -2,7 +2,9 @@
 
 [ext_resource type="Shader" path="res://ModeGame/Player.gdshader" id="1_meept"]
 [ext_resource type="Texture2D" uid="uid://b0nu8ywhdcc5n" path="res://ModeGame/Sprites/MC.png" id="1_qiynj"]
-[ext_resource type="PackedScene" uid="uid://1qtp6vbeknpe" path="res://ModeGame/Attacks/PlayerSlash.tscn" id="2_gd3p6"]
+
+[ext_resource type="PackedScene" uid="uid://bxqu5krtid2e4" path="res://ModeGame/Attacks/PlayerSlash.tscn" id="2_gd3p6"]
+
 [ext_resource type="Script" path="res://ModeGame/Components/HealthComponent.gd" id="3_avxgd"]
 [ext_resource type="Script" path="res://ModeGame/Components/HitBoxComponent.gd" id="4_ug1ym"]
 [ext_resource type="Script" path="res://ModeGame/BlinkAnimationPlayer.gd" id="6_bgkal"]

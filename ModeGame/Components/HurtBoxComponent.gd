@@ -3,6 +3,7 @@ extends Area2D
 class_name HurtBoxComponent
 
 signal attack_damaged
+signal hit_physics_body
 
 @export var animation_player: AnimationPlayer
 
@@ -15,12 +16,9 @@ enum AttackType {
 }
 @export var attack_type: AttackType = AttackType.ENEMY
 
-func _init() -> void:
-	pass
-
 
 func _ready() -> void:
-	collision_mask = 0
+	collision_mask = 1
 	if attack_type == AttackType.PLAYER:
 		print("HurtBoxComponent: Player attack")
 		collision_layer = 4
@@ -31,11 +29,16 @@ func _ready() -> void:
 		print("HurtBoxComponent: Invalid attack type")
 		collision_layer = 0
 
+	self.connect("body_entered", hit_wall)
+
 	$CollisionShape2D.disabled = true
 	if animation_player == null and get_parent().has_node("AnimationPlayer"):
 		animation_player = get_parent().get_node("AnimationPlayer")
 		animation_player.connect("animation_finished", on_animation_finished)
 
+func hit_wall(body: Node) -> void:
+	if body is TileMap:
+		emit_signal("hit_physics_body")
 
 func attack() -> void:
 	$CollisionShape2D.disabled = false
@@ -47,4 +50,9 @@ func on_animation_finished(animation_name: String) -> void:
 
 func hit() -> void:
 	emit_signal("attack_damaged")
-	
+
+func enable() -> void:
+	$CollisionShape2D.disabled = false
+
+func disable() -> void:
+	$CollisionShape2D.disabled = true

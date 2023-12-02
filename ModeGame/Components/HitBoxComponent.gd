@@ -17,10 +17,6 @@ signal invincibility_started
 signal invincibility_ended
 
 
-func _init() -> void:
-	pass
-
-
 func _ready() -> void:
 	collision_layer = 0
 	self.monitoring = true

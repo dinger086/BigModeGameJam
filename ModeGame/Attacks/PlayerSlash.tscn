@@ -56,12 +56,12 @@ texture = ExtResource("1_bwkkm")
 hframes = 6
 frame = 5
 
-[node name="AttackComponent" type="Area2D" parent="."]
+[node name="HurtBoxComponent" type="Area2D" parent="."]
 position = Vector2(1, 0)
 script = ExtResource("2_4o2ir")
 attack_type = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackComponent"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
 position = Vector2(13, -3)
 shape = SubResource("RectangleShape2D_nugbd")
 disabled = true

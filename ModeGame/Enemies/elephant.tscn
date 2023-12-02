@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://ofhy6k6i1cjm"]
 
 [ext_resource type="Script" path="res://ModeGame/Enemies/elephant.gd" id="1_g4q4r"]
-[ext_resource type="Texture2D" uid="uid://dvthov5qyxdv3" path="res://ModeGame/square.png" id="1_xqw5o"]
+[ext_resource type="Texture2D" uid="uid://d32155hmo13hh" path="res://ModeGame/Griffins/peter_2008_v2F_hires1-56a00f083df78cafda9fdcb6.jpg" id="2_c1cy6"]
 [ext_resource type="Script" path="res://ModeGame/Components/HealthComponent.gd" id="3_40edg"]
 [ext_resource type="Script" path="res://ModeGame/Components/HitBoxComponent.gd" id="4_vrlj2"]
 
@@ -16,9 +16,8 @@ scale = Vector2(0.285, 0.285)
 script = ExtResource("1_g4q4r")
 
 [node name="Square" type="Sprite2D" parent="."]
-texture = ExtResource("1_xqw5o")
-hframes = 3
-vframes = 7
+scale = Vector2(0.23, 0.23)
+texture = ExtResource("2_c1cy6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2.25, 1.5)

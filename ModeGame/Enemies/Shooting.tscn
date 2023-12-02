@@ -1,0 +1,47 @@
+[gd_scene load_steps=10 format=3 uid="uid://q4tgc2h3q70c"]
+
+[ext_resource type="Script" path="res://ModeGame/Enemies/Shooter.gd" id="1_48bqe"]
+[ext_resource type="Texture2D" uid="uid://dbxbm5lvypjbd" path="res://ModeGame/Griffins/lois_griffin_angry_using_gun_family_guy_by_arturomendoza2890_dfayf7s-fullview.png" id="1_htri8"]
+[ext_resource type="Script" path="res://ModeGame/Components/HitBoxComponent.gd" id="2_mbf1n"]
+[ext_resource type="PackedScene" uid="uid://cqhcesc5yq51y" path="res://ModeGame/Attacks/BulletSpawner.tscn" id="3_s338m"]
+[ext_resource type="PackedScene" uid="uid://bepums4cqym54" path="res://ModeGame/Attacks/Bullet.tscn" id="4_3qw2s"]
+[ext_resource type="PackedScene" uid="uid://ct3c8xm7pctvm" path="res://ModeGame/Components/Sight.tscn" id="6_mb1f8"]
+[ext_resource type="Script" path="res://ModeGame/Components/HealthComponent.gd" id="7_kpel3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_53bod"]
+size = Vector2(73, 79)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dd0ki"]
+size = Vector2(73, 78)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_48bqe")
+
+[node name="Shooting" type="Node2D" parent="."]
+
+[node name="LoisGriffinAngryUsingGunFamilyGuyByArturomendoza2890Dfayf7s-fullview" type="Sprite2D" parent="."]
+scale = Vector2(0.175, 0.175)
+texture = ExtResource("1_htri8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, 2.5)
+shape = SubResource("RectangleShape2D_53bod")
+
+[node name="HitBoxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+script = ExtResource("2_mbf1n")
+health = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
+position = Vector2(-1.5, 2)
+shape = SubResource("RectangleShape2D_dd0ki")
+
+[node name="BulletSpawner" parent="." instance=ExtResource("3_s338m")]
+position = Vector2(37, -4)
+bullet = ExtResource("4_3qw2s")
+
+[node name="Sight" parent="." instance=ExtResource("6_mb1f8")]
+sight_radius = 50
+
+[node name="HealthComponent" type="Node2D" parent="."]
+script = ExtResource("7_kpel3")
+max_health = 5
