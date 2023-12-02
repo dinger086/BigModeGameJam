@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://b1fi06r7cwfv"]
+[gd_scene load_steps=8 format=3 uid="uid://b1fi06r7cwfv"]
 
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="1_binfa"]
 [ext_resource type="TileSet" uid="uid://yekejfqwd2kt" path="res://ModeGame/Resources/Tileset.tres" id="2_vsoa5"]
 [ext_resource type="PackedScene" uid="uid://ofhy6k6i1cjm" path="res://ModeGame/Enemies/elephant.tscn" id="3_mqu28"]
-[ext_resource type="PackedScene" path="res://ModeGame/Enemies/basic.tscn" id="4_k7jgp"]
+[ext_resource type="PackedScene" uid="uid://c83sugtovdvqm" path="res://ModeGame/Enemies/basic.tscn" id="4_k7jgp"]
+[ext_resource type="PackedScene" uid="uid://bepums4cqym54" path="res://ModeGame/Attacks/Bullet.tscn" id="5_kxmwf"]
+[ext_resource type="PackedScene" uid="uid://q4tgc2h3q70c" path="res://ModeGame/Enemies/Shooting.tscn" id="6_sps4w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dbmfy"]
 size = Vector2(56.9471, 51.6906)
@@ -24,7 +26,19 @@ position = Vector2(470, 2023.86)
 shape = SubResource("RectangleShape2D_dbmfy")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("3_mqu28")]
-position = Vector2(283, 2156)
+position = Vector2(1089, 2228)
 
 [node name="Basic" parent="." instance=ExtResource("4_k7jgp")]
 position = Vector2(831, 2101)
+
+[node name="CharacterBody2D2" parent="." instance=ExtResource("5_kxmwf")]
+position = Vector2(589, 2006)
+
+[node name="CharacterBody2D3" parent="." instance=ExtResource("5_kxmwf")]
+position = Vector2(678, 2522)
+
+[node name="CharacterBody2D4" parent="." instance=ExtResource("5_kxmwf")]
+position = Vector2(662, 2012)
+
+[node name="CharacterBody2D5" parent="." instance=ExtResource("6_sps4w")]
+position = Vector2(258, 2229)

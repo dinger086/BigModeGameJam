@@ -10,10 +10,6 @@ enum  HitBoxOwner {PLAYER, ENEMY}
 @export var hitbox_owner: HitBoxOwner = HitBoxOwner.ENEMY
 
 
-func _init() -> void:
-	pass
-
-
 func _ready() -> void:
 	collision_layer = 0
 	if hitbox_owner == HitBoxOwner.PLAYER:
