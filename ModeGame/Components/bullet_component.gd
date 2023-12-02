@@ -21,7 +21,6 @@ var direction = Vector2(-1, 0)
 
 
 func _ready():
-	print("bullet ready")
 	hitbox.enable()
 	bullet = get_parent()
 	hitbox.connect("attack_damaged", on_hit)

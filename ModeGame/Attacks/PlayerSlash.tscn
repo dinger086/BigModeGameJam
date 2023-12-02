@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://1qtp6vbeknpe"]
 
 [ext_resource type="Texture2D" uid="uid://cdiehapxag7l5" path="res://ModeGame/Sprites/small_slash_1.png" id="1_bwkkm"]
-[ext_resource type="Script" path="res://ModeGame/Components/HitBoxComponent.gd" id="2_4o2ir"]
+[ext_resource type="Script" path="res://ModeGame/Components/hitbox_component.gd" id="2_4o2ir"]
 
 [sub_resource type="Animation" id="Animation_tkb5x"]
 length = 0.001
@@ -57,11 +57,10 @@ hframes = 6
 frame = 5
 
 [node name="HitBoxComponent" type="Area2D" parent="."]
-position = Vector2(1, 0)
 script = ExtResource("2_4o2ir")
 attack_type = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
-position = Vector2(13, -3)
+position = Vector2(14, -3)
 shape = SubResource("RectangleShape2D_nugbd")
 disabled = true

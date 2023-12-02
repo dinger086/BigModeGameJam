@@ -3,8 +3,8 @@
 [ext_resource type="Shader" path="res://ModeGame/Player.gdshader" id="1_meept"]
 [ext_resource type="Texture2D" uid="uid://b0nu8ywhdcc5n" path="res://ModeGame/Sprites/MC.png" id="1_qiynj"]
 [ext_resource type="PackedScene" uid="uid://1qtp6vbeknpe" path="res://ModeGame/Attacks/PlayerSlash.tscn" id="2_gd3p6"]
-[ext_resource type="Script" path="res://ModeGame/Components/HealthComponent.gd" id="3_avxgd"]
-[ext_resource type="Script" path="res://ModeGame/Components/HurtBoxComponent.gd" id="4_ug1ym"]
+[ext_resource type="Script" path="res://ModeGame/Components/health_component.gd" id="3_avxgd"]
+[ext_resource type="Script" path="res://ModeGame/Components/hurtbox_component.gd" id="4_ug1ym"]
 [ext_resource type="Script" path="res://ModeGame/BlinkAnimationPlayer.gd" id="6_bgkal"]
 
 [sub_resource type="GDScript" id="GDScript_weu6d"]
@@ -165,9 +165,6 @@ _data = {
 "Run": SubResource("Animation_l0tvd")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e8vvw"]
-size = Vector2(22, 62)
-
 [sub_resource type="Animation" id="Animation_y4g00"]
 length = 0.001
 
@@ -211,6 +208,9 @@ _data = {
 "Stop": SubResource("Animation_2n4xi")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e8vvw"]
+size = Vector2(22, 62)
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 1
 script = SubResource("GDScript_weu6d")
@@ -240,19 +240,6 @@ visible = false
 script = ExtResource("3_avxgd")
 max_health = 10
 
-[node name="HitBoxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health")]
-visible = false
-script = ExtResource("4_ug1ym")
-health = NodePath("../HealthComponent")
-HurtBox_owner = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
-visible = false
-position = Vector2(2, 15)
-shape = SubResource("RectangleShape2D_e8vvw")
-
-[node name="Timer" type="Timer" parent="HitBoxComponent"]
-
 [node name="PlayerSlash" parent="." instance=ExtResource("2_gd3p6")]
 
 [node name="BlinkAnimationPlayer" type="AnimationPlayer" parent="."]
@@ -261,6 +248,18 @@ libraries = {
 }
 script = ExtResource("6_bgkal")
 
-[connection signal="invincibility_ended" from="HitBoxComponent" to="BlinkAnimationPlayer" method="_on_hit_box_component_invincibility_ended"]
-[connection signal="invincibility_started" from="HitBoxComponent" to="BlinkAnimationPlayer" method="_on_hit_box_component_invincibility_started"]
-[connection signal="timeout" from="HitBoxComponent/Timer" to="HitBoxComponent" method="_on_timer_timeout"]
+[node name="HurtBoxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+script = ExtResource("4_ug1ym")
+health = NodePath("../HealthComponent")
+hurtbox_owner = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
+visible = false
+position = Vector2(2, 15)
+shape = SubResource("RectangleShape2D_e8vvw")
+
+[node name="Timer" type="Timer" parent="HurtBoxComponent"]
+
+[connection signal="invincibility_ended" from="HurtBoxComponent" to="BlinkAnimationPlayer" method="_on_hurt_box_component_invincibility_ended"]
+[connection signal="invincibility_started" from="HurtBoxComponent" to="BlinkAnimationPlayer" method="_on_hurt_box_component_invincibility_started"]
+[connection signal="timeout" from="HurtBoxComponent/Timer" to="HurtBoxComponent" method="_on_timer_timeout"]

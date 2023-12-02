@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bkfqwvk3t6yth"]
 
 [ext_resource type="Texture2D" uid="uid://by71gpgjj4j6" path="res://ModeGame/Sprites/Button.png" id="1_flf4l"]
-[ext_resource type="Script" path="res://ModeGame/Components/HurtBoxComponent.gd" id="2_h1eah"]
+[ext_resource type="Script" path="res://ModeGame/Components/hurtbox_component.gd" id="2_h1eah"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1g3v6"]
 size = Vector2(108, 77)

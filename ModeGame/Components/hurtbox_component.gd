@@ -7,7 +7,7 @@ signal damage(damage: int)
 enum HurtBoxOwner {PLAYER, ENEMY}
 
 @export var health: HealthComponent
-@export var HurtBox_owner: HurtBoxOwner = HurtBoxOwner.ENEMY
+@export var hurtbox_owner: HurtBoxOwner = HurtBoxOwner.ENEMY
 
 @onready var timer = $Timer
 
@@ -20,9 +20,9 @@ signal invincibility_ended
 func _ready() -> void:
 	collision_layer = 0
 	self.monitoring = true
-	if HurtBox_owner == HurtBoxOwner.PLAYER:
+	if hurtbox_owner == HurtBoxOwner.PLAYER:
 		collision_mask = 2
-	elif HurtBox_owner == HurtBoxOwner.ENEMY:
+	elif hurtbox_owner == HurtBoxOwner.ENEMY:
 		collision_mask = 4
 	else:
 		print("AttackComponent: Invalid attack type")
@@ -37,7 +37,8 @@ func _on_area_entered(area: HitBoxComponent) -> void:
 	area.hit()
 	health.take_damage(area.damage)
 	emit_signal("damage", area.damage)
-	if HurtBoxOwner.PLAYER:
+	print(hurtbox_owner)
+	if hurtbox_owner == HurtBoxOwner.PLAYER:
 		start_invincibility(true)
 
 func set_invicible(value: bool):

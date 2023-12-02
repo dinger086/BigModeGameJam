@@ -20,10 +20,8 @@ enum AttackType {
 func _ready() -> void:
 	collision_mask = 1
 	if attack_type == AttackType.PLAYER:
-		print("HitBoxComponent: Player attack")
 		collision_layer = 4
 	elif attack_type == AttackType.ENEMY:
-		print("HitBoxComponent: Enemy attack")
 		collision_layer = 2
 	else:
 		print("HitBoxComponent: Invalid attack type")
@@ -45,7 +43,6 @@ func attack() -> void:
 	animation_player.play("Slash", -1, attack_speed)
 	
 func on_animation_finished(animation_name: String) -> void:
-	#print("Animation finished: " + animation_name)
 	$CollisionShape2D.disabled = true
 
 func hit() -> void:

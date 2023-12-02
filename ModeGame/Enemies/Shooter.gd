@@ -40,7 +40,6 @@ func _process(delta):
 	
 	if distance < attack_range:
 		if Time.get_ticks_msec() - start_time > attack_speed_time * 1000:
-			print("Shoot")
 			start_time = Time.get_ticks_msec()
 			attack(player.global_position)
 
