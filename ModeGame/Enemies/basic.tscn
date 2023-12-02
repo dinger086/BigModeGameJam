@@ -3,9 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://cmqsru4u5n05a" path="res://ModeGame/Sprites/29_minion_01_x.png" id="1_0d5hc"]
 [ext_resource type="Script" path="res://ModeGame/Enemies/basic.gd" id="1_gxwt3"]
 [ext_resource type="Script" path="res://ModeGame/Components/HealthComponent.gd" id="2_raqy1"]
-[ext_resource type="Script" path="res://ModeGame/Components/HitBoxComponent.gd" id="3_yygbt"]
-[ext_resource type="PackedScene" path="res://ModeGame/Attacks/EnemySlash.tscn" id="6_2r6sa"]
-[ext_resource type="PackedScene" path="res://ModeGame/Components/Sight.tscn" id="6_gqmq5"]
+[ext_resource type="Script" path="res://ModeGame/Components/HurtBoxComponent.gd" id="3_yygbt"]
+[ext_resource type="PackedScene" uid="uid://dxf1jvxpq207t" path="res://ModeGame/Attacks/EnemySlash.tscn" id="6_2r6sa"]
+[ext_resource type="PackedScene" uid="uid://ct3c8xm7pctvm" path="res://ModeGame/Components/Sight.tscn" id="6_gqmq5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kw8yg"]
 size = Vector2(30, 32)

@@ -2,11 +2,9 @@
 
 [ext_resource type="Shader" path="res://ModeGame/Player.gdshader" id="1_meept"]
 [ext_resource type="Texture2D" uid="uid://b0nu8ywhdcc5n" path="res://ModeGame/Sprites/MC.png" id="1_qiynj"]
-
-[ext_resource type="PackedScene" uid="uid://bxqu5krtid2e4" path="res://ModeGame/Attacks/PlayerSlash.tscn" id="2_gd3p6"]
-
+[ext_resource type="PackedScene" uid="uid://1qtp6vbeknpe" path="res://ModeGame/Attacks/PlayerSlash.tscn" id="2_gd3p6"]
 [ext_resource type="Script" path="res://ModeGame/Components/HealthComponent.gd" id="3_avxgd"]
-[ext_resource type="Script" path="res://ModeGame/Components/HitBoxComponent.gd" id="4_ug1ym"]
+[ext_resource type="Script" path="res://ModeGame/Components/HurtBoxComponent.gd" id="4_ug1ym"]
 [ext_resource type="Script" path="res://ModeGame/BlinkAnimationPlayer.gd" id="6_bgkal"]
 
 [sub_resource type="GDScript" id="GDScript_weu6d"]
@@ -170,6 +168,9 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e8vvw"]
 size = Vector2(22, 62)
 
+[sub_resource type="Animation" id="Animation_y4g00"]
+length = 0.001
+
 [sub_resource type="Animation" id="Animation_aooeu"]
 resource_name = "Start"
 length = 0.2
@@ -202,9 +203,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [false]
 }
-
-[sub_resource type="Animation" id="Animation_y4g00"]
-length = 0.001
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tx15g"]
 _data = {
@@ -246,7 +244,7 @@ max_health = 10
 visible = false
 script = ExtResource("4_ug1ym")
 health = NodePath("../HealthComponent")
-hitbox_owner = 0
+HurtBox_owner = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
 visible = false

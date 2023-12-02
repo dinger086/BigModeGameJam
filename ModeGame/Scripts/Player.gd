@@ -26,7 +26,7 @@ var knockback_direction: Vector2
 
 @onready var healthBar = $"../UI/HealthBar"
 
-@onready var attack_comp = slashScene.get_node("AttackComponent")
+@onready var attack_comp = slashScene.get_node("HitBoxComponent")
 
 enum Modes {
 	Life,
@@ -38,7 +38,6 @@ var mode: Modes = Modes.Life
 
 func _ready() -> void:
 	on_enter()
-	var attack_comp = slashScene.get_node("HurtBoxComponent")
 
 	attack_comp.connect("attack_damaged", self_knockback)
 	healthBar.max_value = $HealthComponent.max_health
@@ -147,8 +146,7 @@ func slash():
 	slashScene.position = most_recent_direction * 64
 	var angle = most_recent_direction.angle_to(Vector2.RIGHT) * 3 * 5
 	slashScene.rotation = angle
-	var attack = slashScene.get_node("HurtBoxComponent")
-	attack.attack()
+	attack_comp.attack()
 
 
 func dash():

@@ -2,57 +2,57 @@ extends Area2D
 
 class_name HitBoxComponent
 
-signal damage(damage: int)
+signal attack_damaged
+signal hit_physics_body
 
-enum  HitBoxOwner {PLAYER, ENEMY}
+@export var animation_player: AnimationPlayer
 
-@export var health: HealthComponent
-@export var hitbox_owner: HitBoxOwner = HitBoxOwner.ENEMY
-
-@onready var timer = $Timer
-
-var invicible = false 
-
-signal invincibility_started
-signal invincibility_ended
+@export var damage = 1
+@export var knockback = 1
+@export var attack_speed = 1
+enum AttackType { 
+	PLAYER,
+	ENEMY
+}
+@export var attack_type: AttackType = AttackType.ENEMY
 
 
 func _ready() -> void:
-	collision_layer = 0
-	self.monitoring = true
-	if hitbox_owner == HitBoxOwner.PLAYER:
-		print("HitBoxComponent: Player hitbox")
-		collision_mask = 2
-	elif hitbox_owner == HitBoxOwner.ENEMY:
-		print("HitBoxComponent: Enemy hitbox")
-		collision_mask = 4
+	collision_mask = 1
+	if attack_type == AttackType.PLAYER:
+		print("HitBoxComponent: Player attack")
+		collision_layer = 4
+	elif attack_type == AttackType.ENEMY:
+		print("HitBoxComponent: Enemy attack")
+		collision_layer = 2
 	else:
-		print("AttackComponent: Invalid attack type")
-		collision_mask = 0
-	print("HitBoxComponent: collision_mask: ", collision_mask)
+		print("HitBoxComponent: Invalid attack type")
+		collision_layer = 0
 
-	self.connect("area_entered", _on_area_entered)
+	self.connect("body_entered", hit_wall)
 
-func _on_area_entered(area: HurtBoxComponent) -> void:
-	print(area)
-	area.hit()
-	health.take_damage(area.damage)
-	emit_signal("damage", area.damage)
-	start_invincibility(1)
+	$CollisionShape2D.disabled = true
+	if animation_player == null and get_parent().has_node("AnimationPlayer"):
+		animation_player = get_parent().get_node("AnimationPlayer")
+		animation_player.connect("animation_finished", on_animation_finished)
 
-func set_invicible(value):
-	invicible = value
-	if(invicible == true):
-		emit_signal("invincibility_started")
-		set_deferred("monitoring", false) 
-	else:
-		emit_signal("invincibility_ended")
-		set_deferred("monitoring", true) 
+func hit_wall(body: Node) -> void:
+	if body is TileMap:
+		emit_signal("hit_physics_body")
 
+func attack() -> void:
+	$CollisionShape2D.disabled = false
+	animation_player.play("Slash", -1, attack_speed)
+	
+func on_animation_finished(animation_name: String) -> void:
+	#print("Animation finished: " + animation_name)
+	$CollisionShape2D.disabled = true
 
-func start_invincibility(duration):
-	set_invicible(true)
-	timer.start(duration)
+func hit() -> void:
+	emit_signal("attack_damaged")
 
-func _on_timer_timeout():
-	set_invicible(false)
+func enable() -> void:
+	$CollisionShape2D.disabled = false
+
+func disable() -> void:
+	$CollisionShape2D.disabled = true

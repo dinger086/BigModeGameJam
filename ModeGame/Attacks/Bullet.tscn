@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bepums4cqym54"]
 
 [ext_resource type="Texture2D" uid="uid://c5yfr41fmtswf" path="res://ModeGame/Sprites/Collectible.png" id="1_gd365"]
-[ext_resource type="Script" path="res://ModeGame/Components/HurtBoxComponent.gd" id="2_qqslj"]
+[ext_resource type="Script" path="res://ModeGame/Components/HitBoxComponent.gd" id="2_qqslj"]
 [ext_resource type="Script" path="res://ModeGame/Components/BulletComponent.gd" id="3_8kjq3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qbd1j"]
@@ -12,13 +12,13 @@ radius = 14.0357
 [node name="Collectible" type="Sprite2D" parent="."]
 texture = ExtResource("1_gd365")
 
-[node name="HurtBoxComponent" type="Area2D" parent="."]
-script = ExtResource("2_qqslj")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
-shape = SubResource("CircleShape2D_qbd1j")
-
-[node name="BulletComponent" type="Node2D" parent="." node_paths=PackedStringArray("hurtbox")]
+[node name="BulletComponent" type="Node2D" parent="." node_paths=PackedStringArray("hitbox")]
 script = ExtResource("3_8kjq3")
 life_time = 20
-hurtbox = NodePath("../HurtBoxComponent")
+hitbox = NodePath("../HitBoxComponent")
+
+[node name="HitBoxComponent" type="Area2D" parent="."]
+script = ExtResource("2_qqslj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
+shape = SubResource("CircleShape2D_qbd1j")

@@ -67,5 +67,5 @@ func attack(target: Vector2):
 	var angle = direction.angle_to(Vector2.RIGHT) * 3 * 5
 	slash_scene.rotation = angle
 	
-	var attack_component = slash_scene.get_node("AttackComponent")
+	var attack_component = slash_scene.get_node("HitBoxComponent")
 	attack_component.attack()

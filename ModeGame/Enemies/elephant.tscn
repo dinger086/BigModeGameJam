@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://ModeGame/Enemies/elephant.gd" id="1_g4q4r"]
 [ext_resource type="Texture2D" uid="uid://d32155hmo13hh" path="res://ModeGame/Griffins/peter_2008_v2F_hires1-56a00f083df78cafda9fdcb6.jpg" id="2_c1cy6"]
 [ext_resource type="Script" path="res://ModeGame/Components/HealthComponent.gd" id="3_40edg"]
-[ext_resource type="Script" path="res://ModeGame/Components/HitBoxComponent.gd" id="4_vrlj2"]
+[ext_resource type="Script" path="res://ModeGame/Components/HurtBoxComponent.gd" id="4_vrlj2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i1knh"]
 size = Vector2(342.5, 291)

@@ -11,7 +11,7 @@ enum BulletType {
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @export var type = BulletType.SIMPLE
-@export var hurtbox: HurtBoxComponent
+@export var hitbox: HitBoxComponent
 
 @onready var start_time := Time.get_ticks_msec()
 
@@ -22,10 +22,10 @@ var direction = Vector2(-1, 0)
 
 func _ready():
 	print("bullet ready")
-	hurtbox.enable()
+	hitbox.enable()
 	bullet = get_parent()
-	hurtbox.connect("attack_damaged", on_hit)
-	hurtbox.connect("hit_physics_body", on_hit)
+	hitbox.connect("attack_damaged", on_hit)
+	hitbox.connect("hit_physics_body", on_hit)
 
 
 func on_hit() -> void:

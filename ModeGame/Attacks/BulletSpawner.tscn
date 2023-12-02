@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cqhcesc5yq51y"]
+[gd_scene load_steps=3 format=3 uid="uid://cqhcesc5yq51y"]
 
 [ext_resource type="Script" path="res://ModeGame/Attacks/BulletSpawner.gd" id="1_01ivb"]
+[ext_resource type="PackedScene" uid="uid://bepums4cqym54" path="res://ModeGame/Attacks/Bullet.tscn" id="2_l1ga4"]
 
 [node name="BulletSpawner" type="Node2D"]
 script = ExtResource("1_01ivb")
+bullet = ExtResource("2_l1ga4")
