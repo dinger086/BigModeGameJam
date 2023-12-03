@@ -9,7 +9,7 @@ enum HurtBoxOwner {PLAYER, ENEMY}
 @export var health: HealthComponent
 @export var hurtbox_owner: HurtBoxOwner = HurtBoxOwner.ENEMY
 
-@onready var timer = $Timer
+@onready var timer = null
 
 var invicible = false 
 
@@ -18,6 +18,8 @@ signal invincibility_ended
 
 
 func _ready() -> void:
+	if hurtbox_owner == HurtBoxOwner.PLAYER:
+		timer = $Timer
 	collision_layer = 0
 	self.monitoring = true
 	if hurtbox_owner == HurtBoxOwner.PLAYER:
@@ -39,7 +41,7 @@ func _on_area_entered(area: HitBoxComponent) -> void:
 	emit_signal("damage", area.damage)
 	print(hurtbox_owner)
 	if hurtbox_owner == HurtBoxOwner.PLAYER:
-		start_invincibility(true)
+		start_invincibility(10)
 
 func set_invicible(value: bool):
 	invicible = value

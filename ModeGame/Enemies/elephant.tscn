@@ -6,32 +6,34 @@
 [ext_resource type="Script" path="res://ModeGame/Components/hurtbox_component.gd" id="4_vrlj2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i1knh"]
-size = Vector2(342.5, 291)
+size = Vector2(345.43, 280.702)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_07y3d"]
-size = Vector2(343, 297)
+size = Vector2(343.86, 280.702)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
-scale = Vector2(0.285, 0.285)
 script = ExtResource("1_g4q4r")
 
 [node name="Square" type="Sprite2D" parent="."]
-scale = Vector2(0.23, 0.23)
+scale = Vector2(0.06555, 0.06555)
 texture = ExtResource("2_c1cy6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2.25, 1.5)
+position = Vector2(0.22375, 0)
+scale = Vector2(0.285, 0.285)
 shape = SubResource("RectangleShape2D_i1knh")
 
 [node name="healthComponent" type="Node2D" parent="."]
+scale = Vector2(0.285, 0.285)
 script = ExtResource("3_40edg")
 max_health = 10
 
 [node name="HurtBoxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health")]
-position = Vector2(66.6667, 0)
+position = Vector2(19, 0)
+scale = Vector2(0.285, 0.285)
 script = ExtResource("4_vrlj2")
 health = NodePath("../healthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
-position = Vector2(0.5, 0.5)
+position = Vector2(-66.6667, 2.09139e-07)
 shape = SubResource("RectangleShape2D_07y3d")

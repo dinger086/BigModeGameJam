@@ -28,6 +28,8 @@ var knockback_direction: Vector2
 
 @onready var attack_comp = slashScene.get_node("HitBoxComponent")
 
+@onready var interaction = get_node("InteractionPlayer")
+
 enum Modes {
 	Life,
 	Death,
@@ -92,7 +94,8 @@ func _input(event: InputEvent) -> void:
 		slash()
 	if event.is_action_pressed("dash"):
 		dash()
-
+	if event.is_action_pressed("interact"):
+		interact()
 
 	most_recent_direction = Vector2.ZERO
 	if Input.is_action_pressed("move_left"):
@@ -163,6 +166,10 @@ func self_knockback():
 	if !is_on_floor():
 		velocity = knockback_direction * SELF_KNOCKBACK_AMOUNT
 
+
+func interact():
+	if interaction.can_interact and interaction.interactable:
+		interaction.interactable.interact()
 
 func ignore_input(time: float) -> void:
 	in_cutscene = true

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsayaih8nipn6"]
+
+[ext_resource type="Script" path="res://ModeGame/Components/interactable_component.gd" id="1_fcija"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o1fsq"]
+
+[node name="Interaction" type="Area2D" groups=["Interactable"]]
+script = ExtResource("1_fcija")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Interactable"]]
+shape = SubResource("CircleShape2D_o1fsq")

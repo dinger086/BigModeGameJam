@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b1fi06r7cwfv"]
+[gd_scene load_steps=9 format=3 uid="uid://b1fi06r7cwfv"]
 
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="1_binfa"]
 [ext_resource type="TileSet" uid="uid://yekejfqwd2kt" path="res://ModeGame/Resources/Tileset.tres" id="2_vsoa5"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c5avkbuiuyuc0" path="res://ModeGame/Enemies/basic.tscn" id="4_k7jgp"]
 [ext_resource type="PackedScene" uid="uid://bepums4cqym54" path="res://ModeGame/Attacks/Bullet.tscn" id="5_kxmwf"]
 [ext_resource type="PackedScene" uid="uid://q4tgc2h3q70c" path="res://ModeGame/Enemies/Shooting.tscn" id="6_sps4w"]
+[ext_resource type="PackedScene" uid="uid://dq3wc0uqikx6l" path="res://ModeGame/NPCs/Brian.tscn" id="7_ldstx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dbmfy"]
 size = Vector2(56.9471, 51.6906)
@@ -42,3 +43,6 @@ position = Vector2(662, 2012)
 
 [node name="CharacterBody2D5" parent="." instance=ExtResource("6_sps4w")]
 position = Vector2(258, 2229)
+
+[node name="Brian" parent="." instance=ExtResource("7_ldstx")]
+position = Vector2(2002, 2728)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bfpti047n82k7"]
+[gd_scene load_steps=23 format=3 uid="uid://bfpti047n82k7"]
 
 [ext_resource type="Shader" path="res://ModeGame/Player.gdshader" id="1_meept"]
 [ext_resource type="Texture2D" uid="uid://b0nu8ywhdcc5n" path="res://ModeGame/Sprites/MC.png" id="1_qiynj"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://ModeGame/Components/health_component.gd" id="3_avxgd"]
 [ext_resource type="Script" path="res://ModeGame/Components/hurtbox_component.gd" id="4_ug1ym"]
 [ext_resource type="Script" path="res://ModeGame/BlinkAnimationPlayer.gd" id="6_bgkal"]
+[ext_resource type="Script" path="res://ModeGame/Components/interaction_area.gd" id="7_x0aku"]
 
 [sub_resource type="GDScript" id="GDScript_weu6d"]
 script/source = "extends CharacterBody2D
@@ -211,13 +212,15 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e8vvw"]
 size = Vector2(22, 62)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e7ajr"]
+size = Vector2(21, 62)
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 1
 script = SubResource("GDScript_weu6d")
 metadata/player = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(2.25, 15)
 shape = SubResource("RectangleShape2D_yj7bn")
 
@@ -259,6 +262,14 @@ position = Vector2(2, 15)
 shape = SubResource("RectangleShape2D_e8vvw")
 
 [node name="Timer" type="Timer" parent="HurtBoxComponent"]
+wait_time = 10.0
+
+[node name="InteractionPlayer" type="Area2D" parent="."]
+script = ExtResource("7_x0aku")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionPlayer"]
+position = Vector2(2.5, 15)
+shape = SubResource("RectangleShape2D_e7ajr")
 
 [connection signal="invincibility_ended" from="HurtBoxComponent" to="BlinkAnimationPlayer" method="_on_hurt_box_component_invincibility_ended"]
 [connection signal="invincibility_started" from="HurtBoxComponent" to="BlinkAnimationPlayer" method="_on_hurt_box_component_invincibility_started"]
