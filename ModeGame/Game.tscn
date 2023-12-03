@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://b84cec1fegcns"]
+[gd_scene load_steps=12 format=3 uid="uid://b84cec1fegcns"]
 
 [ext_resource type="Script" path="res://ModeGame/Scripts/Game.gd" id="1_na0b5"]
 [ext_resource type="PackedScene" uid="uid://bfpti047n82k7" path="res://ModeGame/Player.tscn" id="2_u7rkp"]
 [ext_resource type="Script" path="res://ModeGame/Scripts/Player.gd" id="3_lcxil"]
 [ext_resource type="Texture2D" uid="uid://c5yfr41fmtswf" path="res://ModeGame/Sprites/Collectible.png" id="4_uru0w"]
+[ext_resource type="Script" path="res://ModeGame/Scripts/DialogueBox.gd" id="5_5x1vj"]
 
 [sub_resource type="GDScript" id="GDScript_4div8"]
 resource_name = "Minimap"
@@ -293,3 +294,19 @@ offset_right = 263.0
 offset_bottom = 60.0
 rounded = true
 show_percentage = false
+
+[node name="DialogueBox" type="Panel" parent="UI"]
+visible = false
+offset_left = 95.0
+offset_top = 371.0
+offset_right = 863.0
+offset_bottom = 478.0
+script = ExtResource("5_5x1vj")
+
+[node name="TextBox" type="RichTextLabel" parent="UI/DialogueBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
