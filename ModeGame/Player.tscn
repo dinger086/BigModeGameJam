@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bfpti047n82k7"]
+[gd_scene load_steps=32 format=3 uid="uid://bfpti047n82k7"]
 
 [ext_resource type="Shader" path="res://ModeGame/Player.gdshader" id="1_meept"]
 [ext_resource type="Texture2D" uid="uid://b0nu8ywhdcc5n" path="res://ModeGame/Sprites/MC.png" id="1_qiynj"]
@@ -13,6 +13,9 @@
 [ext_resource type="Script" path="res://ModeGame/State/Fall.gd" id="11_o50o7"]
 [ext_resource type="Script" path="res://ModeGame/State/Jump.gd" id="12_slaof"]
 [ext_resource type="Script" path="res://ModeGame/State/Attack.gd" id="13_6hh6b"]
+[ext_resource type="Script" path="res://ModeGame/State/Wall.gd" id="14_bujxx"]
+[ext_resource type="Script" path="res://ModeGame/State/Dash.gd" id="15_qqdfo"]
+[ext_resource type="Script" path="res://ModeGame/State/Interact.gd" id="16_c3yxg"]
 
 [sub_resource type="GDScript" id="GDScript_weu6d"]
 script/source = "extends CharacterBody2D
@@ -295,6 +298,15 @@ script = ExtResource("12_slaof")
 
 [node name="Attack" type="Node" parent="StateMachine"]
 script = ExtResource("13_6hh6b")
+
+[node name="Wall" type="Node" parent="StateMachine"]
+script = ExtResource("14_bujxx")
+
+[node name="Dash" type="Node" parent="StateMachine"]
+script = ExtResource("15_qqdfo")
+
+[node name="Interact" type="Node" parent="StateMachine"]
+script = ExtResource("16_c3yxg")
 
 [connection signal="invincibility_ended" from="HurtBoxComponent" to="BlinkAnimationPlayer" method="_on_hurt_box_component_invincibility_ended"]
 [connection signal="invincibility_started" from="HurtBoxComponent" to="BlinkAnimationPlayer" method="_on_hurt_box_component_invincibility_started"]

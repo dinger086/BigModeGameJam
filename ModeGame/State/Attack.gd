@@ -27,13 +27,12 @@ func enter():
 
 
 func self_knockback():
-	print("knockback")
 	player.velocity = knockback_direction * player.knockback_speed
 
 
-func process(delta):
+func process(_delta):
 	#Might add a way to cancel the attack
-	transitioned.emit(self, "Walk")
+	transitioned.emit(self, "Fall")
 
 
 func get_direction() -> Vector2:

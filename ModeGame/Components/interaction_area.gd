@@ -6,7 +6,6 @@ var can_interact = false
 var interactable = null
 
 func _ready():
-	var shape = $CollisionShape2D
 	self.connect("area_entered", _on_area_entered)
 	self.connect("area_exited", _on_area_exited)
 

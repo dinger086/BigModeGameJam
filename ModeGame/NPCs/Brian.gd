@@ -6,4 +6,7 @@ func _ready():
 	interaction.connect("interacted" , _on_interaction)
 
 func _on_interaction():
-	interaction.display_text("Hello I'm Brian!")
+	interaction.action = {
+		"type": "dialogue",
+		"text": "Hello, I'm Brian from the hit show Family Guy!"
+	}

@@ -28,7 +28,7 @@ func deactivate():
 	player = null
 
 
-func _process(delta):
+func _process(_delta):
 	if !active:
 		velocity.x = 0
 		return

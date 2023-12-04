@@ -5,7 +5,7 @@ class_name Fall
 func enter():
 	player.play("Fall")
 
-func process(delta):
+func process(_delta):
 	if Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right"):
 		var direction := Input.get_axis("move_left", "move_right")
 		if direction:
@@ -19,12 +19,18 @@ func physics_process(delta):
 	if player.is_on_floor():
 		player.double_jump = true
 		transitioned.emit(self, "Idle")
+	elif player.is_on_wall():
+			transitioned.emit(self, "Wall")
 	player.velocity.y += player.gravity * delta
 
-	if Input.is_action_just_pressed("jump") and player.double_jump:
+
+
+func input(event):
+	if event.is_action_pressed("jump") and player.double_jump:
 		transitioned.emit(self, "Jump")
 		player.double_jump = false
-
-	if Input.is_action_just_pressed("slash"):
+	elif event.is_action_pressed("slash"):
 		transitioned.emit(self, "Attack")
+	elif event.is_action_pressed("dash"):
+		transitioned.emit(self, "Dash")
 

@@ -7,7 +7,7 @@ class_name Interactable
 var interaction_arrow = null
 
 signal interacted
-
+var action:Dictionary = {}
 
 func _ready():
 	var shape = $CollisionShape2D

@@ -17,3 +17,5 @@ func update(_delta: float):
 func physics_process(_delta: float):
 	pass
 
+func input(_event):
+	pass

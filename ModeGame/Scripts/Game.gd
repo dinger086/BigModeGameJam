@@ -72,7 +72,7 @@ func goto_map(map_path: String):
 		player.position -= Vector2(MetSys.get_current_room_instance().get_base_coords() - prev_map_position) * MetSys.settings.in_game_cell_size
 		player.on_enter()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	# Notify MetSys about the player's current position.
 	MetSys.set_player_position(player.position)
 
