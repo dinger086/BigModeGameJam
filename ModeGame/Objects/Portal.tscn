@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dprrbmyimfr2o"]
 
-[ext_resource type="Script" path="res://ModeGame/Scripts/Portal.gd" id="1_pejkt"]
+[ext_resource type="Script" path="res://scripts/Portal.gd" id="1_pejkt"]
 [ext_resource type="Texture2D" uid="uid://c0kmhe878gu6b" path="res://ModeGame/Sprites/Portal.png" id="2_2qg0m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vq33u"]

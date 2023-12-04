@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://c5avkbuiuyuc0"]
 
 [ext_resource type="Texture2D" uid="uid://cmqsru4u5n05a" path="res://ModeGame/Sprites/29_minion_01_x.png" id="1_0d5hc"]
-[ext_resource type="Script" path="res://ModeGame/Enemies/basic.gd" id="1_gxwt3"]
+[ext_resource type="Script" path="res://enemies/basic.gd" id="1_gxwt3"]
 [ext_resource type="Script" path="res://ModeGame/Components/health_component.gd" id="2_raqy1"]
 [ext_resource type="Script" path="res://ModeGame/Components/hurtbox_component.gd" id="3_yygbt"]
 [ext_resource type="PackedScene" uid="uid://dxf1jvxpq207t" path="res://ModeGame/Attacks/EnemySlash.tscn" id="6_2r6sa"]
