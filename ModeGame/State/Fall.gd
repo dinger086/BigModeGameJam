@@ -1,9 +1,11 @@
 extends State
 class_name Fall
 
+var start_time = 0
 
 func enter():
 	player.play("Fall")
+	start_time = Time.get_ticks_msec()
 
 func process(_delta):
 	if Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right"):
@@ -24,11 +26,11 @@ func physics_process(delta):
 	player.velocity.y += player.gravity * delta
 
 
-
 func input(event):
-	if event.is_action_pressed("jump") and player.double_jump:
+	if event.is_action_pressed("jump") and player.double_jump: 
+		if Time.get_ticks_msec() - start_time > player.coyote_time:
+			player.double_jump = false
 		transitioned.emit(self, "Jump")
-		player.double_jump = false
 	elif event.is_action_pressed("slash"):
 		transitioned.emit(self, "Attack")
 	elif event.is_action_pressed("dash"):

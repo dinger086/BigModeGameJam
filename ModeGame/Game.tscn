@@ -196,6 +196,11 @@ starting_map = "Playground.tscn"
 [node name="Player" parent="." instance=ExtResource("2_u7rkp")]
 position = Vector2(368, 248)
 script = ExtResource("3_lcxil")
+speed = 400.0
+jump_velocity = -750.0
+knockback_speed = 650.0
+wall_gravity_scale = 0.5
+coyote_time = 100.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 
@@ -297,10 +302,17 @@ show_percentage = false
 
 [node name="DialogueBox" type="Panel" parent="UI"]
 visible = false
-offset_left = 95.0
-offset_top = 371.0
-offset_right = 863.0
-offset_bottom = 478.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -356.0
+offset_top = -90.0
+offset_right = 366.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
 script = ExtResource("5_5x1vj")
 
 [node name="TextBox" type="RichTextLabel" parent="UI/DialogueBox"]

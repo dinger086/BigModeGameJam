@@ -5,6 +5,7 @@ class_name Interact
 var interactable = null
 var finished = false
 
+
 func enter():
 	var interaction = player.get_node("InteractionPlayer")
 	if interaction.can_interact and interaction.interactable:

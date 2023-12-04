@@ -9,6 +9,7 @@ func enter():
 	if first:
 		attack_comp = player.slashScene.get_node("HitBoxComponent")
 		attack_comp.connect("attack_damaged", self_knockback)
+		first = false
 
 	var direction = get_direction()
 	if direction == Vector2.ZERO:
