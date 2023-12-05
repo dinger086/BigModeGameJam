@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://q4tgc2h3q70c"]
 
-[ext_resource type="Script" path="res://ModeGame/Enemies/Shooter.gd" id="1_48bqe"]
+[ext_resource type="Script" path="res://enemies/Shooter.gd" id="1_48bqe"]
 [ext_resource type="Texture2D" uid="uid://dbxbm5lvypjbd" path="res://ModeGame/Griffins/lois_griffin_angry_using_gun_family_guy_by_arturomendoza2890_dfayf7s-fullview.png" id="1_htri8"]
 [ext_resource type="Script" path="res://ModeGame/Components/hurtbox_component.gd" id="2_mbf1n"]
 [ext_resource type="PackedScene" uid="uid://cqhcesc5yq51y" path="res://ModeGame/Attacks/BulletSpawner.tscn" id="3_s338m"]

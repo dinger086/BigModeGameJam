@@ -26,6 +26,7 @@ enum Mode{
 	LIFE,
 	DEATH
 }
+var mode = Mode.LIFE
 
 @onready var health = get_node("HealthComponent")
 
@@ -36,7 +37,6 @@ enum Mode{
 @onready var interaction = get_node("InteractionPlayer")
 
 func _ready() -> void:
-	collision_layer = 1
 	on_enter()
 	
 	healthBar.max_value = $HealthComponent.max_health
@@ -62,3 +62,8 @@ func on_enter():
 
 func play(animation: String) -> void:
 	$AnimationPlayer.play(animation)
+
+func switch_mode():
+	mode = Mode.DEATH if mode == Mode.LIFE else Mode.LIFE
+	print("Switched to mode: ", "death" if mode == Mode.DEATH else "life")
+	

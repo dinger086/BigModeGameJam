@@ -2,10 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="1_binfa"]
 [ext_resource type="TileSet" uid="uid://yekejfqwd2kt" path="res://ModeGame/Resources/Tileset.tres" id="2_vsoa5"]
-[ext_resource type="PackedScene" uid="uid://ofhy6k6i1cjm" path="res://ModeGame/Enemies/elephant.tscn" id="3_mqu28"]
-[ext_resource type="PackedScene" uid="uid://c5avkbuiuyuc0" path="res://ModeGame/Enemies/basic.tscn" id="4_k7jgp"]
+[ext_resource type="PackedScene" uid="uid://ofhy6k6i1cjm" path="res://enemies/elephant.tscn" id="3_mqu28"]
+[ext_resource type="PackedScene" uid="uid://c5avkbuiuyuc0" path="res://enemies/basic.tscn" id="4_k7jgp"]
 [ext_resource type="PackedScene" uid="uid://bepums4cqym54" path="res://ModeGame/Attacks/Bullet.tscn" id="5_kxmwf"]
-[ext_resource type="PackedScene" uid="uid://q4tgc2h3q70c" path="res://ModeGame/Enemies/Shooting.tscn" id="6_sps4w"]
+[ext_resource type="PackedScene" uid="uid://q4tgc2h3q70c" path="res://enemies/Shooting.tscn" id="6_sps4w"]
 [ext_resource type="PackedScene" uid="uid://dq3wc0uqikx6l" path="res://ModeGame/NPCs/Brian.tscn" id="7_ldstx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dbmfy"]

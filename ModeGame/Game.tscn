@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://b84cec1fegcns"]
+[gd_scene load_steps=13 format=3 uid="uid://b84cec1fegcns"]
 
-[ext_resource type="Script" path="res://ModeGame/Scripts/Game.gd" id="1_na0b5"]
+[ext_resource type="Script" path="res://scripts/Game.gd" id="1_na0b5"]
 [ext_resource type="PackedScene" uid="uid://bfpti047n82k7" path="res://ModeGame/Player.tscn" id="2_u7rkp"]
-[ext_resource type="Script" path="res://ModeGame/Scripts/Player.gd" id="3_lcxil"]
+[ext_resource type="Script" path="res://scripts/Player.gd" id="3_lcxil"]
 [ext_resource type="Texture2D" uid="uid://c5yfr41fmtswf" path="res://ModeGame/Sprites/Collectible.png" id="4_uru0w"]
-[ext_resource type="Script" path="res://ModeGame/Scripts/DialogueBox.gd" id="5_5x1vj"]
+[ext_resource type="Script" path="res://scripts/DialogueBox.gd" id="5_5x1vj"]
+[ext_resource type="Script" path="res://menus/Pause.gd" id="5_wfqgu"]
 
 [sub_resource type="GDScript" id="GDScript_4div8"]
 resource_name = "Minimap"
@@ -190,6 +191,7 @@ func update():
 "
 
 [node name="Game" type="Node2D"]
+process_mode = 1
 script = ExtResource("1_na0b5")
 starting_map = "Playground.tscn"
 
@@ -207,7 +209,6 @@ coyote_time = 100.0
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="Minimap" type="Panel" parent="UI"]
-visible = false
 clip_contents = true
 anchors_preset = 1
 anchor_left = 1.0
@@ -322,3 +323,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Pause" type="Panel" parent="UI"]
+process_mode = 3
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_wfqgu")

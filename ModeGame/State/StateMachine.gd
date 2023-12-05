@@ -42,8 +42,7 @@ func on_child_transition(state, state_name):
 		print("StateMachine: State not found: " + state_name)
 		return
 
-	if current_state:
-		current_state.exit()
+	current_state.exit()
 
 	next_state.enter()
 	current_state = next_state
