@@ -18,12 +18,11 @@ signal invincibility_ended
 
 
 func _ready() -> void:
-	if hurtbox_owner == HurtBoxOwner.PLAYER:
-		timer = $Timer
 	collision_layer = 0
 	self.monitoring = true
 	if hurtbox_owner == HurtBoxOwner.PLAYER:
 		collision_mask = 2
+		timer = $Timer
 	elif hurtbox_owner == HurtBoxOwner.ENEMY:
 		collision_mask = 4
 	else:
@@ -34,14 +33,12 @@ func _ready() -> void:
 	self.connect("area_entered", _on_area_entered)
 
 func _on_area_entered(area: HitBoxComponent) -> void:
-	
-	print(area)
 	area.hit()
 	health.take_damage(area.damage)
 	emit_signal("damage", area.damage)
 	print(hurtbox_owner)
 	if hurtbox_owner == HurtBoxOwner.PLAYER:
-		start_invincibility(10)
+		start_invincibility(timer.wait_time)
 
 func set_invicible(value: bool):
 	invicible = value

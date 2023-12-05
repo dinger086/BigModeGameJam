@@ -30,3 +30,5 @@ func input(event):
 		transitioned.emit(self, "Dash")
 	elif event.is_action_pressed("interact"):
 		transitioned.emit(self, "Interact")
+	elif event.is_action_pressed("switch"):
+		player.switch_mode()

@@ -23,15 +23,15 @@ texture = ExtResource("1_0d5hc")
 script = ExtResource("2_raqy1")
 max_health = 3
 
-[node name="HitBoxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+[node name="HurtBoxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health")]
 script = ExtResource("3_yygbt")
 health = NodePath("../HealthComponent")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_kw8yg")
 
-[node name="Timer" type="Timer" parent="HitBoxComponent"]
+[node name="Timer" type="Timer" parent="HurtBoxComponent"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
@@ -43,4 +43,4 @@ sight_radius = 50
 
 [node name="EnemySlash" parent="." instance=ExtResource("6_2r6sa")]
 
-[connection signal="timeout" from="HitBoxComponent/Timer" to="HitBoxComponent" method="_on_timer_timeout"]
+[connection signal="timeout" from="HurtBoxComponent/Timer" to="HurtBoxComponent" method="_on_timer_timeout"]

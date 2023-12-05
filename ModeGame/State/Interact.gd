@@ -21,6 +21,7 @@ func process(_delta):
 	#print(interactable)
 	if interactable != null:
 		player.velocity = Vector2.ZERO
+		player.play("Idle")
 		if finished:
 			interactable = null
 	else:

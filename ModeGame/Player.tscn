@@ -1,7 +1,7 @@
 [gd_scene load_steps=32 format=3 uid="uid://bfpti047n82k7"]
 
 [ext_resource type="Shader" path="res://ModeGame/Player.gdshader" id="1_meept"]
-[ext_resource type="Texture2D" uid="uid://b0nu8ywhdcc5n" path="res://ModeGame/Sprites/MC.png" id="1_qiynj"]
+[ext_resource type="Texture2D" uid="uid://cr4acibbgxh5h" path="res://ModeGame/Sprites/Hel_Indigo.png" id="2_7ppb8"]
 [ext_resource type="PackedScene" uid="uid://1qtp6vbeknpe" path="res://ModeGame/Attacks/PlayerSlash.tscn" id="2_gd3p6"]
 [ext_resource type="Script" path="res://ModeGame/Components/health_component.gd" id="3_avxgd"]
 [ext_resource type="Script" path="res://ModeGame/Components/hurtbox_component.gd" id="4_ug1ym"]
@@ -151,7 +151,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_l0tvd"]
 resource_name = "Run"
-length = 0.6
+length = 0.4
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -160,10 +160,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [1, 2, 3, 4, 5, 6]
+"values": [2, 3, 4, 3]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rqeoy"]
@@ -236,11 +236,10 @@ shape = SubResource("RectangleShape2D_yj7bn")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 material = SubResource("ShaderMaterial_yulm7")
-position = Vector2(1, 0)
+position = Vector2(0, 11)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("1_qiynj")
+texture = ExtResource("2_7ppb8")
 hframes = 7
-vframes = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
