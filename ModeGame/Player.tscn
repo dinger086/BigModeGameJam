@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bfpti047n82k7"]
+[gd_scene load_steps=32 format=3 uid="uid://bfpti047n82k7"]
 
 [ext_resource type="Shader" path="res://ModeGame/Player.gdshader" id="1_meept"]
 [ext_resource type="Texture2D" uid="uid://b0nu8ywhdcc5n" path="res://ModeGame/Sprites/MC.png" id="1_qiynj"]
@@ -7,6 +7,15 @@
 [ext_resource type="Script" path="res://ModeGame/Components/hurtbox_component.gd" id="4_ug1ym"]
 [ext_resource type="Script" path="res://ModeGame/BlinkAnimationPlayer.gd" id="6_bgkal"]
 [ext_resource type="Script" path="res://ModeGame/Components/interaction_area.gd" id="7_x0aku"]
+[ext_resource type="Script" path="res://ModeGame/State/StateMachine.gd" id="8_x34yq"]
+[ext_resource type="Script" path="res://ModeGame/State/Idle.gd" id="9_m6irb"]
+[ext_resource type="Script" path="res://ModeGame/State/Walk.gd" id="10_snbxi"]
+[ext_resource type="Script" path="res://ModeGame/State/Fall.gd" id="11_o50o7"]
+[ext_resource type="Script" path="res://ModeGame/State/Jump.gd" id="12_slaof"]
+[ext_resource type="Script" path="res://ModeGame/State/Attack.gd" id="13_6hh6b"]
+[ext_resource type="Script" path="res://ModeGame/State/Wall.gd" id="14_bujxx"]
+[ext_resource type="Script" path="res://ModeGame/State/Dash.gd" id="15_qqdfo"]
+[ext_resource type="Script" path="res://ModeGame/State/Interact.gd" id="16_c3yxg"]
 
 [sub_resource type="GDScript" id="GDScript_weu6d"]
 script/source = "extends CharacterBody2D
@@ -262,7 +271,6 @@ position = Vector2(2, 15)
 shape = SubResource("RectangleShape2D_e8vvw")
 
 [node name="Timer" type="Timer" parent="HurtBoxComponent"]
-wait_time = 10.0
 
 [node name="InteractionPlayer" type="Area2D" parent="."]
 script = ExtResource("7_x0aku")
@@ -270,6 +278,35 @@ script = ExtResource("7_x0aku")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionPlayer"]
 position = Vector2(2.5, 15)
 shape = SubResource("RectangleShape2D_e7ajr")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "player")]
+script = ExtResource("8_x34yq")
+initial_state = NodePath("Idle")
+player = NodePath("..")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("9_m6irb")
+
+[node name="Walk" type="Node" parent="StateMachine"]
+script = ExtResource("10_snbxi")
+
+[node name="Fall" type="Node" parent="StateMachine"]
+script = ExtResource("11_o50o7")
+
+[node name="Jump" type="Node" parent="StateMachine"]
+script = ExtResource("12_slaof")
+
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource("13_6hh6b")
+
+[node name="Wall" type="Node" parent="StateMachine"]
+script = ExtResource("14_bujxx")
+
+[node name="Dash" type="Node" parent="StateMachine"]
+script = ExtResource("15_qqdfo")
+
+[node name="Interact" type="Node" parent="StateMachine"]
+script = ExtResource("16_c3yxg")
 
 [connection signal="invincibility_ended" from="HurtBoxComponent" to="BlinkAnimationPlayer" method="_on_hurt_box_component_invincibility_ended"]
 [connection signal="invincibility_started" from="HurtBoxComponent" to="BlinkAnimationPlayer" method="_on_hurt_box_component_invincibility_started"]
