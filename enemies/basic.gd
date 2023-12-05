@@ -11,8 +11,6 @@ var player = null
 
 
 func _ready():
-	collision_layer = 5
-	collision_mask = 1
 	var health = get_node("HealthComponent")
 	health.connect("died", _on_death)
 	var sight = get_node("Sight")

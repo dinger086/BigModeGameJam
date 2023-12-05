@@ -37,8 +37,6 @@ var mode = Mode.LIFE
 @onready var interaction = get_node("InteractionPlayer")
 
 func _ready() -> void:
-	collision_layer = 2
-	collision_mask = 1
 	on_enter()
 	
 	healthBar.max_value = $HealthComponent.max_health
