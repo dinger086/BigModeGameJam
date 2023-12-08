@@ -11,6 +11,7 @@ func enter():
 	player.velocity += get_direction() * player.speed * 5
 
 
+
 func process(_delta):
 	pass
 
@@ -23,11 +24,11 @@ func on_animation_finished(anim_name):
 func get_direction() -> Vector2:
 	var direction = Vector2.ZERO
 	if Input.is_action_pressed("move_right"):
-		direction.x += 1
+		direction.x += 1.5
 	if Input.is_action_pressed("move_left"):
-		direction.x -= 1
+		direction.x -= 1.5
 	if Input.is_action_pressed("move_down"):
-		direction.y += 1
+		direction.y += 0.5
 	if Input.is_action_pressed("move_up"):
-		direction.y -= 1
-	return direction.normalized()
+		direction.y -= 0.5
+	return direction
