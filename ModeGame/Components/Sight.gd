@@ -6,6 +6,7 @@ signal sighted(body)
 signal lost_sight
 
 func _ready():
+	set_collision_mask_value(2, true)
 	var sightline = $CollisionShape2D
 	sightline.scale = Vector2(sight_radius, sight_radius)
 	self.connect("body_entered", _on_area_entered)

@@ -79,7 +79,7 @@ func _physics_process(_delta: float) -> void:
 func on_room_changed(target_map: String):
 	# Randomly generated rooms use absolute paths, so this needs to be checked.
 	if target_map.is_absolute_path():
-		goto_map(target_map)
+		goto_map(MetSys.get_full_room_path(target_map))
 	else:
 		# If target_map is only the scene name (default behavior of assigned scenes), get the full path.
 		goto_map(MetSys.get_full_room_path(target_map))

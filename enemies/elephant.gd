@@ -7,6 +7,10 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 
 func _ready():
+	set_collision_mask_value(1, true)
+	set_collision_layer_value(1, false)
+	set_collision_layer_value(3, true)
+
 	var health = get_node("healthComponent")
 	health.connect("died", _on_death)
 

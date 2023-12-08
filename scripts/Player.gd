@@ -36,7 +36,15 @@ var mode = Mode.LIFE
 
 @onready var interaction = get_node("InteractionPlayer")
 
+@onready var animationPlayer = get_node("AnimationPlayer")
+
 func _ready() -> void:
+
+	set_collision_layer_value(2, true)
+	set_collision_layer_value(1, false)
+
+	
+
 	on_enter()
 	
 	healthBar.max_value = $HealthComponent.max_health
@@ -55,6 +63,16 @@ func _physics_process(_delta: float) -> void:
 	elif velocity.x < -1:
 		$Sprite2D.flip_h = true
 
+	var wings = $Sprite2D.get_node("WingDash")
+	if $Sprite2D.flip_h:
+		wings.flip_h = true
+		wings.position.x = abs(wings.position.x)
+	else:
+		wings.flip_h = false
+		wings.position.x = -abs(wings.position.x)
+	
+
+
 
 func on_enter():
 	# Position for kill system. Assigned when entering new room (see Game.gd).
@@ -64,6 +82,11 @@ func play(animation: String) -> void:
 	$AnimationPlayer.play(animation)
 
 func switch_mode():
-	mode = Mode.DEATH if mode == Mode.LIFE else Mode.LIFE
+	if mode == Mode.DEATH:
+		mode = Mode.LIFE
+		blinkAnimationPlayer.play("Life")
+	else:
+		mode = Mode.DEATH
+		blinkAnimationPlayer.play("Death")
 	print("Switched to mode: ", "death" if mode == Mode.DEATH else "life")
 	

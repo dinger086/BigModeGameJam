@@ -18,13 +18,14 @@ signal invincibility_ended
 
 
 func _ready() -> void:
-	collision_layer = 0
+	set_collision_mask_value(0, false)
+	set_collision_layer_value(1, false)
 	self.monitoring = true
 	if hurtbox_owner == HurtBoxOwner.PLAYER:
-		collision_mask = 2
+		set_collision_mask_value(2, true)
 		timer = $Timer
 	elif hurtbox_owner == HurtBoxOwner.ENEMY:
-		collision_mask = 4
+		set_collision_mask_value(3, true)
 	else:
 		print("AttackComponent: Invalid attack type")
 		collision_mask = 0

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://vk3texynh4fe"
-path="res://.godot/imported/Hel_Indigo.png-ba9264c0882411c01b6288cb91e99128.ctex"
+uid="uid://qa6ect85j6mj"
+path="res://.godot/imported/WingDash.png-28b90d1b3927d639255e2b9469058de1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ModeGame/Sprites/Hel_Indigo.png"
-dest_files=["res://.godot/imported/Hel_Indigo.png-ba9264c0882411c01b6288cb91e99128.ctex"]
+source_file="res://ModeGame/Sprites/WingDash.png"
+dest_files=["res://.godot/imported/WingDash.png-28b90d1b3927d639255e2b9469058de1.ctex"]
 
 [params]
 

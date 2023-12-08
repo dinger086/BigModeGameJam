@@ -18,14 +18,13 @@ enum AttackType {
 
 
 func _ready() -> void:
-	collision_mask = 1
+	set_collision_layer_value(1, false)
 	if attack_type == AttackType.PLAYER:
-		collision_layer = 4
+		set_collision_layer_value(3, true)
 	elif attack_type == AttackType.ENEMY:
-		collision_layer = 2
+		set_collision_layer_value(2, true)
 	else:
 		print("HitBoxComponent: Invalid attack type")
-		collision_layer = 0
 
 	self.connect("body_entered", hit_wall)
 

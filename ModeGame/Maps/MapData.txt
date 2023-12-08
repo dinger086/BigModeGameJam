@@ -70,3 +70,11 @@
 0,-1,-1,-1|||/Playground.tscn
 [3,0,0]
 0,0,-1,-1|||/Playground.tscn
+[-4,-1,0]
+-1,-1,0,0|||/TestRoom.tscn
+[-3,-1,0]
+0,-1,-1,0|||/TestRoom.tscn
+[-3,0,0]
+0,0,-1,-1|||/TestRoom.tscn
+[-4,0,0]
+-1,0,0,-1|||/TestRoom.tscn
