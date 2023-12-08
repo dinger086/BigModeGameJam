@@ -1,6 +1,10 @@
 shader_type canvas_item;
 
 uniform bool active = false;
+uniform bool life = false;
+uniform bool death = false;
+
+
 
 void vertex() {
 	// Called for every vertex the material is visible on.
@@ -10,6 +14,13 @@ void fragment() {
 	vec4 previous_color = texture(TEXTURE, UV);
 	vec4 white_color =vec4(1.0, 1.0, 1.0, previous_color.a);
 	vec4 new_color = previous_color;
+	
+	if(life){
+		new_color = vec4(1.0, previous_color.g, previous_color.b, previous_color.a);
+	}
+	if(death){
+		new_color = vec4(previous_color.r, previous_color.g, 1.0, previous_color.a);
+	}
 	if(active == true){
 		new_color = white_color;
 	}

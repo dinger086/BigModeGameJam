@@ -1,7 +1,7 @@
-[gd_scene load_steps=32 format=3 uid="uid://bfpti047n82k7"]
+[gd_scene load_steps=36 format=3 uid="uid://bfpti047n82k7"]
 
 [ext_resource type="Shader" path="res://ModeGame/Player.gdshader" id="1_meept"]
-[ext_resource type="Texture2D" uid="uid://cr4acibbgxh5h" path="res://ModeGame/Sprites/Hel_Indigo.png" id="2_7ppb8"]
+[ext_resource type="Texture2D" uid="uid://vk3texynh4fe" path="res://ModeGame/Sprites/Hel_Indigo.png" id="2_7ppb8"]
 [ext_resource type="PackedScene" uid="uid://1qtp6vbeknpe" path="res://ModeGame/Attacks/PlayerSlash.tscn" id="2_gd3p6"]
 [ext_resource type="Script" path="res://ModeGame/Components/health_component.gd" id="3_avxgd"]
 [ext_resource type="Script" path="res://ModeGame/Components/hurtbox_component.gd" id="4_ug1ym"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://ModeGame/State/Wall.gd" id="14_bujxx"]
 [ext_resource type="Script" path="res://ModeGame/State/Dash.gd" id="15_qqdfo"]
 [ext_resource type="Script" path="res://ModeGame/State/Interact.gd" id="16_c3yxg"]
+[ext_resource type="Texture2D" uid="uid://qa6ect85j6mj" path="res://ModeGame/Sprites/WingDash.png" id="17_x5581"]
 
 [sub_resource type="GDScript" id="GDScript_weu6d"]
 script/source = "extends CharacterBody2D
@@ -85,6 +86,24 @@ size = Vector2(21.5, 62)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yulm7"]
 shader = ExtResource("1_meept")
 shader_parameter/active = false
+shader_parameter/life = true
+shader_parameter/death = false
+
+[sub_resource type="Animation" id="Animation_qbnra"]
+resource_name = "Dash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/WingDash:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
+}
 
 [sub_resource type="Animation" id="Animation_mul1d"]
 resource_name = "Fall"
@@ -148,6 +167,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/WingDash:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_l0tvd"]
 resource_name = "Run"
@@ -168,11 +199,68 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rqeoy"]
 _data = {
+"Dash": SubResource("Animation_qbnra"),
 "Fall": SubResource("Animation_mul1d"),
 "Idle": SubResource("Animation_76fpo"),
 "Jump": SubResource("Animation_58w5b"),
 "RESET": SubResource("Animation_owew4"),
 "Run": SubResource("Animation_l0tvd")
+}
+
+[sub_resource type="Animation" id="Animation_r20g6"]
+resource_name = "Death"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/life")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:material:shader_parameter/death")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_kb6jk"]
+resource_name = "Life"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/life")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:material:shader_parameter/death")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_y4g00"]
@@ -213,6 +301,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tx15g"]
 _data = {
+"Death": SubResource("Animation_r20g6"),
+"Life": SubResource("Animation_kb6jk"),
 "RESET": SubResource("Animation_y4g00"),
 "Start": SubResource("Animation_aooeu"),
 "Stop": SubResource("Animation_2n4xi")
@@ -240,6 +330,13 @@ position = Vector2(0, 11)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_7ppb8")
 hframes = 7
+
+[node name="WingDash" type="Sprite2D" parent="Sprite2D"]
+z_index = -1
+position = Vector2(-21.365, 1.333)
+scale = Vector2(0.666667, 0.666667)
+texture = ExtResource("17_x5581")
+hframes = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
