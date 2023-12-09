@@ -27,7 +27,7 @@ func physics_process(delta):
 
 
 func input(event):
-	if event.is_action_pressed("jump") and player.double_jump: 
+	if event.is_action_pressed("jump") and player.double_jump and player.abilities.has("double_jump"): 
 		if Time.get_ticks_msec() - start_time > player.coyote_time:
 			player.double_jump = false
 		transitioned.emit(self, "Jump")

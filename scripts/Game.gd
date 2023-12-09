@@ -34,7 +34,6 @@ func _ready() -> void:
 	else:
 		# If no data exists, reset MetSys.
 		MetSys.set_save_data()
-		player.abilities.assign(["double_jump"])
 	
 	# Go to the starting point.
 	goto_map(MetSys.get_full_room_path(starting_map))

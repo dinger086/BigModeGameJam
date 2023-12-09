@@ -1,7 +1,7 @@
 [gd_scene load_steps=36 format=3 uid="uid://bfpti047n82k7"]
 
 [ext_resource type="Shader" path="res://ModeGame/Player.gdshader" id="1_meept"]
-[ext_resource type="Texture2D" uid="uid://vk3texynh4fe" path="res://ModeGame/Sprites/Hel_Indigo.png" id="2_7ppb8"]
+[ext_resource type="Texture2D" uid="uid://cr4acibbgxh5h" path="res://ModeGame/Sprites/Hel_Indigo.png" id="2_7ppb8"]
 [ext_resource type="PackedScene" uid="uid://1qtp6vbeknpe" path="res://ModeGame/Attacks/PlayerSlash.tscn" id="2_gd3p6"]
 [ext_resource type="Script" path="res://ModeGame/Components/health_component.gd" id="3_avxgd"]
 [ext_resource type="Script" path="res://ModeGame/Components/hurtbox_component.gd" id="4_ug1ym"]

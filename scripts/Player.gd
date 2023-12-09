@@ -43,14 +43,15 @@ func _ready() -> void:
 	set_collision_layer_value(2, true)
 	set_collision_layer_value(1, false)
 
-	
-
 	on_enter()
 	
 	healthBar.max_value = $HealthComponent.max_health
 	healthBar.value = $HealthComponent.max_health
 	health.connect("health_changed", _on_health_changed)
 	blinkAnimationPlayer.play("Stop")
+	
+	$AudioStreamPlayer2D.play()
+	
 	
 func _on_health_changed(new_value):
 	healthBar.value = new_value
