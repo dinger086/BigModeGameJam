@@ -10,6 +10,7 @@ signal interacted
 var action:Dictionary = {}
 
 func _ready():
+	set_collision_mask_value(2, true)
 	var shape = $CollisionShape2D
 	shape.scale = Vector2(interaction_radius, interaction_radius)
 	self.connect("body_entered", _on_area_entered)
