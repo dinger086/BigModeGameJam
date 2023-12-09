@@ -6,14 +6,20 @@
 script/source = "# Generic orb collectible.
 extends Area2D
 
+@export var power: String
+
 func _ready() -> void:
 	# Register as storable with a marker. The marker will appear on the map when the orb is first discovered (i.e. get instantiated).
 	MetSys.register_storable_object_with_marker(self)
+	set_collision_mask_value(2, true)
 
 func collect(body: Node2D) -> void:
 	# Check if player collided.
-	if not body.is_in_group(&\"player\"):
+	if not body.is_in_group(&\"Player\"):
 		return
+
+	body.abilities.append(power)
+	
 	# Increase collectible counter.
 	Game.get_singleton().collectibles += 1
 	# Store the orb. This will automatically assign the collected marker.

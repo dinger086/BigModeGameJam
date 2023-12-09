@@ -1,14 +1,20 @@
 extends State
 class_name Dash
 
+
 var first_enter = true
 
 func enter():
-	print(player.animationPlayer)
+	
+
 	if first_enter:
 		player.animationPlayer.connect("animation_finished", on_animation_finished)
-	player.animationPlayer.play("Dash")
-	player.velocity = get_direction() * player.dash_speed
+
+	if player.abilities.has("dash"):
+		print(player.animationPlayer)
+		player.animationPlayer.play("Dash")
+		player.velocity = get_direction() * player.speed * 5
+
 
 	print(player.mode)
 	if player.mode:
@@ -20,7 +26,8 @@ func enter():
 
 
 func process(_delta):
-	pass
+	if not player.abilities.has("dash"):
+		transitioned.emit(self, "Fall")
 
 func on_animation_finished(anim_name):
 	print("Dash finished")

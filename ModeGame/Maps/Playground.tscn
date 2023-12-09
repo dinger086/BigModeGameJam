@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://b1fi06r7cwfv"]
+[gd_scene load_steps=10 format=3 uid="uid://b1fi06r7cwfv"]
 
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="1_binfa"]
 [ext_resource type="TileSet" uid="uid://yekejfqwd2kt" path="res://ModeGame/Resources/Tileset.tres" id="2_vsoa5"]
 [ext_resource type="PackedScene" uid="uid://ofhy6k6i1cjm" path="res://enemies/elephant.tscn" id="3_mqu28"]
+[ext_resource type="PackedScene" uid="uid://d27sxjt3kw2ds" path="res://ModeGame/Objects/Powerup.tscn" id="4_b65kq"]
 [ext_resource type="PackedScene" uid="uid://c5avkbuiuyuc0" path="res://enemies/basic.tscn" id="4_k7jgp"]
 [ext_resource type="PackedScene" uid="uid://bepums4cqym54" path="res://ModeGame/Attacks/Bullet.tscn" id="5_kxmwf"]
 [ext_resource type="PackedScene" uid="uid://q4tgc2h3q70c" path="res://enemies/Shooting.tscn" id="6_sps4w"]
@@ -28,6 +29,10 @@ shape = SubResource("RectangleShape2D_dbmfy")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("3_mqu28")]
 position = Vector2(1089, 2228)
+
+[node name="dashPowerup" parent="." instance=ExtResource("4_b65kq")]
+position = Vector2(1487, 2531)
+power = "dash"
 
 [node name="Basic" parent="." instance=ExtResource("4_k7jgp")]
 position = Vector2(831, 2101)

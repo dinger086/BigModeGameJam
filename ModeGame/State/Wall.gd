@@ -6,7 +6,7 @@ func enter():
 	pass
 
 func process(delta):
-	if player.is_on_wall():
+	if player.is_on_wall() and player.abilities.has("wall_jump"):
 		if Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right"):
 			var direction := Input.get_axis("move_left", "move_right")
 			if direction:

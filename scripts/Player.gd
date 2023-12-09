@@ -47,6 +47,9 @@ func _ready() -> void:
 	health.connect("health_changed", _on_health_changed)
 	blinkAnimationPlayer.play("Stop")
 	
+	$AudioStreamPlayer2D.play()
+	
+	
 func _on_health_changed(new_value):
 	healthBar.value = new_value
 
