@@ -18,7 +18,7 @@ signal invincibility_ended
 
 
 func _ready() -> void:
-	set_collision_mask_value(0, false)
+	set_collision_mask_value(1, false)
 	set_collision_layer_value(1, false)
 	self.monitoring = true
 	if hurtbox_owner == HurtBoxOwner.PLAYER:
@@ -57,3 +57,4 @@ func start_invincibility(duration):
 
 func _on_timer_timeout():
 	set_invicible(false)
+

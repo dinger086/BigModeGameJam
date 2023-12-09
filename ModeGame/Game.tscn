@@ -231,6 +231,7 @@ jump_velocity = -750.0
 knockback_speed = 650.0
 wall_gravity_scale = 0.5
 coyote_time = 100.0
+dash_speed = 1000.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 
@@ -373,13 +374,13 @@ grow_vertical = 2
 script = ExtResource("5_wfqgu")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-offset = Vector2(368, 248)
+offset = Vector2(350, 350)
 scale = Vector2(3, 3)
-transform = Transform2D(3, 0, 0, 3, 368, 248)
+transform = Transform2D(3, 0, 0, 3, 350, 350)
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(2.08165e-12, 2.08165e-12)
-motion_mirroring = Vector2(320, 2.08165e-12)
+motion_scale = Vector2(0, 0)
+motion_mirroring = Vector2(320, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 texture = ExtResource("8_exp0c")

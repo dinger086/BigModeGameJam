@@ -9,6 +9,7 @@ extends CharacterBody2D
 @export var knockback_speed: float = 650.0
 @export var wall_gravity_scale: float = 0.5
 @export var coyote_time: float = 100 # ms
+@export var dash_speed: float = 1000.0
 
 var jumped = false
 
@@ -29,21 +30,15 @@ enum Mode{
 var mode = Mode.LIFE
 
 @onready var health = get_node("HealthComponent")
-
 @onready var blinkAnimationPlayer = $BlinkAnimationPlayer
-
 @onready var healthBar = $"../UI/HealthBar"
-
 @onready var interaction = get_node("InteractionPlayer")
-
 @onready var animationPlayer = get_node("AnimationPlayer")
+@onready var shield = get_node("ShieldBash")
 
 func _ready() -> void:
-
 	set_collision_layer_value(2, true)
 	set_collision_layer_value(1, false)
-
-	
 
 	on_enter()
 	
@@ -59,20 +54,10 @@ func _on_health_changed(new_value):
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
 	if velocity.x > 1:
-		$Sprite2D.flip_h = false
+		flip(false)
 	elif velocity.x < -1:
-		$Sprite2D.flip_h = true
-
-	var wings = $Sprite2D.get_node("WingDash")
-	if $Sprite2D.flip_h:
-		wings.flip_h = true
-		wings.position.x = abs(wings.position.x)
-	else:
-		wings.flip_h = false
-		wings.position.x = -abs(wings.position.x)
+		flip(true)
 	
-
-
 
 func on_enter():
 	# Position for kill system. Assigned when entering new room (see Game.gd).
@@ -90,3 +75,15 @@ func switch_mode():
 		blinkAnimationPlayer.play("Death")
 	print("Switched to mode: ", "death" if mode == Mode.DEATH else "life")
 	
+func flip(is_flipped : bool) -> void:
+	$Sprite2D.flip_h = is_flipped
+	for child in $Sprite2D.get_children():
+		if child is Sprite2D:
+			child.position.x = abs(child.position.x) if is_flipped else -abs(child.position.x)
+			child.flip_h = is_flipped
+		elif child is Node2D:
+			child.position.x = -abs(child.position.x) if is_flipped else abs(child.position.x)
+			var child_sprite = child.get_node("Shield")
+			if child_sprite != null:
+				child_sprite.flip_h = is_flipped
+		
