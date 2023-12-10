@@ -31,6 +31,13 @@ enum Mode{
 }
 var mode = Mode.DEATH
 
+var ability_cooldowns_times = {
+	"attack": 0.5,
+	"slash_fury": 5.0,
+	"shield_bash": 5.0,
+	"grapple_hook": 5.0,
+	"projectile": 5.0,
+}
 
 @onready var health = get_node("HealthComponent")
 @onready var hurtbox = get_node("HurtBoxComponent")
@@ -73,13 +80,12 @@ func _physics_process(delta: float) -> void:
 		time_since_floor += delta
 	move_and_slide()
 
-
-func _input(event):
-	if event.is_action_pressed("move_left"):
+func _process(_delta):
+	if Input.is_action_pressed("move_left"):
 		flip(true)
-	if event.is_action_pressed("move_right"):
+	elif Input.is_action_pressed("move_right"):
 		flip(false)
-	
+
 
 func on_enter():
 	# Position for kill system. Assigned when entering new room (see Game.gd).
@@ -109,4 +115,3 @@ func flip(is_flipped : bool) -> void:
 			var child_sprite = child.get_node("Shield")
 			if child_sprite != null:
 				child_sprite.flip_h = is_flipped
-		

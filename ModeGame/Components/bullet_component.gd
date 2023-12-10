@@ -24,10 +24,13 @@ func _ready():
 	hitbox.enable()
 	bullet = get_parent()
 	hitbox.connect("attack_damaged", on_hit)
-	hitbox.connect("hit_physics_body", on_hit)
+	hitbox.connect("hit_physics_body", on_wall_hit)
 
 
-func on_hit() -> void:
+func on_hit(body) -> void:
+	bullet.queue_free()
+
+func on_wall_hit() -> void:
 	bullet.queue_free()
 
 

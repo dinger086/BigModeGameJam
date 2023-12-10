@@ -42,7 +42,6 @@ func on_child_transition(state, state_name):
 		return
 
 	var next_state = states[state_name.to_lower()]
-
 	if !next_state:
 		print("StateMachine: State not found: " + state_name)
 		return

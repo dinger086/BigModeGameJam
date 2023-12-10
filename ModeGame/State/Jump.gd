@@ -42,7 +42,7 @@ func process(_delta):
 		if player.velocity.y < 0:
 			player.velocity.y = move_toward(player.velocity.y, 0, player.speed*.1)
 		transitioned.emit(self, "Fall")
-
-
+	elif Input.is_action_just_pressed("dash"):
+		transitioned.emit(self, "Dash")
 
 	

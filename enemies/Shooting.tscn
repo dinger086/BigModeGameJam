@@ -28,7 +28,6 @@ shape = SubResource("RectangleShape2D_53bod")
 
 [node name="BulletSpawner" parent="." instance=ExtResource("3_s338m")]
 position = Vector2(37, -4)
-bullet_spawn_time = null
 
 [node name="Sight" parent="." instance=ExtResource("6_mb1f8")]
 sight_radius = 50

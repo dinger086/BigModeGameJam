@@ -38,9 +38,8 @@ func _ready() -> void:
 func _on_area_entered(area:Node2D) -> void:
 	if HurtBoxOwner.ENEMY == hurtbox_owner:
 		print("Player hit enemy")
-
 	if area is HitBoxComponent and not invicible:
-		area.hit()
+		area.hit(self)
 		print(area)
 		health.take_damage(area.damage)
 		emit_signal("damage", area.damage, area.knockback, area.global_position)

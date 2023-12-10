@@ -25,7 +25,7 @@ func enter():
 	attack_comp.attack()
 	
 
-func self_knockback():
+func self_knockback(_body):
 	player.velocity = knockback_direction * player.knockback_speed
 
 func process(_delta):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://bfpti047n82k7"]
+[gd_scene load_steps=40 format=3 uid="uid://bfpti047n82k7"]
 
 [ext_resource type="Shader" path="res://ModeGame/Player.gdshader" id="1_meept"]
 [ext_resource type="Texture2D" uid="uid://6f2g8lqmvj6v" path="res://ModeGame/Sprites/Hel_IndigoCombinedSheet.png" id="2_eqxaf"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://qa6ect85j6mj" path="res://ModeGame/Sprites/WingDash.png" id="17_x5581"]
 [ext_resource type="PackedScene" uid="uid://bo13cras0hxdk" path="res://ModeGame/Attacks/ShieldBash.tscn" id="18_er744"]
 [ext_resource type="Script" path="res://ModeGame/State/Damaged.gd" id="19_lnjt3"]
+[ext_resource type="PackedScene" uid="uid://ir0uj46hrnir" path="res://ModeGame/Attacks/SlashFury.tscn" id="20_fvtus"]
 
 [sub_resource type="GDScript" id="GDScript_weu6d"]
 script/source = "extends CharacterBody2D
@@ -430,6 +431,9 @@ script = ExtResource("16_c3yxg")
 
 [node name="Damaged" type="Node" parent="StateMachine"]
 script = ExtResource("19_lnjt3")
+
+[node name="SlashFury" parent="." instance=ExtResource("20_fvtus")]
+position = Vector2(24, 14)
 
 [connection signal="invincibility_ended" from="HurtBoxComponent" to="BlinkAnimationPlayer" method="_on_hurt_box_component_invincibility_ended"]
 [connection signal="invincibility_started" from="HurtBoxComponent" to="BlinkAnimationPlayer" method="_on_hurt_box_component_invincibility_started"]

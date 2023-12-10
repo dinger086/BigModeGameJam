@@ -2,7 +2,7 @@ extends Area2D
 
 class_name HitBoxComponent
 
-signal attack_damaged
+signal attack_damaged(body)
 signal hit_physics_body
 
 @export var animation_player: AnimationPlayer
@@ -44,12 +44,11 @@ func attack() -> void:
 func on_animation_finished(_animation_name: String) -> void:
 	$CollisionShape2D.set_deferred("disabled", true)
 
-func hit() -> void:
-	emit_signal("attack_damaged")
+func hit(body) -> void:
+	emit_signal("attack_damaged", body)
 
 func enable() -> void:
 	$CollisionShape2D.set_deferred("disabled", false)
 
 func disable() -> void:
 	$CollisionShape2D.set_deferred("disabled", true)
-
