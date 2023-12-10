@@ -23,7 +23,7 @@ position = Vector2(0.22375, 0)
 scale = Vector2(0.285, 0.285)
 shape = SubResource("RectangleShape2D_i1knh")
 
-[node name="healthComponent" type="Node2D" parent="."]
+[node name="HealthComponent" type="Node2D" parent="."]
 scale = Vector2(0.285, 0.285)
 script = ExtResource("3_40edg")
 max_health = 10
@@ -32,7 +32,7 @@ max_health = 10
 position = Vector2(19, 0)
 scale = Vector2(0.285, 0.285)
 script = ExtResource("4_vrlj2")
-health = NodePath("../healthComponent")
+health = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
 position = Vector2(-66.6667, 2.09139e-07)

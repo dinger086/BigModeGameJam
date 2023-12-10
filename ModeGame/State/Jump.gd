@@ -17,6 +17,9 @@ func on_animation_finished(anim_name):
 
 
 func physics_process(delta):
+	if player.damaged:
+		transitioned.emit(self, "Damaged")
+		return
 	if player.is_on_floor():
 		player.double_jump = true
 		transitioned.emit(self, "Idle")

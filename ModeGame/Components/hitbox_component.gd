@@ -8,7 +8,7 @@ signal hit_physics_body
 @export var animation_player: AnimationPlayer
 
 @export var damage = 1
-@export var knockback = 1
+@export var knockback = 2000
 @export var attack_speed = 1
 enum AttackType { 
 	PLAYER,
@@ -28,7 +28,7 @@ func _ready() -> void:
 
 	self.connect("body_entered", hit_wall)
 
-	$CollisionShape2D.disabled = true
+	$CollisionShape2D.set_deferred("disabled", true)
 	if animation_player == null and get_parent().has_node("AnimationPlayer"):
 		animation_player = get_parent().get_node("AnimationPlayer")
 		animation_player.connect("animation_finished", on_animation_finished)
@@ -38,17 +38,18 @@ func hit_wall(body: Node) -> void:
 		emit_signal("hit_physics_body")
 
 func attack() -> void:
-	$CollisionShape2D.disabled = false
+	$CollisionShape2D.set_deferred("disabled", false)
 	animation_player.play("Slash", -1, attack_speed)
 	
-func on_animation_finished(animation_name: String) -> void:
-	$CollisionShape2D.disabled = true
+func on_animation_finished(_animation_name: String) -> void:
+	$CollisionShape2D.set_deferred("disabled", true)
 
 func hit() -> void:
 	emit_signal("attack_damaged")
 
 func enable() -> void:
-	$CollisionShape2D.disabled = false
+	$CollisionShape2D.set_deferred("disabled", false)
 
 func disable() -> void:
-	$CollisionShape2D.disabled = true
+	$CollisionShape2D.set_deferred("disabled", true)
+

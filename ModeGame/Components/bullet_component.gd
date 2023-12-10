@@ -2,7 +2,7 @@ extends Node2D
 
 class_name BulletComponent
 
-@export var speed = 400
+@export var speed = 20000
 @export var life_time = 1
 enum BulletType {
 	SIMPLE,
@@ -39,9 +39,9 @@ func _process(delta):
 
 func _physics_process(delta: float) -> void:
 	if type == BulletType.SIMPLE:
-		bullet.velocity += direction * speed * delta
+		bullet.velocity = direction * speed * delta
 	elif type == BulletType.LOB:
-		bullet.velocity += direction * speed * delta
+		bullet.velocity = direction * speed * delta
 		bullet.velocity.y += gravity * delta
 	else:
 		pass

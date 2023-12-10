@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bfpti047n82k7"]
+[gd_scene load_steps=39 format=3 uid="uid://bfpti047n82k7"]
 
 [ext_resource type="Shader" path="res://ModeGame/Player.gdshader" id="1_meept"]
 [ext_resource type="Texture2D" uid="uid://6f2g8lqmvj6v" path="res://ModeGame/Sprites/Hel_IndigoCombinedSheet.png" id="2_eqxaf"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" path="res://ModeGame/State/Interact.gd" id="16_c3yxg"]
 [ext_resource type="Texture2D" uid="uid://qa6ect85j6mj" path="res://ModeGame/Sprites/WingDash.png" id="17_x5581"]
 [ext_resource type="PackedScene" uid="uid://bo13cras0hxdk" path="res://ModeGame/Attacks/ShieldBash.tscn" id="18_er744"]
+[ext_resource type="Script" path="res://ModeGame/State/Damaged.gd" id="19_lnjt3"]
 
 [sub_resource type="GDScript" id="GDScript_weu6d"]
 script/source = "extends CharacterBody2D
@@ -356,6 +357,7 @@ texture = ExtResource("17_x5581")
 hframes = 3
 
 [node name="ShieldBash" parent="Sprite2D" instance=ExtResource("18_er744")]
+visible = false
 position = Vector2(13.3333, 0)
 scale = Vector2(0.666667, 0.666667)
 
@@ -370,6 +372,7 @@ script = ExtResource("3_avxgd")
 max_health = 10
 
 [node name="PlayerSlash" parent="." instance=ExtResource("2_gd3p6")]
+visible = false
 
 [node name="BlinkAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -424,6 +427,9 @@ script = ExtResource("15_qqdfo")
 
 [node name="Interact" type="Node" parent="StateMachine"]
 script = ExtResource("16_c3yxg")
+
+[node name="Damaged" type="Node" parent="StateMachine"]
+script = ExtResource("19_lnjt3")
 
 [connection signal="invincibility_ended" from="HurtBoxComponent" to="BlinkAnimationPlayer" method="_on_hurt_box_component_invincibility_ended"]
 [connection signal="invincibility_started" from="HurtBoxComponent" to="BlinkAnimationPlayer" method="_on_hurt_box_component_invincibility_started"]

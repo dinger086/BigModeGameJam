@@ -13,6 +13,7 @@ texture = ExtResource("1_pt1ij")
 
 [node name="HitBoxComponent" type="Area2D" parent="."]
 script = ExtResource("2_abysy")
+attack_type = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
 position = Vector2(2, 0)

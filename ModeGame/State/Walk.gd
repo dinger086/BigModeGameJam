@@ -5,6 +5,9 @@ func enter():
 	player.play("Run")
 
 func process(_delta):
+	if player.damaged:
+		transitioned.emit(self, "Damaged")
+		return
 	if Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right"):
 		var direction := Input.get_axis("move_left", "move_right")
 		if direction:

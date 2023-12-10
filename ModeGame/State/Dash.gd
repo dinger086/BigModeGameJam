@@ -1,28 +1,28 @@
 extends State
 class_name Dash
 
+var hurtbox = null
+var shield_hitbox = null
 
-var first_enter = true
+func startup():
+	player.animationPlayer.connect("animation_finished", on_animation_finished)
+	hurtbox = player.get_node("HurtBoxComponent")
+	shield_hitbox = player.shield.get_node("HitBoxComponent")
+	shield_hitbox.connect("attack_damaged", _on_shield_bash_hit)
+
 
 func enter():
-	
-
-	if first_enter:
-		player.animationPlayer.connect("animation_finished", on_animation_finished)
-
 	if player.abilities.has("dash"):
-		print(player.animationPlayer)
 		player.animationPlayer.play("Dash")
-		player.velocity = get_direction() * player.speed * 5
-
-
-	print(player.mode)
-	if player.mode:
-		#death mode
-		pass
-	else:
-		#life mode
-		shield_bash()
+		player.velocity = get_direction() * player.dash_speed
+		hurtbox.set_collision(false)
+		if player.mode:
+			#death mode
+			pass
+		else:
+			#life mode
+			player.shield.visible = true
+			shield_hitbox.enable()
 
 
 func process(_delta):
@@ -30,26 +30,28 @@ func process(_delta):
 		transitioned.emit(self, "Fall")
 
 func on_animation_finished(anim_name):
-	print("Dash finished")
-	print(anim_name)
-	player.get_node("Sprite2D/ShieldBash").visible = false
 	if anim_name == "Dash":
 		transitioned.emit(self, "Fall")
-
+		player.shield.visible = false
+		hurtbox.set_collision(true)
+		shield_hitbox.disable()
 
 
 func get_direction() -> Vector2:
 	var direction = Vector2.ZERO
 	if Input.is_action_pressed("move_right"):
-		direction.x += 1.5
+		direction.x += 1
 	if Input.is_action_pressed("move_left"):
-		direction.x -= 1.5
+		direction.x -= 1
 	if Input.is_action_pressed("move_down"):
-		direction.y += 0.5
+		direction.y += 1
 	if Input.is_action_pressed("move_up"):
-		direction.y -= 0.5
-	return direction
+		direction.y -= 1
 
-func shield_bash():
-	var shield = player.get_node("Sprite2D/ShieldBash")
-	shield.visible = true
+	if direction == Vector2.ZERO:
+		direction.x = 1 if player.facing else -1
+	return direction.normalized()
+
+func _on_shield_bash_hit():
+	print("shield bash hit")
+	player.velocity = Vector2.ZERO

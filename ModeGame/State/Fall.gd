@@ -1,13 +1,14 @@
 extends State
 class_name Fall
 
-var start_time = 0
 
 func enter():
 	player.play("Fall")
-	start_time = Time.get_ticks_msec()
 
 func process(_delta):
+	if player.damaged:
+		transitioned.emit(self, "Damaged")
+		return
 	if Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right"):
 		var direction := Input.get_axis("move_left", "move_right")
 		if direction:
@@ -28,7 +29,8 @@ func physics_process(delta):
 
 func input(event):
 	if event.is_action_pressed("jump") and player.double_jump and player.abilities.has("double_jump"): 
-		if Time.get_ticks_msec() - start_time > player.coyote_time:
+		print(player.time_since_floor)
+		if player.time_since_floor > player.coyote_time:
 			player.double_jump = false
 		transitioned.emit(self, "Jump")
 	elif event.is_action_pressed("slash"):

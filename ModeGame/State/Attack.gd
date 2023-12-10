@@ -2,15 +2,14 @@ extends State
 class_name Attack
 
 var knockback_direction = Vector2.ZERO
-var first = true
 var attack_comp = null
 
-func enter():
-	if first:
-		attack_comp = player.slashScene.get_node("HitBoxComponent")
-		attack_comp.connect("attack_damaged", self_knockback)
-		first = false
+func startup():
+	attack_comp = player.slashScene.get_node("HitBoxComponent")
+	attack_comp.connect("attack_damaged", self_knockback)
 
+
+func enter():
 	var direction = get_direction()
 	if direction == Vector2.ZERO:
 		if player.get_node("Sprite2D").flip_h:
@@ -18,7 +17,7 @@ func enter():
 		else:
 			direction.x = 1
 
-
+	player.slashScene.visible = true
 	knockback_direction = -direction
 	player.slashScene.position = direction * 64
 	var angle = direction.angle_to(Vector2.RIGHT) * 3 * 5
@@ -26,15 +25,12 @@ func enter():
 	attack_comp.attack()
 	
 
-
 func self_knockback():
 	player.velocity = knockback_direction * player.knockback_speed
-
 
 func process(_delta):
 	#Might add a way to cancel the attack
 	transitioned.emit(self, "Fall")
-
 
 func get_direction() -> Vector2:
 	var direction = Vector2.ZERO

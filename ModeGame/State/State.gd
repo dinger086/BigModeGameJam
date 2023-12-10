@@ -5,6 +5,10 @@ signal transitioned
 
 var player: Node2D
 
+
+func startup():
+	pass
+
 func enter():
 	pass
 

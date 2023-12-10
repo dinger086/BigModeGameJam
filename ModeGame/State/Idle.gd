@@ -12,6 +12,9 @@ func enter():
 	is_holding = true
 
 func process(_delta):
+	if player.damaged:
+		transitioned.emit(self, "Damaged")
+		return
 	if player.velocity.x != 0:
 		transitioned.emit(self, "Walk")
 		return

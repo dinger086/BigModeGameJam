@@ -1,23 +1,16 @@
 
-extends CharacterBody2D
+extends EnemyBody2D
 
 @onready var slash_scene = $EnemySlash
-var speed = 50
+var speed = 100
 var attack_range = 50
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var active = false
 var player = null
 
 
 func _ready():
-	set_collision_mask_value(1, true)
-	set_collision_layer_value(1, false)
-	set_collision_layer_value(3, true)
-
-
-	var health = get_node("HealthComponent")
-	health.connect("died", _on_death)
+	super._ready()
 	var sight = get_node("Sight")
 	sight.connect("sighted", activate)
 	sight.connect("lost_sight", deactivate)
@@ -37,7 +30,6 @@ func _process(_delta):
 	if !active:
 		velocity.x = 0
 		return
-
 	move_to(player.global_position)
 
 	var distance = global_position.distance_to(player.global_position)
@@ -45,21 +37,12 @@ func _process(_delta):
 	if distance < attack_range:
 		attack(player.global_position)
 
-func _physics_process(delta):
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y += gravity * delta
 
-	move_and_slide()
-
-func _on_death():
-	queue_free()
 
 func move_to(target: Vector2):
 	var direction = target - global_position
-
 	direction = direction.normalized()
-	velocity.x = direction.x * speed
+	velocity.x = move_toward(velocity.x, direction.x * speed, 50)
 
 
 func attack(target: Vector2):

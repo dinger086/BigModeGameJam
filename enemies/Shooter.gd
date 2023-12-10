@@ -1,26 +1,18 @@
 
-extends CharacterBody2D
+extends EnemyBody2D
 
 @onready var bullet_spawner = $BulletSpawner
-var speed = 50
+var speed = 100
 var attack_range = 1000
 var attack_speed_time = 1.0
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var active = false
 var player = null
 @onready var start_time := Time.get_ticks_msec()
 
 
-
 func _ready():
-	set_collision_mask_value(1, true)
-	set_collision_layer_value(1, false)
-	set_collision_layer_value(3, true)
-
-
-	var health = get_node("HealthComponent")
-	health.connect("died", _on_death)
+	super._ready()
 	var sight = get_node("Sight")
 	sight.connect("sighted", activate)
 	sight.connect("lost_sight", deactivate)
@@ -34,7 +26,7 @@ func deactivate():
 	player = null
 
 
-func _process(delta):
+func _process(_delta):
 	if !active:
 		velocity.x = 0
 		return
@@ -48,21 +40,11 @@ func _process(delta):
 			start_time = Time.get_ticks_msec()
 			attack(player.global_position)
 
-func _physics_process(delta):
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y += gravity * delta
-
-	move_and_slide()
-
-func _on_death():
-	queue_free()
 
 func move_to(target: Vector2):
 	var direction = target - global_position
-
 	direction = direction.normalized()
-	velocity.x = direction.x * speed
+	velocity.x = move_toward(velocity.x, direction.x * speed, 50)
 
 
 func attack(target: Vector2):

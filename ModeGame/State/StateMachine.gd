@@ -9,6 +9,7 @@ var current_state:State
 var states:Dictionary = {}
 
 func _ready():
+	player.connect("ready", _on_player_ready)
 	for child in get_children():
 		if child is State:
 			states[child.name.to_lower()] = child
@@ -19,7 +20,10 @@ func _ready():
 		initial_state.enter()
 		current_state = initial_state
 
-
+func _on_player_ready():
+	for child in get_children():
+		if child is State:
+			child.startup()
 
 func _process(delta):
 	if current_state:
