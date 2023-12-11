@@ -6,9 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://c5yfr41fmtswf" path="res://ModeGame/Sprites/Collectible.png" id="4_uru0w"]
 [ext_resource type="Script" path="res://scripts/DialogueBox.gd" id="5_5x1vj"]
 [ext_resource type="AudioStream" uid="uid://ci6wdgyb5rloa" path="res://Sound/Exploration(V1).wav" id="5_vpa6d"]
-[ext_resource type="Script" path="res://menus/Pause.gd" id="5_wfqgu"]
 [ext_resource type="Texture2D" uid="uid://cag0by5rbd64w" path="res://ModeGame/Sprites/particle3.png" id="7_bpuc8"]
 [ext_resource type="Texture2D" uid="uid://bcb8i1eb5ufso" path="res://ModeGame/Sprites/background4.png" id="8_exp0c"]
+[ext_resource type="PackedScene" uid="uid://cdrpj20dov2rb" path="res://menus/Settings.tscn" id="8_f2euu"]
 [ext_resource type="Texture2D" uid="uid://c6geqa4iy31br" path="res://ModeGame/Sprites/background1.png" id="9_yq6i7"]
 [ext_resource type="Texture2D" uid="uid://dicwvny0o3ubg" path="res://ModeGame/Sprites/background2.png" id="10_lgyk7"]
 [ext_resource type="Texture2D" uid="uid://3o1o5bcvc1cx" path="res://ModeGame/Sprites/background3.png" id="11_q1ie5"]
@@ -371,15 +371,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Pause" type="Panel" parent="UI"]
-process_mode = 3
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("5_wfqgu")
+[node name="Pause" parent="UI" instance=ExtResource("8_f2euu")]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 offset = Vector2(350, 350)
