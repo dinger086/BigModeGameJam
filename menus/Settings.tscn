@@ -1,14 +1,14 @@
 [gd_scene load_steps=8 format=3 uid="uid://cdrpj20dov2rb"]
 
-[ext_resource type="Script" path="res://menus/Pause.gd" id="1_bjyvi"]
+[ext_resource type="Script" path="res://menus/Settings.gd" id="1_yqu6i"]
 [ext_resource type="Script" path="res://menus/MasterSlide.gd" id="2_thn6d"]
 [ext_resource type="Script" path="res://menus/MusicSlide.gd" id="3_a0igq"]
 [ext_resource type="Script" path="res://menus/SFXSlide.gd" id="4_a1dpo"]
-[ext_resource type="Script" path="res://menus/Controls.gd" id="5_6cbmj"]
+[ext_resource type="Script" path="res://menus/InputSettingsButton.gd" id="5_1k3w8"]
 [ext_resource type="Script" path="res://menus/Fullscreen.gd" id="6_654rd"]
-[ext_resource type="Script" path="res://menus/MainMenu.gd" id="7_ki60a"]
+[ext_resource type="Script" path="res://menus/MainMenuButton.gd" id="7_b4jqa"]
 
-[node name="PauseShader" type="Panel"]
+[node name="Settings" type="Panel"]
 process_mode = 3
 visible = false
 anchors_preset = 15
@@ -16,8 +16,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_bjyvi")
-metadata/_edit_use_anchors_ = true
+script = ExtResource("1_yqu6i")
 
 [node name="SettingsMenu" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -33,6 +32,8 @@ theme_override_constants/margin_bottom = 100
 
 [node name="VBox" type="VBoxContainer" parent="SettingsMenu"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="Settings" type="Label" parent="SettingsMenu/VBox"]
 layout_mode = 2
@@ -88,11 +89,11 @@ text = "Video Settings"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Controls" type="Button" parent="SettingsMenu/VBox"]
+[node name="InputSettings" type="Button" parent="SettingsMenu/VBox"]
 layout_mode = 2
 action_mode = 0
-text = "Controls"
-script = ExtResource("5_6cbmj")
+text = "Input Settings"
+script = ExtResource("5_1k3w8")
 
 [node name="FullscreenCheck" type="CheckButton" parent="SettingsMenu/VBox"]
 layout_mode = 2
@@ -102,4 +103,4 @@ script = ExtResource("6_654rd")
 [node name="MainMenu" type="Button" parent="SettingsMenu/VBox"]
 layout_mode = 2
 text = "Main Menu"
-script = ExtResource("7_ki60a")
+script = ExtResource("7_b4jqa")
