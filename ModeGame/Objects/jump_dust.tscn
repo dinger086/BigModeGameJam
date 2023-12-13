@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://bf177n8jijfrl"]
+
+[ext_resource type="Texture2D" uid="uid://bid5l4ncsivf4" path="res://ModeGame/Sprites/particle4.png" id="1_nmoxq"]
+
+[sub_resource type="Curve" id="Curve_qre66"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.889251, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0376922, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_tw2m6"]
+curve_y = SubResource("Curve_qre66")
+
+[sub_resource type="Curve" id="Curve_wrhke"]
+_data = [Vector2(0, 0), 0.0, 4.78552, 0, 0, Vector2(0.28013, 0.931351), -2.37644e-07, -2.37644e-07, 0, 0, Vector2(1, 0.0352974), -3.22204, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_clb8e"]
+curve = SubResource("Curve_wrhke")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yfpeg"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(1, 2.08165e-12, 2.08165e-12)
+spread = 0.0
+initial_velocity_min = -15.0
+initial_velocity_max = 15.0
+angular_velocity_min = 1.4988e-14
+angular_velocity_max = 1.4988e-14
+directional_velocity_min = -10.0
+directional_velocity_max = 1.4988e-14
+directional_velocity_curve = SubResource("CurveXYZTexture_tw2m6")
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+scale_min = 0.03
+scale_max = 0.05
+scale_curve = SubResource("CurveTexture_clb8e")
+scale_over_velocity_max = 1.0
+color = Color(1, 1, 1, 0.215686)
+
+[node name="JumpDust" type="GPUParticles2D"]
+modulate = Color(1, 1, 1, 0.458824)
+z_index = 1
+position = Vector2(0, 47)
+emitting = false
+amount = 60
+process_material = SubResource("ParticleProcessMaterial_yfpeg")
+texture = ExtResource("1_nmoxq")
+lifetime = 3.0
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+trail_lifetime = 0.01

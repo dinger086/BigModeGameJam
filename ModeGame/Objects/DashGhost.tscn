@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://g31clpxme6qs"]
+
+[ext_resource type="Script" path="res://ModeGame/Objects/DashGhost.gd" id="1_24838"]
+[ext_resource type="Shader" path="res://ModeGame/Objects/DashGhost.gdshader" id="1_bwg40"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_42kkl"]
+shader = ExtResource("1_bwg40")
+shader_parameter/whiten = true
+shader_parameter/mix_weight = 0.75
+shader_parameter/alpha = 1.0
+
+[node name="DashGhost" type="Sprite2D"]
+z_index = -1
+material = SubResource("ShaderMaterial_42kkl")
+script = ExtResource("1_24838")

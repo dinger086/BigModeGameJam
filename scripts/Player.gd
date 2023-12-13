@@ -50,6 +50,8 @@ var ability_cooldowns_times = {
 @onready var shield = get_node("Sprite2D/ShieldBash")
 @onready var slashScene = $PlayerSlash
 @onready var bulletSpawner = $PlayerProjectileSpawner
+@onready var footsteps = $Footsteps
+@onready var sprite = $Sprite2D
 
 var is_hooked = false
 var grapple_velocity = Vector2.ZERO

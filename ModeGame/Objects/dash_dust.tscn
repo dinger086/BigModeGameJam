@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://c0huprowsimfc"]
+
+[ext_resource type="Texture2D" uid="uid://bid5l4ncsivf4" path="res://ModeGame/Sprites/particle4.png" id="1_w0hga"]
+
+[sub_resource type="Curve" id="Curve_07woq"]
+_data = [Vector2(0, 0.653141), 0.0, 2.36635, 0, 0, Vector2(0.403909, 1), -0.14247, -0.14247, 0, 0, Vector2(1, 0.00639236), -4.43691, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_m4ty7"]
+curve = SubResource("Curve_07woq")
+
+[sub_resource type="Curve" id="Curve_qyxd1"]
+_data = [Vector2(0, 0.00277925), 0.0, 11.6469, 0, 0, Vector2(0.247557, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0.458032), 0.0, 0.0, 0, 0, Vector2(1, 0.190661), -0.0462177, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_mrnng"]
+curve = SubResource("Curve_qyxd1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_oothe"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(0.25, 1, 1)
+emission_shape = 1
+emission_sphere_radius = 25.0
+angle_min = 3.9968e-14
+angle_max = 3.9968e-14
+direction = Vector3(1, 2.08165e-12, 2.08165e-12)
+spread = 60.0
+initial_velocity_min = -40.0
+initial_velocity_max = -40.0
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+scale_min = 0.05
+scale_max = 0.1
+scale_curve = SubResource("CurveTexture_mrnng")
+alpha_curve = SubResource("CurveTexture_m4ty7")
+
+[node name="DashDust" type="GPUParticles2D"]
+modulate = Color(1, 1, 1, 0.458824)
+z_index = 1
+emitting = false
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_oothe")
+texture = ExtResource("1_w0hga")
+lifetime = 2.0
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+trail_lifetime = 0.01
