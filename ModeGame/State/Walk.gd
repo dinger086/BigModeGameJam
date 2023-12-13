@@ -35,3 +35,5 @@ func input(event):
 		transitioned.emit(self, "Interact")
 	elif event.is_action_pressed("switch"):
 		player.switch_mode()
+	elif event.is_action_pressed("shoot"):
+		transitioned.emit(self, "Shoot")

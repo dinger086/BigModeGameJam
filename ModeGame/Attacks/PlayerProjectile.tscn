@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://b7qypgsovsn8o"]
+
+[ext_resource type="Texture2D" uid="uid://v33ekhiih21j" path="res://ModeGame/Sprites/Feather.png" id="1_5y8b7"]
+[ext_resource type="Script" path="res://ModeGame/Components/hitbox_component.gd" id="2_dwh0y"]
+[ext_resource type="Script" path="res://ModeGame/Components/bullet_component.gd" id="3_xgxrd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ttnn"]
+size = Vector2(26, 27)
+
+[node name="PlayerProjectile" type="CharacterBody2D"]
+
+[node name="Feather" type="Sprite2D" parent="."]
+texture = ExtResource("1_5y8b7")
+
+[node name="HitBoxComponent" type="Area2D" parent="."]
+script = ExtResource("2_dwh0y")
+attack_type = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_1ttnn")
+
+[node name="BulletComponent" type="Node2D" parent="." node_paths=PackedStringArray("hitbox")]
+script = ExtResource("3_xgxrd")
+speed = 40000
+life_time = 15
+hitbox = NodePath("../HitBoxComponent")

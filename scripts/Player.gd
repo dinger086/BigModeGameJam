@@ -20,6 +20,8 @@ var double_jump: bool
 var attack_location = Vector2.ZERO
 var damaged = false
 
+var grapple_hook:Node2D = null
+
 enum Facing{
 	LEFT,
 	RIGHT
@@ -47,7 +49,10 @@ var ability_cooldowns_times = {
 @onready var animationPlayer = get_node("AnimationPlayer")
 @onready var shield = get_node("Sprite2D/ShieldBash")
 @onready var slashScene = $PlayerSlash
+@onready var bulletSpawner = $PlayerProjectileSpawner
 
+var is_hooked = false
+var grapple_velocity = Vector2.ZERO
 
 func _ready() -> void:
 	if debug:
@@ -78,6 +83,8 @@ func _physics_process(delta: float) -> void:
 		time_since_floor = 0.0
 	else:
 		time_since_floor += delta
+	if is_hooked:
+		grapple_physics()
 	move_and_slide()
 
 func _process(_delta):
@@ -115,3 +122,43 @@ func flip(is_flipped : bool) -> void:
 			var child_sprite = child.get_node("Shield")
 			if child_sprite != null:
 				child_sprite.flip_h = is_flipped
+
+func get_direction() -> Vector2:
+	var direction = Vector2.ZERO
+	if Input.is_action_pressed("move_right"):
+		direction.x += 1
+	if Input.is_action_pressed("move_left"):
+		direction.x -= 1
+	if Input.is_action_pressed("move_down"):
+		direction.y += 1
+	if Input.is_action_pressed("move_up"):
+		direction.y -= 1
+
+	return direction.normalized()
+
+func grapple_physics() -> void:
+	if grapple_hook == null:
+		is_hooked = false
+		grapple_velocity = Vector2.ZERO
+		return
+
+	var chain_velocity = (grapple_hook.global_position - global_position).normalized() * 30
+	print(chain_velocity)
+	if chain_velocity.y > 0: 
+		chain_velocity.y *= 0.55
+	else:
+		chain_velocity.y *= 1.65
+
+	if sign(chain_velocity.x) != sign(get_direction().x):
+		chain_velocity.x *= 0.7
+
+
+	grapple_velocity += chain_velocity 
+	print(grapple_velocity)
+	grapple_velocity *= 0.99
+	
+
+	clamp(grapple_velocity.x, -1000, 1000)
+	clamp(grapple_velocity.y, -1000, 1000)
+
+	velocity = grapple_velocity

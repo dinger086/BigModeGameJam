@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c5avkbuiuyuc0"]
+[gd_scene load_steps=15 format=3 uid="uid://c5avkbuiuyuc0"]
 
 [ext_resource type="Texture2D" uid="uid://cmqsru4u5n05a" path="res://ModeGame/Sprites/29_minion_01_x.png" id="1_0d5hc"]
 [ext_resource type="Script" path="res://enemies/basic.gd" id="1_gxwt3"]
@@ -6,6 +6,12 @@
 [ext_resource type="Script" path="res://ModeGame/Components/hurtbox_component.gd" id="3_yygbt"]
 [ext_resource type="PackedScene" uid="uid://dxf1jvxpq207t" path="res://ModeGame/Attacks/EnemySlash.tscn" id="6_2r6sa"]
 [ext_resource type="PackedScene" uid="uid://ct3c8xm7pctvm" path="res://ModeGame/Components/Sight.tscn" id="6_gqmq5"]
+[ext_resource type="Script" path="res://ModeGame/State/StateMachine.gd" id="7_ol7h6"]
+[ext_resource type="Script" path="res://enemies/states/Basic/AttackEnemy.gd" id="8_as4mj"]
+[ext_resource type="Script" path="res://enemies/states/Basic/MoveToward.gd" id="9_f4m7g"]
+[ext_resource type="Script" path="res://enemies/states/Basic/IdleEnemy.gd" id="10_up2v6"]
+[ext_resource type="Script" path="res://enemies/states/Basic/Hooked.gd" id="11_ul0og"]
+[ext_resource type="Script" path="res://enemies/states/Basic/Stunned.gd" id="12_jyg18"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kw8yg"]
 size = Vector2(30, 32)
@@ -14,6 +20,7 @@ size = Vector2(30, 32)
 size = Vector2(30, 32)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+scale = Vector2(2.005, 2.005)
 script = ExtResource("1_gxwt3")
 
 [node name="29Minion01X" type="Sprite2D" parent="."]
@@ -42,5 +49,27 @@ visible = false
 sight_radius = 50
 
 [node name="EnemySlash" parent="." instance=ExtResource("6_2r6sa")]
+position = Vector2(21, -5)
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "player")]
+script = ExtResource("7_ol7h6")
+initial_state = NodePath("MoveToward")
+player = NodePath("..")
+debug = null
+
+[node name="AttackEnemy" type="Node" parent="StateMachine"]
+script = ExtResource("8_as4mj")
+
+[node name="MoveToward" type="Node" parent="StateMachine"]
+script = ExtResource("9_f4m7g")
+
+[node name="IdleEnemy" type="Node" parent="StateMachine"]
+script = ExtResource("10_up2v6")
+
+[node name="Hooked" type="Node" parent="StateMachine"]
+script = ExtResource("11_ul0og")
+
+[node name="Stunned" type="Node" parent="StateMachine"]
+script = ExtResource("12_jyg18")
 
 [connection signal="timeout" from="HurtBoxComponent/Timer" to="HurtBoxComponent" method="_on_timer_timeout"]

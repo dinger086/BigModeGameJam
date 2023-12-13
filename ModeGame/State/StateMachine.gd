@@ -3,6 +3,7 @@ class_name StateMachine
 
 @export var initial_state:State
 @export var player:Node
+@export var debug:bool = false
 
 
 var current_state:State
@@ -50,4 +51,6 @@ func on_child_transition(state, state_name):
 
 	next_state.enter()
 	current_state = next_state
+	if debug:
+		print("StateMachine: " + player.name +  " transitioned to " + state_name)
 

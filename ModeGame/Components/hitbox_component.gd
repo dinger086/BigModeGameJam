@@ -36,7 +36,7 @@ func _ready() -> void:
 func hit_wall(body: Node) -> void:
 	if body is TileMap:
 		emit_signal("hit_physics_body")
-
+	  
 func attack() -> void:
 	$CollisionShape2D.set_deferred("disabled", false)
 	animation_player.play("Slash", -1, attack_speed)
@@ -52,3 +52,13 @@ func enable() -> void:
 
 func disable() -> void:
 	$CollisionShape2D.set_deferred("disabled", true)
+
+func set_collinsion_type(type: String) -> void:
+	if type == "player":
+		set_collision_layer_value(3, true)
+		set_collision_layer_value(2, false)
+	elif type == "enemy":
+		set_collision_layer_value(3, false)
+		set_collision_layer_value(2, true)
+	else:
+		print("HitBoxComponent: Invalid collision type")

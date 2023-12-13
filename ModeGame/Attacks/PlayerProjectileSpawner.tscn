@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://bre72s213i4vg"]
+
+[ext_resource type="Script" path="res://ModeGame/Attacks/PlayerProjectileSpawner.gd" id="1_x2e2y"]
+[ext_resource type="PackedScene" uid="uid://b7qypgsovsn8o" path="res://ModeGame/Attacks/PlayerProjectile.tscn" id="2_n56kn"]
+[ext_resource type="PackedScene" uid="uid://c8f7j3ft6bfgd" path="res://ModeGame/Attacks/GrappleHook.tscn" id="3_ruxwd"]
+
+[node name="PlayerProjectileSpawner" type="Node2D"]
+script = ExtResource("1_x2e2y")
+bullet = ExtResource("2_n56kn")
+grapple_hook = ExtResource("3_ruxwd")

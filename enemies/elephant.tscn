@@ -1,9 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://ofhy6k6i1cjm"]
+[gd_scene load_steps=11 format=3 uid="uid://ofhy6k6i1cjm"]
 
 [ext_resource type="Script" path="res://enemies/elephant.gd" id="1_g4q4r"]
 [ext_resource type="Texture2D" uid="uid://d32155hmo13hh" path="res://ModeGame/Griffins/peter_2008_v2F_hires1-56a00f083df78cafda9fdcb6.jpg" id="2_c1cy6"]
 [ext_resource type="Script" path="res://ModeGame/Components/health_component.gd" id="3_40edg"]
 [ext_resource type="Script" path="res://ModeGame/Components/hurtbox_component.gd" id="4_vrlj2"]
+[ext_resource type="Script" path="res://ModeGame/State/StateMachine.gd" id="5_8mufk"]
+[ext_resource type="Script" path="res://enemies/states/Basic/IdleEnemy.gd" id="6_uv7tg"]
+[ext_resource type="Script" path="res://enemies/states/Basic/Hooked.gd" id="7_wo0vh"]
+[ext_resource type="Script" path="res://enemies/states/Basic/Stunned.gd" id="8_rqeq1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i1knh"]
 size = Vector2(345.43, 280.702)
@@ -33,3 +37,18 @@ health = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
 shape = SubResource("RectangleShape2D_07y3d")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "player")]
+script = ExtResource("5_8mufk")
+initial_state = NodePath("IdleEnemy")
+player = NodePath("..")
+debug = null
+
+[node name="IdleEnemy" type="Node" parent="StateMachine"]
+script = ExtResource("6_uv7tg")
+
+[node name="Hooked" type="Node" parent="StateMachine"]
+script = ExtResource("7_wo0vh")
+
+[node name="Stunned" type="Node" parent="StateMachine"]
+script = ExtResource("8_rqeq1")
