@@ -9,6 +9,7 @@ var current_button : int = 0
 
 func _ready():
 	StartButton.connect("pressed", _on_start_button_pressed)
+	SettingsButton.connect("pressed", _on_settings_button_pressed)
 	QuitButton.connect("pressed", _on_quit_button_pressed)
 	for child in get_node("MarginContainer/VBoxContainer").get_children():
 		if child.is_class("Button"):
@@ -20,6 +21,7 @@ func _on_start_button_pressed():
 
 func _on_settings_button_pressed():
 	get_tree().change_scene_to_file("res://menus/Settings.tscn")
+	self.visible = true
 
 func _on_quit_button_pressed():
 	get_tree().quit()
