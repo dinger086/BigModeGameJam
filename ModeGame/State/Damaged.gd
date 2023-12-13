@@ -10,6 +10,7 @@ func enter():
 	player.velocity = knockback()
 	player.attack_location = Vector2(0, 0)
 	player.damaged = false
+	player.grapple_hook = null 
 
 func process(_delta):
 	transitioned.emit(self, "Fall")

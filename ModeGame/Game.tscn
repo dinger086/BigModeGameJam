@@ -227,14 +227,14 @@ starting_map = "Playground.tscn"
 [node name="Player" parent="." instance=ExtResource("2_u7rkp")]
 position = Vector2(368, 248)
 script = ExtResource("3_lcxil")
-speed = null
-jump_velocity = null
-knockback_speed = null
-wall_gravity_scale = null
-coyote_time = null
-dash_speed = null
-debug = null
-damage_knockback = null
+speed = 400.0
+jump_velocity = -750.0
+knockback_speed = 650.0
+wall_gravity_scale = 0.5
+coyote_time = 0.1
+dash_speed = 1000.0
+debug = true
+damage_knockback = Vector2(1250, -500)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 

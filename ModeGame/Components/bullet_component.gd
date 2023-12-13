@@ -27,7 +27,7 @@ func _ready():
 	hitbox.connect("hit_physics_body", on_wall_hit)
 
 
-func on_hit(body) -> void:
+func on_hit(_body) -> void:
 	bullet.queue_free()
 
 func on_wall_hit() -> void:

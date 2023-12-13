@@ -44,5 +44,9 @@ func process(_delta):
 		transitioned.emit(self, "Fall")
 	elif Input.is_action_just_pressed("dash"):
 		transitioned.emit(self, "Dash")
+	elif Input.is_action_just_pressed("slash"):
+		transitioned.emit(self, "Attack")
+	elif Input.is_action_just_pressed("shoot"):
+		transitioned.emit(self, "Shoot")
 
 	

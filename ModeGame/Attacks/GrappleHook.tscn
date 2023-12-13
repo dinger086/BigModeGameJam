@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://c8f7j3ft6bfgd"]
+
+[ext_resource type="Script" path="res://ModeGame/Attacks/GrappleHook.gd" id="1_657e3"]
+[ext_resource type="Texture2D" uid="uid://c4f1ns344dvuw" path="res://ModeGame/Sprites/grapple_hook_head.png" id="1_ffvqm"]
+[ext_resource type="Texture2D" uid="uid://coxog6ivw2aj3" path="res://ModeGame/Sprites/grapple_hook_chain.png" id="2_yyy7a"]
+[ext_resource type="Script" path="res://ModeGame/Components/hitbox_component.gd" id="4_oa1ol"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qebwk"]
+size = Vector2(28, 29)
+
+[node name="GrappleHook" type="CharacterBody2D"]
+script = ExtResource("1_657e3")
+
+[node name="GrappleHook" type="Node2D" parent="."]
+
+[node name="GrappleHookHead" type="Sprite2D" parent="GrappleHook"]
+texture = ExtResource("1_ffvqm")
+
+[node name="GrappleHookChain" type="Sprite2D" parent="GrappleHook"]
+texture_repeat = 2
+position = Vector2(-0.5, 20)
+texture = ExtResource("2_yyy7a")
+region_enabled = true
+region_rect = Rect2(0, 0, 9, 9)
+region_filter_clip_enabled = true
+
+[node name="HitBoxComponent" type="Area2D" parent="."]
+script = ExtResource("4_oa1ol")
+damage = 0
+knockback = 0
+attack_type = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_qebwk")

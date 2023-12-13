@@ -1,11 +1,17 @@
-[gd_scene load_steps=9 format=3 uid="uid://q4tgc2h3q70c"]
+[gd_scene load_steps=15 format=3 uid="uid://q4tgc2h3q70c"]
 
 [ext_resource type="Script" path="res://enemies/Shooter.gd" id="1_48bqe"]
 [ext_resource type="Texture2D" uid="uid://dbxbm5lvypjbd" path="res://ModeGame/Griffins/lois_griffin_angry_using_gun_family_guy_by_arturomendoza2890_dfayf7s-fullview.png" id="1_htri8"]
 [ext_resource type="Script" path="res://ModeGame/Components/hurtbox_component.gd" id="2_mbf1n"]
 [ext_resource type="PackedScene" uid="uid://cqhcesc5yq51y" path="res://ModeGame/Attacks/BulletSpawner.tscn" id="3_s338m"]
 [ext_resource type="PackedScene" uid="uid://ct3c8xm7pctvm" path="res://ModeGame/Components/Sight.tscn" id="6_mb1f8"]
+[ext_resource type="Script" path="res://ModeGame/State/StateMachine.gd" id="7_8hcl6"]
 [ext_resource type="Script" path="res://ModeGame/Components/health_component.gd" id="7_kpel3"]
+[ext_resource type="Script" path="res://enemies/states/Basic/Hooked.gd" id="8_8e6gk"]
+[ext_resource type="Script" path="res://enemies/states/Basic/IdleEnemy.gd" id="9_nooop"]
+[ext_resource type="Script" path="res://enemies/states/Shooter/ShooterAttack.gd" id="10_3uvig"]
+[ext_resource type="Script" path="res://enemies/states/Shooter/MoveTowardShooter.gd" id="11_3hmbi"]
+[ext_resource type="Script" path="res://enemies/states/Basic/Stunned.gd" id="12_cp75w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_53bod"]
 size = Vector2(73, 79)
@@ -43,3 +49,24 @@ health = NodePath("../HealthComponent")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
 position = Vector2(-1.5, 2)
 shape = SubResource("RectangleShape2D_dd0ki")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "player")]
+script = ExtResource("7_8hcl6")
+initial_state = NodePath("MoveTowardShooter")
+player = NodePath("..")
+debug = true
+
+[node name="Hooked" type="Node" parent="StateMachine"]
+script = ExtResource("8_8e6gk")
+
+[node name="IdleEnemy" type="Node" parent="StateMachine"]
+script = ExtResource("9_nooop")
+
+[node name="ShooterAttack" type="Node" parent="StateMachine"]
+script = ExtResource("10_3uvig")
+
+[node name="MoveTowardShooter" type="Node" parent="StateMachine"]
+script = ExtResource("11_3hmbi")
+
+[node name="Stunned" type="Node" parent="StateMachine"]
+script = ExtResource("12_cp75w")
