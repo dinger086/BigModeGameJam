@@ -1,17 +1,78 @@
-[gd_scene load_steps=15 format=3 uid="uid://c5avkbuiuyuc0"]
+[gd_scene load_steps=21 format=3 uid="uid://c5avkbuiuyuc0"]
 
 [ext_resource type="Texture2D" uid="uid://cmqsru4u5n05a" path="res://ModeGame/Sprites/29_minion_01_x.png" id="1_0d5hc"]
 [ext_resource type="Script" path="res://enemies/basic.gd" id="1_gxwt3"]
+[ext_resource type="Shader" path="res://enemies/enemy.gdshader" id="2_j4dxr"]
 [ext_resource type="Script" path="res://ModeGame/Components/health_component.gd" id="2_raqy1"]
 [ext_resource type="Script" path="res://ModeGame/Components/hurtbox_component.gd" id="3_yygbt"]
 [ext_resource type="PackedScene" uid="uid://dxf1jvxpq207t" path="res://ModeGame/Attacks/EnemySlash.tscn" id="6_2r6sa"]
-[ext_resource type="PackedScene" uid="uid://ct3c8xm7pctvm" path="res://ModeGame/Components/Sight.tscn" id="6_gqmq5"]
+[ext_resource type="PackedScene" path="res://ModeGame/Components/Sight.tscn" id="6_gqmq5"]
 [ext_resource type="Script" path="res://ModeGame/State/StateMachine.gd" id="7_ol7h6"]
 [ext_resource type="Script" path="res://enemies/states/Basic/AttackEnemy.gd" id="8_as4mj"]
 [ext_resource type="Script" path="res://enemies/states/Basic/MoveToward.gd" id="9_f4m7g"]
 [ext_resource type="Script" path="res://enemies/states/Basic/IdleEnemy.gd" id="10_up2v6"]
 [ext_resource type="Script" path="res://enemies/states/Basic/Hooked.gd" id="11_ul0og"]
 [ext_resource type="Script" path="res://enemies/states/Basic/Stunned.gd" id="12_jyg18"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gd234"]
+resource_local_to_scene = true
+shader = ExtResource("2_j4dxr")
+shader_parameter/active = true
+
+[sub_resource type="Animation" id="Animation_6jy27"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_20dis"]
+resource_name = "start"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_u5pox"]
+resource_name = "stop"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3pynt"]
+_data = {
+"RESET": SubResource("Animation_6jy27"),
+"start": SubResource("Animation_20dis"),
+"stop": SubResource("Animation_u5pox")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kw8yg"]
 size = Vector2(30, 32)
@@ -23,14 +84,24 @@ size = Vector2(30, 32)
 scale = Vector2(2.005, 2.005)
 script = ExtResource("1_gxwt3")
 
-[node name="29Minion01X" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_gd234")
 texture = ExtResource("1_0d5hc")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="BlinkAnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite")
+libraries = {
+"": SubResource("AnimationLibrary_3pynt")
+}
 
 [node name="HealthComponent" type="Node2D" parent="."]
 script = ExtResource("2_raqy1")
 max_health = 3
 
 [node name="HurtBoxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+visible = false
 script = ExtResource("3_yygbt")
 health = NodePath("../HealthComponent")
 
@@ -41,6 +112,7 @@ shape = SubResource("RectangleShape2D_kw8yg")
 [node name="Timer" type="Timer" parent="HurtBoxComponent"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_413tn")
 

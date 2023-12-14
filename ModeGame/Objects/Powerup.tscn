@@ -1,5 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://d27sxjt3kw2ds"]
+[gd_scene load_steps=3 format=3 uid="uid://d27sxjt3kw2ds"]
 
 [ext_resource type="PackedScene" uid="uid://dk4vmhbbrhiqv" path="res://ModeGame/Objects/Collectible.tscn" id="1_k4nst"]
+[ext_resource type="PackedScene" uid="uid://ddm26awk2poqk" path="res://ModeGame/Objects/orb.tscn" id="2_mcia8"]
 
 [node name="Collectible" instance=ExtResource("1_k4nst")]
+
+[node name="Sprite2D" parent="." index="1"]
+visible = false
+
+[node name="orb" parent="." index="2" instance=ExtResource("2_mcia8")]
+scale = Vector2(0.25, 0.25)
+autoplay = "default"
+frame_progress = 0.180108

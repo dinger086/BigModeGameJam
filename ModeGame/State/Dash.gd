@@ -41,6 +41,7 @@ func enter():
 				leaving = true
 				return
 			player.velocity.x = player.dash_speed * get_horizontal()
+			player.velocity.y = 0
 			player.shield.visible = true
 			shield_hitbox.enable()
 

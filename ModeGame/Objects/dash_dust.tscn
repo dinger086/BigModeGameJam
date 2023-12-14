@@ -42,6 +42,6 @@ process_material = SubResource("ParticleProcessMaterial_oothe")
 texture = ExtResource("1_w0hga")
 lifetime = 2.0
 one_shot = true
-speed_scale = 2.0
+speed_scale = 3.0
 explosiveness = 1.0
 trail_lifetime = 0.01

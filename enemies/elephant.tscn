@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://ofhy6k6i1cjm"]
+[gd_scene load_steps=17 format=3 uid="uid://ofhy6k6i1cjm"]
 
 [ext_resource type="Script" path="res://enemies/elephant.gd" id="1_g4q4r"]
 [ext_resource type="Texture2D" uid="uid://d32155hmo13hh" path="res://ModeGame/Griffins/peter_2008_v2F_hires1-56a00f083df78cafda9fdcb6.jpg" id="2_c1cy6"]
+[ext_resource type="Shader" path="res://enemies/enemy.gdshader" id="2_xgq0u"]
 [ext_resource type="Script" path="res://ModeGame/Components/health_component.gd" id="3_40edg"]
 [ext_resource type="Script" path="res://ModeGame/Components/hurtbox_component.gd" id="4_vrlj2"]
 [ext_resource type="Script" path="res://ModeGame/State/StateMachine.gd" id="5_8mufk"]
@@ -9,16 +10,76 @@
 [ext_resource type="Script" path="res://enemies/states/Basic/Hooked.gd" id="7_wo0vh"]
 [ext_resource type="Script" path="res://enemies/states/Basic/Stunned.gd" id="8_rqeq1"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gl6nd"]
+shader = ExtResource("2_xgq0u")
+shader_parameter/active = true
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i1knh"]
 size = Vector2(345.43, 280.702)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_07y3d"]
 size = Vector2(343.86, 280.702)
 
+[sub_resource type="Animation" id="Animation_6jy27"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_20dis"]
+resource_name = "start"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_u5pox"]
+resource_name = "stop"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3pynt"]
+_data = {
+"RESET": SubResource("Animation_6jy27"),
+"start": SubResource("Animation_20dis"),
+"stop": SubResource("Animation_u5pox")
+}
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_g4q4r")
 
-[node name="Square" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_gl6nd")
 scale = Vector2(0.06555, 0.06555)
 texture = ExtResource("2_c1cy6")
 
@@ -52,3 +113,11 @@ script = ExtResource("7_wo0vh")
 
 [node name="Stunned" type="Node" parent="StateMachine"]
 script = ExtResource("8_rqeq1")
+
+[node name="BlinkAnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite")
+libraries = {
+"": SubResource("AnimationLibrary_3pynt")
+}
+
+[node name="Timer" type="Timer" parent="."]
