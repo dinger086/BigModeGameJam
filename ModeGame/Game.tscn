@@ -1,3 +1,4 @@
+
 [gd_scene load_steps=23 format=3 uid="uid://b84cec1fegcns"]
 
 [ext_resource type="Script" path="res://scripts/Game.gd" id="1_na0b5"]
@@ -6,36 +7,12 @@
 [ext_resource type="Texture2D" uid="uid://c5yfr41fmtswf" path="res://ModeGame/Sprites/Collectible.png" id="4_uru0w"]
 [ext_resource type="Script" path="res://scripts/DialogueBox.gd" id="5_5x1vj"]
 [ext_resource type="AudioStream" uid="uid://ci6wdgyb5rloa" path="res://Sound/Exploration(V1).wav" id="5_vpa6d"]
-[ext_resource type="Texture2D" uid="uid://cag0by5rbd64w" path="res://ModeGame/Sprites/particle3.png" id="7_bpuc8"]
 [ext_resource type="Texture2D" uid="uid://bcb8i1eb5ufso" path="res://ModeGame/Sprites/background4.png" id="8_exp0c"]
 [ext_resource type="PackedScene" uid="uid://cdrpj20dov2rb" path="res://menus/Settings.tscn" id="8_f2euu"]
 [ext_resource type="Script" path="res://ModeGame/AbilityCooldowns.gd" id="9_tw0mc"]
 [ext_resource type="Texture2D" uid="uid://c6geqa4iy31br" path="res://ModeGame/Sprites/background1.png" id="9_yq6i7"]
 [ext_resource type="Texture2D" uid="uid://dicwvny0o3ubg" path="res://ModeGame/Sprites/background2.png" id="10_lgyk7"]
 [ext_resource type="Texture2D" uid="uid://3o1o5bcvc1cx" path="res://ModeGame/Sprites/background3.png" id="11_q1ie5"]
-
-[sub_resource type="Curve" id="Curve_8dsty"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.25, 1), 0.0, 0.0, 0, 0, Vector2(0.755859, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="CurveTexture" id="CurveTexture_clb8e"]
-curve = SubResource("Curve_8dsty")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_n5gdu"]
-lifetime_randomness = 0.25
-particle_flag_disable_z = true
-emission_shape_offset = Vector3(368, 248, 2.08165e-12)
-emission_shape = 1
-emission_sphere_radius = 1000.0
-direction = Vector3(1, 2.08165e-12, 2.08165e-12)
-initial_velocity_min = 15.0
-initial_velocity_max = 25.0
-gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
-scale_min = 0.01
-scale_max = 0.03
-scale_curve = SubResource("CurveTexture_clb8e")
-scale_over_velocity_max = 1.0
-color = Color(1, 1, 1, 0.215686)
 
 [sub_resource type="GDScript" id="GDScript_4div8"]
 resource_name = "Minimap"
@@ -238,16 +215,6 @@ debug = true
 damage_knockback = Vector2(1250, -500)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Player"]
-z_index = -1
-position = Vector2(-368, -248)
-amount = 400
-process_material = SubResource("ParticleProcessMaterial_n5gdu")
-texture = ExtResource("7_bpuc8")
-lifetime = 5.0
-randomness = 1.0
-trail_lifetime = 0.01
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Player"]
 position = Vector2(-368, -248)

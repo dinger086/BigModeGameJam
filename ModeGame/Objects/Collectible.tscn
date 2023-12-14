@@ -8,16 +8,28 @@ extends Area2D
 
 @export var power: String
 
+var powerupEffectScene = preload(\"res://ModeGame/Objects/powerup_effect.tscn\")
+
 func _ready() -> void:
 	# Register as storable with a marker. The marker will appear on the map when the orb is first discovered (i.e. get instantiated).
 	MetSys.register_storable_object_with_marker(self)
 	set_collision_mask_value(2, true)
 
 func collect(body: Node2D) -> void:
+	
 	# Check if player collided.
 	if not body.is_in_group(&\"Player\"):
 		return
-
+	
+	self.visible = false
+	$CollisionShape2D.set_deferred(\"disabled\", true)  
+	var powerupEffect = powerupEffectScene.instantiate()
+	powerupEffect.global_position = self.global_position
+	self.get_parent().add_child(powerupEffect)
+	await powerupEffect.animation_finished
+	self.get_parent().remove_child(powerupEffect)
+	powerupEffect.queue_free()
+	
 	body.abilities.append(power)
 	
 	# Increase collectible counter.
@@ -25,7 +37,9 @@ func collect(body: Node2D) -> void:
 	# Store the orb. This will automatically assign the collected marker.
 	MetSys.store_object(self)
 	# Storing object does not free it automatically.
+	
 	queue_free()
+	
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v5e3t"]
