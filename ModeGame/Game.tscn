@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b84cec1fegcns"]
+[gd_scene load_steps=23 format=3 uid="uid://b84cec1fegcns"]
 
 [ext_resource type="Script" path="res://scripts/Game.gd" id="1_na0b5"]
 [ext_resource type="PackedScene" uid="uid://bfpti047n82k7" path="res://ModeGame/Player.tscn" id="2_u7rkp"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cag0by5rbd64w" path="res://ModeGame/Sprites/particle3.png" id="7_bpuc8"]
 [ext_resource type="Texture2D" uid="uid://bcb8i1eb5ufso" path="res://ModeGame/Sprites/background4.png" id="8_exp0c"]
 [ext_resource type="PackedScene" uid="uid://cdrpj20dov2rb" path="res://menus/Settings.tscn" id="8_f2euu"]
+[ext_resource type="Script" path="res://ModeGame/AbilityCooldowns.gd" id="9_tw0mc"]
 [ext_resource type="Texture2D" uid="uid://c6geqa4iy31br" path="res://ModeGame/Sprites/background1.png" id="9_yq6i7"]
 [ext_resource type="Texture2D" uid="uid://dicwvny0o3ubg" path="res://ModeGame/Sprites/background2.png" id="10_lgyk7"]
 [ext_resource type="Texture2D" uid="uid://3o1o5bcvc1cx" path="res://ModeGame/Sprites/background3.png" id="11_q1ie5"]
@@ -372,6 +373,38 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Pause" parent="UI" instance=ExtResource("8_f2euu")]
+
+[node name="AbilityCooldowns" type="HBoxContainer" parent="UI" node_paths=PackedStringArray("player")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -174.0
+offset_top = -53.0
+offset_right = 174.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("9_tw0mc")
+player = NodePath("../../Player")
+
+[node name="Attack" type="ProgressBar" parent="UI/AbilityCooldowns"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+step = 0.001
+fill_mode = 2
+
+[node name="Dash" type="ProgressBar" parent="UI/AbilityCooldowns"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+step = 0.001
+fill_mode = 2
+
+[node name="Shoot" type="ProgressBar" parent="UI/AbilityCooldowns"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+step = 0.001
+fill_mode = 2
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 offset = Vector2(350, 350)

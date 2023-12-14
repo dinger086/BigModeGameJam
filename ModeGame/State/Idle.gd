@@ -24,9 +24,11 @@ func process(_delta):
 	if is_holding:
 		if Time.get_ticks_msec() - press_time > 500:
 			if Input.is_action_pressed("move_up"):
-				camera.offset.y = -100
+				pass
+				#camera.offset.y = -100
 			elif Input.is_action_pressed("move_down"):
-				camera.offset.y = 100
+				pass
+				#camera.offset.y = 100
 	else:
 		camera.offset.y = 0
 

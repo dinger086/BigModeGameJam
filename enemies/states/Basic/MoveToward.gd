@@ -7,22 +7,22 @@ func startup():
 	sight.connect("lost_sight", deactivate)
 
 
-func process(_delta):
+func process(delta):
 	if player.is_hooked:
 		transitioned.emit(self, "Hooked")
 	if player.target == null:
 		transitioned.emit(self, "IdleEnemy")
 		return
-	move_to(player.target.global_position)
+
+	var direction = (player.target.global_position - player.global_position).normalized()
+	player.velocity.x = move_toward(player.velocity.x, direction.x * player.speed, 2000*delta)
 
 	var distance = player.global_position.distance_to(player.target.global_position)
 	
 	if distance < player.attack_range:
 		transitioned.emit(self, "AttackEnemy")
 
-func move_to(target):
-	var direction = (target - player.global_position).normalized()
-	player.velocity.x = direction.x * player.speed
+	
 
 
 func deactivate():
