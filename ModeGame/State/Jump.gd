@@ -2,6 +2,8 @@ extends State
 class_name Jump
 
 var first_enter = true
+var jumpDustScene = preload("res://ModeGame/Objects/jump_dust.tscn")
+
 
 func enter():
 	player.velocity.y = player.jump_velocity
@@ -9,6 +11,10 @@ func enter():
 		player.animationPlayer.connect("animation_finished", on_animation_finished)
 		first_enter = false
 	player.animationPlayer.play("Jump")
+	
+	var jumpDust = jumpDustScene.instantiate()
+	player.add_child(jumpDust)
+	jumpDust.emitting = true
 
 func on_animation_finished(anim_name):
 	if anim_name == "Jump":

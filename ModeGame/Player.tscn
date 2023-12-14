@@ -1,4 +1,5 @@
-[gd_scene load_steps=42 format=3 uid="uid://bfpti047n82k7"]
+[gd_scene load_steps=48 format=3 uid="uid://bfpti047n82k7"]
+
 
 [ext_resource type="Shader" path="res://ModeGame/Player.gdshader" id="1_meept"]
 [ext_resource type="Texture2D" uid="uid://6f2g8lqmvj6v" path="res://ModeGame/Sprites/Hel_IndigoCombinedSheet.png" id="2_eqxaf"]
@@ -22,6 +23,8 @@
 [ext_resource type="Script" path="res://ModeGame/State/Shoot.gd" id="20_0hupt"]
 [ext_resource type="PackedScene" uid="uid://ir0uj46hrnir" path="res://ModeGame/Attacks/SlashFury.tscn" id="20_fvtus"]
 [ext_resource type="PackedScene" uid="uid://bre72s213i4vg" path="res://ModeGame/Attacks/PlayerProjectileSpawner.tscn" id="22_cl1b4"]
+[ext_resource type="Texture2D" uid="uid://cag0by5rbd64w" path="res://ModeGame/Sprites/particle3.png" id="21_psrmy"]
+[ext_resource type="Texture2D" uid="uid://bid5l4ncsivf4" path="res://ModeGame/Sprites/particle4.png" id="22_vtev1"]
 
 [sub_resource type="GDScript" id="GDScript_weu6d"]
 script/source = "extends CharacterBody2D
@@ -335,6 +338,45 @@ size = Vector2(22, 62)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e7ajr"]
 size = Vector2(21, 62)
 
+[sub_resource type="Curve" id="Curve_a5ufj"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.501629, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_3m0r6"]
+curve = SubResource("Curve_a5ufj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gyit1"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 1500.0
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+scale_min = 0.01
+scale_max = 0.03
+scale_curve = SubResource("CurveTexture_3m0r6")
+
+[sub_resource type="Curve" id="Curve_cmypi"]
+_data = [Vector2(0, 0.725403), 0.0, 0.0, 0, 0, Vector2(0.390879, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -5.59105, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_cf8q5"]
+curve = SubResource("Curve_cmypi")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uxg7k"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(2.08165e-12, -1, 2.08165e-12)
+initial_velocity_min = 10.0
+initial_velocity_max = 15.0
+angular_velocity_min = -81.0
+angular_velocity_max = -79.0
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+scale_min = 0.01
+scale_max = 0.03
+scale_curve = SubResource("CurveTexture_cf8q5")
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 1
 script = SubResource("GDScript_weu6d")
@@ -429,6 +471,12 @@ script = ExtResource("14_bujxx")
 [node name="Dash" type="Node" parent="StateMachine"]
 script = ExtResource("15_qqdfo")
 
+[node name="ghostTimer" type="Timer" parent="StateMachine/Dash"]
+wait_time = 0.03
+
+[node name="offsetTimer" type="Timer" parent="StateMachine/Dash"]
+wait_time = 0.1
+
 [node name="Interact" type="Node" parent="StateMachine"]
 script = ExtResource("16_c3yxg")
 
@@ -442,9 +490,36 @@ script = ExtResource("20_0hupt")
 visible = false
 position = Vector2(24, 14)
 
+
 [node name="PlayerProjectileSpawner" parent="." instance=ExtResource("22_cl1b4")]
 position = Vector2(17, 0)
+
+[node name="AmbientDust" type="GPUParticles2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.454902)
+z_index = -1
+amount = 600
+process_material = SubResource("ParticleProcessMaterial_gyit1")
+texture = ExtResource("21_psrmy")
+lifetime = 5.0
+randomness = 1.0
+trail_lifetime = 3.6
+
+[node name="Footsteps" type="GPUParticles2D" parent="."]
+modulate = Color(1, 1, 1, 0.462745)
+z_index = 1
+position = Vector2(0, 47)
+emitting = false
+amount = 30
+process_material = SubResource("ParticleProcessMaterial_uxg7k")
+texture = ExtResource("22_vtev1")
+lifetime = 2.0
+speed_scale = 6.0
+explosiveness = 1.0
+trail_lifetime = 0.01
 
 [connection signal="invincibility_ended" from="HurtBoxComponent" to="BlinkAnimationPlayer" method="_on_hurt_box_component_invincibility_ended"]
 [connection signal="invincibility_started" from="HurtBoxComponent" to="BlinkAnimationPlayer" method="_on_hurt_box_component_invincibility_started"]
 [connection signal="timeout" from="HurtBoxComponent/Timer" to="HurtBoxComponent" method="_on_timer_timeout"]
+[connection signal="timeout" from="StateMachine/Dash/ghostTimer" to="StateMachine/Dash" method="_on_ghost_timer_timeout"]
+[connection signal="timeout" from="StateMachine/Dash/offsetTimer" to="StateMachine/Dash" method="_on_ghost_timer_timeout"]

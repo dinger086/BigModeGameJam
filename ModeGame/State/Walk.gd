@@ -3,6 +3,10 @@ class_name Walk
 
 func enter():
 	player.play("Run")
+	player.footsteps.emitting = true
+	
+func exit():
+	player.footsteps.emitting = false
 
 func process(delta):
 	if player.damaged:

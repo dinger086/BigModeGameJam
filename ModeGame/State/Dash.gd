@@ -5,6 +5,8 @@ var hurtbox = null
 var shield_hitbox = null
 var slash_fury = null
 var in_slash = false
+var dashDustScene = preload("res://ModeGame/Objects/dash_dust.tscn")
+@onready var ghostTimer = $ghostTimer
 
 var leaving = false
 
@@ -19,6 +21,16 @@ func startup():
 
 func enter():
 	if player.abilities.has("dash"):
+		var dashDust = dashDustScene.instantiate()
+		player.add_child(dashDust)
+		dashDust.emitting = true
+		var direction = Vector3(get_direction().x,get_direction().y,0)
+		dashDust.process_material.set("direction", direction )
+		player.animationPlayer.play("Dash")
+		instance_ghost()
+		ghostTimer.start()
+		hurtbox.set_collision(false)
+
 		if player.mode:
 			#death mode
 			if player.can_use_ability("slash_fury"):
@@ -41,8 +53,17 @@ func enter():
 			player.velocity.x = player.dash_speed * get_horizontal()
 			player.shield.visible = true
 			shield_hitbox.enable()
+
 		player.animationPlayer.play("Dash")
 		hurtbox.set_collision(false)
+
+			
+			
+func exit():
+	$offsetTimer.start()
+	await $offsetTimer.timeout
+	ghostTimer.stop()
+	$offsetTimer.stop()
 
 
 func process(_delta):
@@ -124,3 +145,21 @@ func _on_slash_finished():
 func _invinibility_finished():
 	print("invinibility finished")
 	hurtbox.set_collision(true)
+
+
+func instance_ghost():
+	var ghostScene = load("res://ModeGame/Objects/DashGhost.tscn")
+	var ghost: Sprite2D = ghostScene.instantiate()
+	player.get_parent().add_child(ghost)
+	ghost.global_position = player.global_position
+	ghost.texture = player.sprite.texture
+	ghost.vframes = player.sprite.vframes
+	ghost.hframes = player.sprite.hframes
+	ghost.frame = player.sprite.frame
+	ghost.flip_h = player.sprite.flip_h
+	ghost.scale = player.sprite.scale
+	ghost.position.y = ghost.position.y + 11
+
+func _on_ghost_timer_timeout():
+	instance_ghost()
+

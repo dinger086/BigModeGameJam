@@ -407,9 +407,9 @@ step = 0.001
 fill_mode = 2
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-offset = Vector2(350, 350)
-scale = Vector2(3, 3)
-transform = Transform2D(3, 0, 0, 3, 350, 350)
+offset = Vector2(632.07, 360)
+scale = Vector2(4, 4)
+transform = Transform2D(4, 0, 0, 4, 632.07, 360)
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0, 0)
