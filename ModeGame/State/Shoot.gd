@@ -4,15 +4,21 @@ class_name Shoot
 func enter():
 	if player.mode:
 		# Death mode
+		if not player.can_use_ability("grapple_hook"):
+			return
+
 		player.grapple_hook = player.bulletSpawner.spawn_grapple_hook(get_direction())
 		player.grapple_hook.connect("attached", on_grapple_hook_attach)
 		player.grapple_hook.connect("hit_enemy", on_hit_enemy)
 	else:
 		# Life mode
+		if not player.can_use_ability("projectile"):
+			return
+		player.reset_ability_cooldown("projectile")
 		player.bulletSpawner.spawn_bullet(get_direction())
 
 func process(delta):
-	pass
+	transitioned.emit(self, "Fall")
 	
 
 func physics_process(delta):
@@ -42,8 +48,12 @@ func on_grapple_hook_attach():
 	player.is_hooked = true
 	player.grapple_velocity = player.velocity
 	transitioned.emit(self, "Fall")
+	player.reset_ability_cooldown("grapple_hook")
+
 
 func on_hit_enemy(body):
 	var enemy = body.get_parent()
 	enemy.is_hooked = true
 	enemy.hooked_to = player
+	player.reset_ability_cooldown("grapple_hook")
+

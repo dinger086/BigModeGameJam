@@ -20,7 +20,7 @@ func _on_hit(_damage, knockback, hit_location):
 	else:
 		knockback_vec.x = knockback
 	knockback_vec.y = knockback
-	velocity = knockback_vec
+	velocity = knockback_vec * 5
 
 func _process(_delta):
 	pass
@@ -28,8 +28,9 @@ func _process(_delta):
 func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
-	#friction
-	velocity.x = move_toward(velocity.x, 0, 50)
+	else:
+		#friction
+		velocity.x = move_toward(velocity.x, 0, delta*1500)
 	move_and_slide()
 
 func _on_death():

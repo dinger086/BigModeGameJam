@@ -8,6 +8,8 @@ var in_slash = false
 var dashDustScene = preload("res://ModeGame/Objects/dash_dust.tscn")
 @onready var ghostTimer = $ghostTimer
 
+var leaving = false
+
 func startup():
 	player.animationPlayer.connect("animation_finished", on_animation_finished)
 	hurtbox = player.get_node("HurtBoxComponent")
@@ -28,16 +30,33 @@ func enter():
 		instance_ghost()
 		ghostTimer.start()
 		hurtbox.set_collision(false)
+
 		if player.mode:
 			#death mode
+			if player.can_use_ability("slash_fury"):
+				player.reset_ability_cooldown("slash_fury")
+				leaving = false
+			else:
+				leaving = true
+				return
 			player.velocity = Vector2(player.dash_speed * get_direction().x, player.dash_speed * get_direction().y)
 			slash_fury.visible = true
 			slash_fury.get_node("HitBoxComponent").enable()
 		else:
 			#life mode
+			if player.can_use_ability("shield_bash"):
+				player.reset_ability_cooldown("shield_bash")
+				leaving = false
+			else:
+				leaving = true
+				return
 			player.velocity.x = player.dash_speed * get_horizontal()
 			player.shield.visible = true
 			shield_hitbox.enable()
+
+		player.animationPlayer.play("Dash")
+		hurtbox.set_collision(false)
+
 			
 			
 func exit():
@@ -45,14 +64,14 @@ func exit():
 	await $offsetTimer.timeout
 	ghostTimer.stop()
 	$offsetTimer.stop()
-	
-	
-
 
 
 func process(_delta):
-	if not player.abilities.has("dash") and not in_slash:
-		transitioned.emit(self, "Fall")
+	if (not player.abilities.has("dash") and not in_slash) or leaving:
+		if player.is_on_floor():
+			transitioned.emit(self, "Idle")
+		else:
+			transitioned.emit(self, "Fall")
 
 func on_animation_finished(anim_name):
 	if anim_name == "Dash" and not in_slash:
@@ -82,6 +101,8 @@ func get_direction() -> Vector2:
 		direction.x -= 1
 	if Input.is_action_pressed("move_up"):
 		direction.y -= 1
+	if Input.is_action_pressed("move_down"):
+		direction.y += 1
 
 	if direction == Vector2.ZERO:
 		direction.x = 1 if player.facing else -1
@@ -125,6 +146,7 @@ func _invinibility_finished():
 	print("invinibility finished")
 	hurtbox.set_collision(true)
 
+
 func instance_ghost():
 	var ghostScene = load("res://ModeGame/Objects/DashGhost.tscn")
 	var ghost: Sprite2D = ghostScene.instantiate()
@@ -140,3 +162,4 @@ func instance_ghost():
 
 func _on_ghost_timer_timeout():
 	instance_ghost()
+

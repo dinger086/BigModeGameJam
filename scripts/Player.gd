@@ -15,7 +15,6 @@ var jumped = false
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 var reset_position: Vector2
 var abilities: Array[StringName]
-var ability_cooldowns: Dictionary
 var double_jump: bool
 var attack_location = Vector2.ZERO
 var damaged = false
@@ -33,18 +32,24 @@ enum Mode{
 }
 var mode = Mode.DEATH
 
+
 var ability_cooldowns_times = {
-	"attack": 0.5,
+	"attack": 0.25,
 	"slash_fury": 5.0,
 	"shield_bash": 5.0,
-	"grapple_hook": 5.0,
-	"projectile": 5.0,
+	"grapple_hook": 2.0,
+	"projectile": 1.0,
 }
+
+var ability_cooldowns = {}
+
+signal switched_mode(mode: int)
 
 @onready var health = get_node("HealthComponent")
 @onready var hurtbox = get_node("HurtBoxComponent")
 @onready var blinkAnimationPlayer = $BlinkAnimationPlayer
 @onready var healthBar = $"../UI/HealthBar"
+@onready var abilityCooldownsDisplay = $"../UI/AbilityCooldowns"
 @onready var interaction = get_node("InteractionPlayer")
 @onready var animationPlayer = get_node("AnimationPlayer")
 @onready var shield = get_node("Sprite2D/ShieldBash")
@@ -61,6 +66,12 @@ func _ready() -> void:
 		abilities = ["dash", "double_jump", "wall_jump"]
 	set_collision_layer_value(2, true)
 	set_collision_layer_value(1, false)
+
+
+
+	for ability in ability_cooldowns_times:
+		var cooldown = ability_cooldowns_times[ability]
+		ability_cooldowns[ability] = cooldown
 
 	on_enter()
 	
@@ -89,12 +100,22 @@ func _physics_process(delta: float) -> void:
 		grapple_physics()
 	move_and_slide()
 
-func _process(_delta):
+func _process(delta):
 	if Input.is_action_pressed("move_left"):
 		flip(true)
 	elif Input.is_action_pressed("move_right"):
 		flip(false)
 
+	for cooldowns in ability_cooldowns:
+		if ability_cooldowns[cooldowns] > 0:
+			ability_cooldowns[cooldowns] -= delta
+
+
+func can_use_ability(ability: String) -> bool:
+	return ability_cooldowns[ability] <= 0
+
+func reset_ability_cooldown(ability: String) -> void:
+	ability_cooldowns[ability] = ability_cooldowns_times[ability]
 
 func on_enter():
 	# Position for kill system. Assigned when entering new room (see Game.gd).
@@ -110,6 +131,7 @@ func switch_mode():
 	else:
 		mode = Mode.DEATH
 		blinkAnimationPlayer.play("Death")
+	emit_signal("switched_mode", mode)
 	print("Switched to mode: ", "death" if mode == Mode.DEATH else "life")
 	
 func flip(is_flipped : bool) -> void:
@@ -145,7 +167,6 @@ func grapple_physics() -> void:
 		return
 
 	var chain_velocity = (grapple_hook.global_position - global_position).normalized() * 30
-	print(chain_velocity)
 	if chain_velocity.y > 0: 
 		chain_velocity.y *= 0.55
 	else:
@@ -156,7 +177,6 @@ func grapple_physics() -> void:
 
 
 	grapple_velocity += chain_velocity 
-	print(grapple_velocity)
 	grapple_velocity *= 0.99
 	
 

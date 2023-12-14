@@ -36,4 +36,9 @@ func input(event):
 		transitioned.emit(self, "Fall")
 	if event.is_action_pressed("slash"):
 		transitioned.emit(self, "Attack")
-	
+	elif event.is_action_pressed("dash"):
+		transitioned.emit(self, "Dash")
+	elif event.is_action_pressed("switch"):
+		player.switch_mode()
+	elif event.is_action_pressed("shoot"):
+		transitioned.emit(self, "Shoot")

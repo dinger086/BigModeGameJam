@@ -10,6 +10,10 @@ func startup():
 
 
 func enter():
+	if not player.can_use_ability("attack"):
+		return
+	player.reset_ability_cooldown("attack")
+	
 	var direction = get_direction()
 	if direction == Vector2.ZERO:
 		if player.get_node("Sprite2D").flip_h:
