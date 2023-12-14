@@ -21,16 +21,6 @@ func startup():
 
 func enter():
 	if player.abilities.has("dash"):
-		var dashDust = dashDustScene.instantiate()
-		player.add_child(dashDust)
-		dashDust.emitting = true
-		var direction = Vector3(get_direction().x,get_direction().y,0)
-		dashDust.process_material.set("direction", direction )
-		player.animationPlayer.play("Dash")
-		instance_ghost()
-		ghostTimer.start()
-		hurtbox.set_collision(false)
-
 		if player.mode:
 			#death mode
 			if player.can_use_ability("slash_fury"):
@@ -54,8 +44,16 @@ func enter():
 			player.shield.visible = true
 			shield_hitbox.enable()
 
-		player.animationPlayer.play("Dash")
-		hurtbox.set_collision(false)
+		if not leaving:
+			var dashDust = dashDustScene.instantiate()
+			player.add_child(dashDust)
+			dashDust.emitting = true
+			var direction = Vector3(get_direction().x,get_direction().y,0)
+			dashDust.process_material.set("direction", direction )
+			player.animationPlayer.play("Dash")
+			instance_ghost()
+			ghostTimer.start()
+			hurtbox.set_collision(false)
 
 			
 			
