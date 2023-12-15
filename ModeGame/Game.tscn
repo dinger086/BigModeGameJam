@@ -1,5 +1,4 @@
-
-[gd_scene load_steps=23 format=3 uid="uid://b84cec1fegcns"]
+[gd_scene load_steps=19 format=3 uid="uid://b84cec1fegcns"]
 
 [ext_resource type="Script" path="res://scripts/Game.gd" id="1_na0b5"]
 [ext_resource type="PackedScene" uid="uid://bfpti047n82k7" path="res://ModeGame/Player.tscn" id="2_u7rkp"]
@@ -200,7 +199,7 @@ func update():
 [node name="Game" type="Node2D"]
 process_mode = 1
 script = ExtResource("1_na0b5")
-starting_map = "Playground.tscn"
+starting_map = "start.tscn"
 
 [node name="Player" parent="." instance=ExtResource("2_u7rkp")]
 position = Vector2(368, 248)
