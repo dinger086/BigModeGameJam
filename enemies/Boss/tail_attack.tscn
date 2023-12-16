@@ -1,0 +1,73 @@
+[gd_scene load_steps=7 format=3 uid="uid://3byortd5xauf"]
+
+[ext_resource type="Texture2D" uid="uid://d4g41am4wrou3" path="res://ModeGame/Sprites/TailAttack.png" id="1_eejnq"]
+[ext_resource type="Script" path="res://ModeGame/Components/hitbox_component.gd" id="2_nen4f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cebse"]
+size = Vector2(22, 78)
+
+[sub_resource type="Animation" id="Animation_xst74"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_0pqlh"]
+resource_name = "TailAttack"
+length = 1.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.702043, 0.801021, 0.901021, 1, 1.1, 1.2, 1.3, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 0, 4, 6, 8, 6, 4, 2, 0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HitBoxComponent/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.7, 1.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uqxeg"]
+_data = {
+"RESET": SubResource("Animation_xst74"),
+"TailAttack": SubResource("Animation_0pqlh")
+}
+
+[node name="TailAttack" type="Sprite2D"]
+texture = ExtResource("1_eejnq")
+hframes = 10
+
+[node name="HitBoxComponent" type="Area2D" parent="."]
+script = ExtResource("2_nen4f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
+position = Vector2(1, 162)
+shape = SubResource("RectangleShape2D_cebse")
+disabled = true
+
+[node name="AnimationPlayerGood" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_uqxeg")
+}

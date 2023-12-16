@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://bkf20kehm1hev"]
+
+[ext_resource type="Script" path="res://enemies/Boss/Boss.gd" id="1_4a83d"]
+[ext_resource type="Texture2D" uid="uid://df4h8d3hskcm3" path="res://ModeGame/Sprites/NigHoggr.png" id="1_m3ukq"]
+[ext_resource type="Texture2D" uid="uid://b46kidjrtykd5" path="res://ModeGame/Sprites/NidHoggrBody2.png" id="3_4yn0p"]
+[ext_resource type="Texture2D" uid="uid://d2my1x7ud2xfi" path="res://ModeGame/Sprites/NidHoggrTail.png" id="3_7k35x"]
+[ext_resource type="Texture2D" uid="uid://0ma5mxng8yp3" path="res://ModeGame/Sprites/NidHoggrBody3.png" id="4_pkont"]
+[ext_resource type="Script" path="res://ModeGame/Components/hitbox_component.gd" id="6_suet1"]
+[ext_resource type="Script" path="res://ModeGame/Components/hurtbox_component.gd" id="7_06x2j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ctbtr"]
+size = Vector2(180, 1697)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dt1ml"]
+size = Vector2(157, 1704)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+collision_layer = 128
+collision_mask = 0
+script = ExtResource("1_4a83d")
+
+[node name="NigHoggr" type="CharacterBody2D" parent="."]
+collision_layer = 128
+collision_mask = 0
+
+[node name="Sprite2d" type="Sprite2D" parent="NigHoggr"]
+texture = ExtResource("1_m3ukq")
+
+[node name="NidHoggrBody2" type="Sprite2D" parent="NigHoggr"]
+position = Vector2(0, 209)
+texture = ExtResource("3_4yn0p")
+
+[node name="NidHoggrBody3" type="Sprite2D" parent="NigHoggr"]
+position = Vector2(-2, 541)
+texture = ExtResource("4_pkont")
+
+[node name="NidHoggrBody4" type="Sprite2D" parent="NigHoggr"]
+position = Vector2(-2, 771)
+texture = ExtResource("4_pkont")
+
+[node name="NidHoggrBody3" type="Sprite2D" parent="NigHoggr/NidHoggrBody4"]
+position = Vector2(1, 228)
+texture = ExtResource("4_pkont")
+
+[node name="NidHoggrBody5" type="Sprite2D" parent="NigHoggr"]
+position = Vector2(1, 1225)
+texture = ExtResource("4_pkont")
+
+[node name="NidHoggrTail" type="Sprite2D" parent="NigHoggr"]
+position = Vector2(-2, 1345)
+texture = ExtResource("3_7k35x")
+
+[node name="HitBoxComponent" type="Area2D" parent="."]
+script = ExtResource("6_suet1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
+position = Vector2(-10, 677.5)
+shape = SubResource("RectangleShape2D_ctbtr")
+
+[node name="HurtBoxComponent" type="Area2D" parent="."]
+script = ExtResource("7_06x2j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
+position = Vector2(-10.5, 681)
+shape = SubResource("RectangleShape2D_dt1ml")
