@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2vdv6jeo3fp6"]
+
+[ext_resource type="Texture2D" uid="uid://cvonw1y3k6kus" path="res://ModeGame/Sprites/NidHoggrBody1.png" id="1_61slp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5yor7"]
+radius = 115.07
+
+[node name="RigidBody2D" type="CharacterBody2D"]
+collision_layer = 128
+collision_mask = 0
+
+[node name="NidHoggrBodySegment" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("1_61slp")
+
+[node name="Anchor" type="StaticBody2D" parent="."]
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Anchor"]
+position = Vector2(-12, 105)
+shape = SubResource("CircleShape2D_5yor7")
+
+[node name="Joint" type="PinJoint2D" parent="Anchor/CollisionShape2D"]
