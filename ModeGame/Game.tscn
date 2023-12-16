@@ -326,6 +326,7 @@ rounded = true
 show_percentage = false
 
 [node name="BossHealthBar" type="ProgressBar" parent="UI"]
+visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -398,6 +399,7 @@ fill_mode = 2
 offset = Vector2(632.07, 360)
 scale = Vector2(4, 4)
 transform = Transform2D(4, 0, 0, 4, 632.07, 360)
+scroll_offset = Vector2(222.198, -410.762)
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0, 0)
