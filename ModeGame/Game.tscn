@@ -196,6 +196,16 @@ func update():
 		text = \"%03d%%\" % int(MetSys.get_explored_ratio() * 100)
 "
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r576n"]
+bg_color = Color(0.12549, 0.12549, 0.12549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ollrf"]
+bg_color = Color(0.901961, 0, 0.207843, 1)
+
+[sub_resource type="Theme" id="Theme_lb5um"]
+ProgressBar/styles/background = SubResource("StyleBoxFlat_r576n")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_ollrf")
+
 [node name="Game" type="Node2D"]
 process_mode = 1
 script = ExtResource("1_na0b5")
@@ -313,6 +323,18 @@ offset_top = 33.0
 offset_right = 263.0
 offset_bottom = 60.0
 rounded = true
+show_percentage = false
+
+[node name="BossHealthBar" type="ProgressBar" parent="UI"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -253.0
+offset_top = 95.0
+offset_right = 253.0
+offset_bottom = 100.0
+grow_horizontal = 2
+theme = SubResource("Theme_lb5um")
 show_percentage = false
 
 [node name="DialogueBox" type="Panel" parent="UI"]
