@@ -1,11 +1,11 @@
-[gd_scene load_steps=21 format=3 uid="uid://q4tgc2h3q70c"]
+[gd_scene load_steps=23 format=3 uid="uid://q4tgc2h3q70c"]
 
 [ext_resource type="Script" path="res://enemies/Shooter.gd" id="1_48bqe"]
-[ext_resource type="Texture2D" uid="uid://dbxbm5lvypjbd" path="res://ModeGame/Griffins/lois_griffin_angry_using_gun_family_guy_by_arturomendoza2890_dfayf7s-fullview.png" id="1_htri8"]
 [ext_resource type="Script" path="res://ModeGame/Components/hurtbox_component.gd" id="2_mbf1n"]
 [ext_resource type="Shader" path="res://enemies/enemy.gdshader" id="2_ok8i8"]
+[ext_resource type="Texture2D" uid="uid://c5257vhdw14ok" path="res://ModeGame/Sprites/FlyingSnake.png" id="3_a6fbt"]
 [ext_resource type="PackedScene" uid="uid://cqhcesc5yq51y" path="res://ModeGame/Attacks/BulletSpawner.tscn" id="3_s338m"]
-[ext_resource type="PackedScene" path="res://ModeGame/Components/Sight.tscn" id="6_mb1f8"]
+[ext_resource type="PackedScene" uid="uid://ct3c8xm7pctvm" path="res://ModeGame/Components/Sight.tscn" id="6_mb1f8"]
 [ext_resource type="Script" path="res://ModeGame/State/StateMachine.gd" id="7_8hcl6"]
 [ext_resource type="Script" path="res://ModeGame/Components/health_component.gd" id="7_kpel3"]
 [ext_resource type="Script" path="res://enemies/states/Basic/Hooked.gd" id="8_8e6gk"]
@@ -19,10 +19,10 @@ shader = ExtResource("2_ok8i8")
 shader_parameter/active = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_53bod"]
-size = Vector2(73, 79)
+size = Vector2(45, 49)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dd0ki"]
-size = Vector2(73, 78)
+size = Vector2(45, 49)
 
 [sub_resource type="Animation" id="Animation_6jy27"]
 length = 0.001
@@ -79,6 +79,27 @@ _data = {
 "stop": SubResource("Animation_u5pox")
 }
 
+[sub_resource type="Animation" id="Animation_nxs3x"]
+resource_name = "fly"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xfq7r"]
+_data = {
+"fly": SubResource("Animation_nxs3x")
+}
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_48bqe")
 
@@ -86,11 +107,12 @@ script = ExtResource("1_48bqe")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_y3sjg")
-scale = Vector2(0.175, 0.175)
-texture = ExtResource("1_htri8")
+scale = Vector2(2, 2)
+texture = ExtResource("3_a6fbt")
+hframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1.5, 2.5)
+position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_53bod")
 
 [node name="BulletSpawner" parent="." instance=ExtResource("3_s338m")]
@@ -108,7 +130,7 @@ script = ExtResource("2_mbf1n")
 health = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
-position = Vector2(-1.5, 2)
+position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_dd0ki")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "player")]
@@ -126,11 +148,11 @@ script = ExtResource("9_nooop")
 [node name="ShooterAttack" type="Node" parent="StateMachine"]
 script = ExtResource("10_3uvig")
 
-[node name="MoveTowardShooter" type="Node" parent="StateMachine"]
-script = ExtResource("11_3hmbi")
-
 [node name="Stunned" type="Node" parent="StateMachine"]
 script = ExtResource("12_cp75w")
+
+[node name="MoveTowardShooter" type="Node" parent="StateMachine"]
+script = ExtResource("11_3hmbi")
 
 [node name="BlinkAnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Sprite")
@@ -139,3 +161,8 @@ libraries = {
 }
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xfq7r")
+}

@@ -13,16 +13,12 @@ func process(_delta):
 	if player.target == null:
 		transitioned.emit(self, "IdleEnemy")
 		return
-	move_to(player.target.global_position)
 
 	var distance = player.global_position.distance_to(player.target.global_position)
 	
 	if distance < player.attack_range:
 		transitioned.emit(self, "ShooterAttack")
 
-func move_to(target):
-	var direction = (target - player.global_position).normalized()
-	player.velocity.x = direction.x * player.speed
 
 func deactivate():
 	print("Lost sight of player")
