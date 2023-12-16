@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bepums4cqym54"]
 
-[ext_resource type="Texture2D" uid="uid://c5yfr41fmtswf" path="res://ModeGame/Sprites/Collectible.png" id="1_gd365"]
+[ext_resource type="Texture2D" uid="uid://bvjnxyif2wpbj" path="res://ModeGame/Sprites/VenomBall2.png" id="1_kcauw"]
 [ext_resource type="Script" path="res://ModeGame/Components/hitbox_component.gd" id="2_qqslj"]
 [ext_resource type="Script" path="res://ModeGame/Components/bullet_component.gd" id="3_8kjq3"]
 
@@ -10,7 +10,7 @@ radius = 14.0357
 [node name="CharacterBody2D" type="CharacterBody2D"]
 
 [node name="Collectible" type="Sprite2D" parent="."]
-texture = ExtResource("1_gd365")
+texture = ExtResource("1_kcauw")
 
 [node name="HitBoxComponent" type="Area2D" parent="."]
 script = ExtResource("2_qqslj")

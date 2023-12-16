@@ -503,7 +503,7 @@ position = Vector2(17, 0)
 
 [node name="AmbientDust" type="GPUParticles2D" parent="."]
 modulate = Color(1, 1, 1, 0.454902)
-z_index = -1
+z_index = -2
 amount = 600
 process_material = SubResource("ParticleProcessMaterial_gyit1")
 texture = ExtResource("21_psrmy")

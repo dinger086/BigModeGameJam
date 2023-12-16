@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bq7u617dejxrh"]
+[gd_scene load_steps=5 format=3 uid="uid://bq7u617dejxrh"]
 
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="1_x7eng"]
 [ext_resource type="TileSet" uid="uid://yekejfqwd2kt" path="res://ModeGame/Resources/Tileset.tres" id="2_xwww2"]
 [ext_resource type="PackedScene" uid="uid://d27sxjt3kw2ds" path="res://ModeGame/Objects/Powerup.tscn" id="3_4blxl"]
+[ext_resource type="PackedScene" uid="uid://byffox285e1mp" path="res://ModeGame/NPCs/Bird.tscn" id="4_xkws4"]
 
 [node name="Start" type="Node2D"]
 
@@ -16,3 +17,7 @@ layer_0/tile_data = PackedInt32Array(1769525, 524290, 6, 1769524, 524290, 6, 176
 [node name="Collectible" parent="." instance=ExtResource("3_4blxl")]
 position = Vector2(209, 601)
 power = "double_jump"
+
+[node name="Bird" parent="." instance=ExtResource("4_xkws4")]
+position = Vector2(796, 834)
+text = "Thats the double jump. You can jump double"
