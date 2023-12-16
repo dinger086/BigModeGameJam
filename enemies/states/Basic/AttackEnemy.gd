@@ -15,8 +15,8 @@ func attack(target: Vector2):
 
 	direction = direction.normalized()
 
-	player.slash_scene.position = direction * 64
-	var angle = direction.angle_to(Vector2.RIGHT) * 3 * 5
+	player.slash_scene.position = direction * 32
+	var angle = direction.angle_to(Vector2.LEFT) * 3 * 5
 	player.slash_scene.rotation = angle
 
 	var attack_component = player.slash_scene.get_node("HitBoxComponent")

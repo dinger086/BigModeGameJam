@@ -3,7 +3,7 @@ class_name EnemyBody2D
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var deathEffectScene = preload("res://ModeGame/Objects/death_effect.tscn")
-
+var do_gravity = true
 @onready var sprite = $Sprite
 @onready var blinkAnimationPlayer = $BlinkAnimationPlayer
 @onready var timer = $Timer
@@ -44,7 +44,7 @@ func _process(_delta):
 	pass
 
 func _physics_process(delta):
-	if not is_on_floor():
+	if not is_on_floor() and do_gravity:
 		velocity.y += gravity * delta
 	else:
 		#friction

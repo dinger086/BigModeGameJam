@@ -22,7 +22,7 @@ func process(_delta):
 		return
 	var distance = player.global_position.distance_to(player.target.global_position)
 	if distance > player.attack_range:
-		transitioned.emit(self, "MoveTowardShooter")
+		transitioned.emit(self, "IdleEnemy")
 
 func attack():
 	if player.target == null:

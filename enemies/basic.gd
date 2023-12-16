@@ -1,6 +1,7 @@
 extends EnemyBody2D
 
 @onready var slash_scene = $EnemySlash
+@onready var player = $AnimationPlayer
 var speed = 100
 var attack_range = 50
 
@@ -13,6 +14,11 @@ var hooked_to = null
 
 func _ready():
 	super._ready()
+	player.play("Move")
+
 
 func _process(_delta):
-	pass
+	if velocity.x > 0:
+		$Sprite.flip_h = true
+	elif velocity.x < 0:
+		$Sprite.flip_h = false

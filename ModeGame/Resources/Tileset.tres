@@ -1,12 +1,10 @@
-[gd_resource type="TileSet" load_steps=9 format=3 uid="uid://yekejfqwd2kt"]
+[gd_resource type="TileSet" load_steps=8 format=3 uid="uid://yekejfqwd2kt"]
 
 [ext_resource type="Texture2D" uid="uid://gyciw364gkwt" path="res://ModeGame/Sprites/Tiles.png" id="1_epto7"]
-[ext_resource type="Texture2D" uid="uid://c6o7dbwa70g47" path="res://ModeGame/Sprites/ice level demo.png" id="1_tiop5"]
 [ext_resource type="Texture2D" uid="uid://bsosr6o3f6cr0" path="res://ModeGame/Sprites/DarkTiles.png" id="2_prtbe"]
 [ext_resource type="Texture2D" uid="uid://b5m0m54lpdddp" path="res://ModeGame/Sprites/MirageTiles.png" id="3_882qq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aydjc"]
-texture = ExtResource("1_tiop5")
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
