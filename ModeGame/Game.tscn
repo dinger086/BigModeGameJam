@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b84cec1fegcns"]
+[gd_scene load_steps=22 format=3 uid="uid://b84cec1fegcns"]
 
 [ext_resource type="Script" path="res://scripts/Game.gd" id="1_na0b5"]
 [ext_resource type="PackedScene" uid="uid://bfpti047n82k7" path="res://ModeGame/Player.tscn" id="2_u7rkp"]
@@ -326,6 +326,7 @@ rounded = true
 show_percentage = false
 
 [node name="BossHealthBar" type="ProgressBar" parent="UI"]
+visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -398,6 +399,7 @@ fill_mode = 2
 offset = Vector2(632.07, 360)
 scale = Vector2(4, 4)
 transform = Transform2D(4, 0, 0, 4, 632.07, 360)
+scroll_offset = Vector2(222.198, -410.762)
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0, 0)
