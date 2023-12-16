@@ -1,9 +1,12 @@
 extends State
 class_name Fall
 
+var notAlreadyOnFloor = true
 
 func enter():
 	player.play("Fall")
+	notAlreadyOnFloor = not player.is_on_floor()
+
 
 func process(delta):
 	if player.damaged:
@@ -24,6 +27,8 @@ func physics_process(delta):
 	if player.is_on_floor():
 		player.double_jump = true
 		transitioned.emit(self, "Idle")
+		if notAlreadyOnFloor:
+			player.get_node("LandSound").play(0.5)
 	elif player.is_on_wall():
 			transitioned.emit(self, "Wall")
 	player.velocity.y += player.gravity * delta

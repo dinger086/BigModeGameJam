@@ -8,6 +8,7 @@ func _ready():
 	interaction.connect("interacted" , _on_interaction)
 
 func _on_interaction():
+	$BirdSound.play()
 	interaction.action = {
 		"type": "dialogue",
 		"text": text

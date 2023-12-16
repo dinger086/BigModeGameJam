@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dw4dkjfyhfdbu"
+path="res://.godot/imported/Hookshot snap 3_mixdown.wav-6282931bd1bf68174fede4703c775c0b.sample"
+
+[deps]
+
+source_file="res://Sound/Hookshot snap 3_mixdown.wav"
+dest_files=["res://.godot/imported/Hookshot snap 3_mixdown.wav-6282931bd1bf68174fede4703c775c0b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

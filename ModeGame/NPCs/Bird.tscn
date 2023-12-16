@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://byffox285e1mp"]
+[gd_scene load_steps=5 format=3 uid="uid://byffox285e1mp"]
 
 [ext_resource type="Script" path="res://ModeGame/NPCs/Brian.gd" id="1_8jwr8"]
 [ext_resource type="Texture2D" uid="uid://bh2455s4sws3l" path="res://ModeGame/Sprites/Bird.png" id="2_554ja"]
 [ext_resource type="PackedScene" uid="uid://bsayaih8nipn6" path="res://ModeGame/Components/Interaction.tscn" id="3_fq55c"]
+[ext_resource type="AudioStream" uid="uid://c0xo0s66al8s7" path="res://Sound/Hraesvelgr voice 3_mixdown.wav" id="4_qsgd8"]
 
 [node name="Bird" type="Node2D"]
 script = ExtResource("1_8jwr8")
@@ -16,3 +17,6 @@ texture = ExtResource("2_554ja")
 [node name="Interaction" parent="." instance=ExtResource("3_fq55c")]
 position = Vector2(-2, 0)
 scale = Vector2(2, 2)
+
+[node name="BirdSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_qsgd8")

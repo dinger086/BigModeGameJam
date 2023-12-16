@@ -210,7 +210,7 @@ knockback_speed = 650.0
 wall_gravity_scale = 0.5
 coyote_time = 0.1
 dash_speed = 1000.0
-debug = true
+debug = false
 damage_knockback = Vector2(1250, -500)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -218,7 +218,7 @@ damage_knockback = Vector2(1250, -500)
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Player"]
 position = Vector2(-368, -248)
 stream = ExtResource("5_vpa6d")
-volume_db = -40.0
+volume_db = -30.0
 
 [node name="UI" type="CanvasLayer" parent="."]
 

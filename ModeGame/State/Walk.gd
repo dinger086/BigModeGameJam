@@ -3,10 +3,12 @@ class_name Walk
 
 func enter():
 	player.play("Run")
+	player.get_node("WalkingSound").play(0.6)
 	player.footsteps.emitting = true
 	
 func exit():
 	player.footsteps.emitting = false
+	player.get_node("WalkingSound").stop()
 
 func process(delta):
 	if player.damaged:

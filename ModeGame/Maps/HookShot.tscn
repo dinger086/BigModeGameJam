@@ -15,4 +15,8 @@ layer_0/tile_data = PackedInt32Array(1769525, 524290, 6, 1769524, 524290, 6, 176
 
 [node name="Collectible" parent="." instance=ExtResource("3_u6ihl")]
 position = Vector2(272, 282)
-power = "hook_shot"
+power = "grapple_hook"
+
+[node name="Collectible2" parent="." instance=ExtResource("3_u6ihl")]
+position = Vector2(272, 282)
+power = "projectile"

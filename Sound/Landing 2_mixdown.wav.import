@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dxr1iwyc12nck"
+path="res://.godot/imported/Landing 2_mixdown.wav-f072652e70a4a7277a86c27517c98f8c.sample"
+
+[deps]
+
+source_file="res://Sound/Landing 2_mixdown.wav"
+dest_files=["res://.godot/imported/Landing 2_mixdown.wav-f072652e70a4a7277a86c27517c98f8c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

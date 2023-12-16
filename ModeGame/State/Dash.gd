@@ -46,6 +46,7 @@ func enter():
 			shield_hitbox.enable()
 
 		if not leaving:
+			player.get_node("DashSound").play()
 			var dashDust = dashDustScene.instantiate()
 			player.add_child(dashDust)
 			dashDust.emitting = true

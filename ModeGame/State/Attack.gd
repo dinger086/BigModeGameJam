@@ -20,7 +20,8 @@ func enter():
 			direction.x = -1
 		else:
 			direction.x = 1
-
+	
+	player.get_node("WeaponSwingSound").play(0.5)
 	player.slashScene.visible = true
 	knockback_direction = -direction
 	player.slashScene.position = direction * 64

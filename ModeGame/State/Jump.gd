@@ -15,6 +15,7 @@ func enter():
 	var jumpDust = jumpDustScene.instantiate()
 	player.add_child(jumpDust)
 	jumpDust.emitting = true
+	player.get_node("JumpSound").play(0.3)
 
 func on_animation_finished(anim_name):
 	if anim_name == "Jump":
