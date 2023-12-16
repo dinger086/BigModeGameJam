@@ -6,7 +6,7 @@ extends EnemyBody2D
 
 var speed = 100
 var attack_range = 1000
-var attack_speed_time = 1.0
+var attack_speed_time = 1
 
 var active = false
 var target = null

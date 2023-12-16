@@ -26,4 +26,4 @@ shape = SubResource("RectangleShape2D_6ye2y")
 
 [node name="Bird" parent="." instance=ExtResource("3_bsay6")]
 position = Vector2(851, 840)
-text = "Whats up bro"
+text = "Whats up bro did you know you can switch stances with Z"

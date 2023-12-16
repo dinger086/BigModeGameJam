@@ -5,7 +5,7 @@
 [ext_resource type="Shader" path="res://enemies/enemy.gdshader" id="2_ok8i8"]
 [ext_resource type="Texture2D" uid="uid://c5257vhdw14ok" path="res://ModeGame/Sprites/FlyingSnake.png" id="3_a6fbt"]
 [ext_resource type="PackedScene" uid="uid://cqhcesc5yq51y" path="res://ModeGame/Attacks/BulletSpawner.tscn" id="3_s338m"]
-[ext_resource type="PackedScene" uid="uid://ct3c8xm7pctvm" path="res://ModeGame/Components/Sight.tscn" id="6_mb1f8"]
+[ext_resource type="PackedScene" path="res://ModeGame/Components/Sight.tscn" id="6_mb1f8"]
 [ext_resource type="Script" path="res://ModeGame/State/StateMachine.gd" id="7_8hcl6"]
 [ext_resource type="Script" path="res://ModeGame/Components/health_component.gd" id="7_kpel3"]
 [ext_resource type="Script" path="res://enemies/states/Basic/Hooked.gd" id="8_8e6gk"]
@@ -104,6 +104,7 @@ _data = {
 script = ExtResource("1_48bqe")
 
 [node name="Shooting" type="Node2D" parent="."]
+visible = false
 
 [node name="Sprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_y3sjg")
@@ -112,24 +113,29 @@ texture = ExtResource("3_a6fbt")
 hframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_53bod")
 
 [node name="BulletSpawner" parent="." instance=ExtResource("3_s338m")]
-position = Vector2(37, -4)
+position = Vector2(-16, 19)
 
 [node name="Sight" parent="." instance=ExtResource("6_mb1f8")]
+visible = false
 sight_radius = 50
 
 [node name="HealthComponent" type="Node2D" parent="."]
+visible = false
 script = ExtResource("7_kpel3")
 max_health = 5
 
 [node name="HurtBoxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+visible = false
 script = ExtResource("2_mbf1n")
 health = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
+visible = false
 position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_dd0ki")
 
