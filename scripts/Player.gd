@@ -6,7 +6,7 @@ extends CharacterBody2D
 @export var wall_gravity_scale: float = 0.5
 @export var coyote_time: float = 0.1
 @export var dash_speed: float = 1000.0
-@export var debug: bool = true
+@export var debug: bool = false
 @export var damage_knockback: Vector2 = Vector2(1250, -500)
 
 
@@ -128,9 +128,11 @@ func switch_mode():
 	if mode == Mode.DEATH:
 		mode = Mode.LIFE
 		blinkAnimationPlayer.play("Life")
+		$LifeStanceSound.play()
 	else:
 		mode = Mode.DEATH
 		blinkAnimationPlayer.play("Death")
+		$DeathStanceSound.play()
 	emit_signal("switched_mode", mode)
 	print("Switched to mode: ", "death" if mode == Mode.DEATH else "life")
 	

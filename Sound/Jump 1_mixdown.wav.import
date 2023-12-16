@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://0yjosxu83lr8"
+path="res://.godot/imported/Jump 1_mixdown.wav-c7589886139cf4855b0604db5e09be85.sample"
+
+[deps]
+
+source_file="res://Sound/Jump 1_mixdown.wav"
+dest_files=["res://.godot/imported/Jump 1_mixdown.wav-c7589886139cf4855b0604db5e09be85.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

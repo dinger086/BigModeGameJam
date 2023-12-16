@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://bfpti047n82k7"]
+[gd_scene load_steps=59 format=3 uid="uid://bfpti047n82k7"]
 
 [ext_resource type="Shader" path="res://ModeGame/Player.gdshader" id="1_meept"]
 [ext_resource type="Texture2D" uid="uid://6f2g8lqmvj6v" path="res://ModeGame/Sprites/Hel_IndigoCombinedSheet.png" id="2_eqxaf"]
@@ -24,6 +24,15 @@
 [ext_resource type="Texture2D" uid="uid://cag0by5rbd64w" path="res://ModeGame/Sprites/particle3.png" id="21_psrmy"]
 [ext_resource type="PackedScene" path="res://ModeGame/Attacks/PlayerProjectileSpawner.tscn" id="22_cl1b4"]
 [ext_resource type="Texture2D" uid="uid://bid5l4ncsivf4" path="res://ModeGame/Sprites/particle4.png" id="22_vtev1"]
+[ext_resource type="AudioStream" uid="uid://cw8tfd8d7ep78" path="res://Sound/Wing dash 2_mixdown.wav" id="25_qxtvn"]
+[ext_resource type="AudioStream" uid="uid://byumk357ur2ms" path="res://Sound/Switch to death stance_mixdown.wav" id="26_b8c67"]
+[ext_resource type="AudioStream" uid="uid://dxr1iwyc12nck" path="res://Sound/Landing 2_mixdown.wav" id="26_jvpwg"]
+[ext_resource type="AudioStream" uid="uid://0yjosxu83lr8" path="res://Sound/Jump 1_mixdown.wav" id="26_qc5ef"]
+[ext_resource type="AudioStream" uid="uid://eppru7y5x5mb" path="res://Sound/Switch to life stance_mixdown.wav" id="27_vlk8r"]
+[ext_resource type="AudioStream" uid="uid://0y7fdryjdnum" path="res://Sound/Jump 2_mixdown.wav" id="30_dpjvo"]
+[ext_resource type="AudioStream" uid="uid://3jvnh4vitix1" path="res://Sound/Weapon swing 1 fx_mixdown.wav" id="31_75pa6"]
+[ext_resource type="AudioStream" uid="uid://okc0dxhwy8h8" path="res://Sound/Running movement_mixdown.wav" id="32_fu8bq"]
+[ext_resource type="AudioStream" uid="uid://dw4dkjfyhfdbu" path="res://Sound/Hookshot snap 3_mixdown.wav" id="32_tf1fs"]
 
 [sub_resource type="GDScript" id="GDScript_weu6d"]
 script/source = "extends CharacterBody2D
@@ -514,6 +523,33 @@ lifetime = 2.0
 speed_scale = 6.0
 explosiveness = 1.0
 trail_lifetime = 0.01
+
+[node name="DashSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("25_qxtvn")
+
+[node name="LandSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("26_jvpwg")
+
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("26_qc5ef")
+
+[node name="DeathStanceSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("26_b8c67")
+
+[node name="LifeStanceSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("27_vlk8r")
+
+[node name="WallJumpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("30_dpjvo")
+
+[node name="WeaponSwingSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("31_75pa6")
+
+[node name="WalkingSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("32_fu8bq")
+
+[node name="GrappleSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("32_tf1fs")
 
 [connection signal="invincibility_ended" from="HurtBoxComponent" to="BlinkAnimationPlayer" method="_on_hurt_box_component_invincibility_ended"]
 [connection signal="invincibility_started" from="HurtBoxComponent" to="BlinkAnimationPlayer" method="_on_hurt_box_component_invincibility_started"]

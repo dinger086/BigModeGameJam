@@ -49,6 +49,8 @@ func on_grapple_hook_attach():
 	player.grapple_velocity = player.velocity
 	transitioned.emit(self, "Fall")
 	player.reset_ability_cooldown("grapple_hook")
+	player.get_node("GrappleSound").play(0.45)
+	
 
 
 func on_hit_enemy(body):

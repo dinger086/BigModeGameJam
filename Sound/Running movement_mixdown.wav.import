@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://okc0dxhwy8h8"
+path="res://.godot/imported/Running movement_mixdown.wav-e0f56b035e47e9f3742a9dd500b17053.sample"
+
+[deps]
+
+source_file="res://Sound/Running movement_mixdown.wav"
+dest_files=["res://.godot/imported/Running movement_mixdown.wav-e0f56b035e47e9f3742a9dd500b17053.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=31000
+edit/loop_end=170000
+compress/mode=0

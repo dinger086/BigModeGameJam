@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ch0eacixj782d"
+path="res://.godot/imported/Hel taking damage 1 V1_mixdown.wav-d38fc59981465a5da9dd09b289a6f184.sample"
+
+[deps]
+
+source_file="res://Sound/Hel taking damage 1 V1_mixdown.wav"
+dest_files=["res://.godot/imported/Hel taking damage 1 V1_mixdown.wav-d38fc59981465a5da9dd09b289a6f184.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

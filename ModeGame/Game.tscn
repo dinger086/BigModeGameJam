@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b84cec1fegcns"]
+[gd_scene load_steps=19 format=3 uid="uid://b84cec1fegcns"]
 
 [ext_resource type="Script" path="res://scripts/Game.gd" id="1_na0b5"]
 [ext_resource type="PackedScene" uid="uid://bfpti047n82k7" path="res://ModeGame/Player.tscn" id="2_u7rkp"]
@@ -209,7 +209,7 @@ ProgressBar/styles/fill = SubResource("StyleBoxFlat_ollrf")
 [node name="Game" type="Node2D"]
 process_mode = 1
 script = ExtResource("1_na0b5")
-starting_map = "Playground.tscn"
+starting_map = "start.tscn"
 
 [node name="Player" parent="." instance=ExtResource("2_u7rkp")]
 position = Vector2(368, 248)
@@ -220,7 +220,7 @@ knockback_speed = 650.0
 wall_gravity_scale = 0.5
 coyote_time = 0.1
 dash_speed = 1000.0
-debug = true
+debug = false
 damage_knockback = Vector2(1250, -500)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -228,7 +228,7 @@ damage_knockback = Vector2(1250, -500)
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Player"]
 position = Vector2(-368, -248)
 stream = ExtResource("5_vpa6d")
-volume_db = -40.0
+volume_db = -30.0
 
 [node name="UI" type="CanvasLayer" parent="."]
 

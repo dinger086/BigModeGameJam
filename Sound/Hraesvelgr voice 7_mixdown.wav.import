@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cid8hqeibxywm"
+path="res://.godot/imported/Hraesvelgr voice 7_mixdown.wav-c9078f6fe984bdf75969102f29b05f4b.sample"
+
+[deps]
+
+source_file="res://Sound/Hraesvelgr voice 7_mixdown.wav"
+dest_files=["res://.godot/imported/Hraesvelgr voice 7_mixdown.wav-c9078f6fe984bdf75969102f29b05f4b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

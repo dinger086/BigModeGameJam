@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://bd82heo7isvfe"]
+[gd_scene load_steps=3 format=3 uid="uid://dgp0av3nukmgq"]
 
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="1_iod2g"]
 [ext_resource type="TileSet" uid="uid://yekejfqwd2kt" path="res://ModeGame/Resources/Tileset.tres" id="2_rcwal"]

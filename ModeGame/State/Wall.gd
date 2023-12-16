@@ -18,7 +18,6 @@ func process(delta):
 				player.velocity.x = move_toward(player.velocity.x, 0, player.speed*.1)
 		else:
 			player.velocity.x = move_toward(player.velocity.x, 0, player.speed*.1)
-
 		player.velocity.y += player.gravity * delta 
 	elif player.is_on_floor():
 		transitioned.emit(self, "Idle")
@@ -28,6 +27,7 @@ func process(delta):
 
 func input(event):
 	if event.is_action_pressed("jump"):
+		player.get_node("WallJumpSound").play(0.5)
 		player.velocity.y = player.jump_velocity
 		if player.get_node("Sprite2D").flip_h:
 			player.velocity.x = -player.jump_velocity
